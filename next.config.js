@@ -65,6 +65,7 @@ module.exports = () => {
     eslint: {
       dirs: ['app', 'components', 'layouts', 'scripts'],
     },
+    basePath: "/samyoney.github.io",
     output:'export',
     images: {
       unoptimized: true,
