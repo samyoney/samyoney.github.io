@@ -1,8 +1,8 @@
-/** @type {import("pliny/config").PlinyConfig } */
+/** @type {import('pliny/config').PlinyConfig } */
 const siteMetadata = {
-  title: 'SAMブロック',
+  title: 'SAM米',
   author: 'SAM米',
-  headerTitle: 'SAMブロック',
+  headerTitle: 'SAM米 (Nguyen Hong Son)',
   description: '履歴書と技術記事についてブロック',
   language: 'en-us',
   theme: 'system', // system, dark or light
