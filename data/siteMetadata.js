@@ -9,7 +9,7 @@ const siteMetadata = {
   siteUrl: 'https://samyoney.github.io',
   siteRepo: 'https://github.com/samyoney/samyoney.github.io',
   siteLogo: '/static/images/logo.png',
-  socialBanner: '/static/images/jetpack-card.png',
+  socialBanner: '/static/images/clean-android/jetpack-card.png',
   mastodon: 'https://mastodon.social/@mastodonuser',
   email: 'yoneyama1459@gmail.com',
   github: 'https://github.com/samyoney',

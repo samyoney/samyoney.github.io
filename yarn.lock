@@ -7710,6 +7710,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"mdx-embed@npm:^1.1.2":
+  version: 1.1.2
+  resolution: "mdx-embed@npm:1.1.2"
+  peerDependencies:
+    "@mdx-js/mdx": ^1.6.16
+    "@mdx-js/react": ^1.6.16
+    react: ^16.x || ^17.x || ^18.x
+    react-dom: ^16.x || ^17.x || ^18.x
+  checksum: af837318956882378ae7db2ac9a35d057b5036fe2cff32af3374510665a9a15789a308a03b9a050400c18309eebb82ddd8bad3d4c4c01aacd03e2217031b7443
+  languageName: node
+  linkType: hard
+
 "memfs@npm:3.6.0":
   version: 3.6.0
   resolution: "memfs@npm:3.6.0"
@@ -10801,6 +10813,7 @@ __metadata:
     husky: ^9.0.0
     image-size: 1.0.0
     lint-staged: ^13.0.0
+    mdx-embed: ^1.1.2
     next: 14.1.4
     next-contentlayer2: 0.4.4
     next-themes: ^0.3.0
