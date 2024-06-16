@@ -2,7 +2,7 @@
 const siteMetadata = {
   title: 'SAM米',
   author: 'SAM米',
-  headerTitle: 'SAM米 (Nguyen Hong Son)',
+  headerTitle: 'SAM',
   description: '履歴書と技術記事についてブロック',
   language: 'en-us',
   theme: 'system', // system, dark or light

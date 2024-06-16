@@ -9,7 +9,7 @@ import SEO from '@/components/SEO'
 
 const MAX_DISPLAY = 5
 
-const INTERESTED_TECH_TAGS = ['cosmos-network', 'Cryptography']
+const INTERESTED_TECH_TAGS = ['Android', 'iOS', 'Flutter', 'NextJS']
 
 export default function Home({ posts, author }) {
   return (
@@ -20,7 +20,7 @@ export default function Home({ posts, author }) {
           <div className="flex h-auto flex-1 flex-col items-start justify-start">
             <div className="mb-4 flex text-3xl font-extrabold leading-9 tracking-tight sm:text-5xl sm:leading-10 md:text-6xl md:leading-14 ">
               <h1 className="mb-2 bg-gradient-to-r from-slate-500 to-slate-800 bg-clip-text text-transparent dark:from-gray-200 dark:to-slate-300">
-                Hi There
+                Hi Everyone, I'm Sam
               </h1>
               <p>&nbsp;👋🏻</p>
             </div>
@@ -28,7 +28,7 @@ export default function Home({ posts, author }) {
               <div className="mb-2 flex bg-gradient-to-r from-slate-500 to-slate-800 bg-clip-text text-lg text-transparent dark:from-gray-200 dark:to-slate-300">
                 <div className="pr-1">Interested Tech&nbsp;</div>
                 <RoughNotation type="box" show color="#1d4ed8">
-                  Tags
+                  Android, iOS
                 </RoughNotation>
               </div>
               <div className="gap- flex w-full flex-col pt-4 xl:flex-row">

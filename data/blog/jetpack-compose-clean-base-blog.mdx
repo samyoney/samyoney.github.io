@@ -15,11 +15,11 @@ Xin chào các bạn, trong bài viết này tôi muốn chia sẻ với mọi n
 
 ![Jetpack Compose](/static/images/clean-android/jetpack-card.png)
 
-Tôi đang đăng tải bộ mã nguồn này trên GitHub cá nhân tại [Github](https://github.com/samyoney).
+Tôi đang đăng tải bộ mã nguồn này trên GitHub cá nhân tại [GitHub](https://github.com/samyoney).
 
-Trong quá trình phát triển bộ mã nguồn này, tôi xin cảm ơn tác giả [Mesut G](https://developersancho.medium.com/). Bài viết của bạn rất hữu ích, đã thay đổi quan điểm của tôi về Clean Architecture.
+Trong quá trình phát triển bộ mã nguồn này, tôi xin cảm ơn tác giả [Mesut G](https://developersancho.medium.com/). Bài viết của bạn rất hữu ích và đã thay đổi quan điểm của tôi về Clean Architecture.
 
-Mặc dù đã từng sử dụng các mô hình như MVVM, MVC, MVP, TCA trong việc phát triển ứng dụng Mobile cho khách hàng, nhưng đến hiện tại tôi cảm thấy MVVM vẫn có tính ứng dụng cao nhất trong việc kiểm thử và dễ dàng duy trì. Điều quan trọng nhất là nó có khái niệm `use case`, tôi có thể bóc tách chúng từ các `user story` để thiết kế tài liệu cơ bản.
+Mặc dù đã từng sử dụng các mô hình như MVVM, MVC, MVP, TCA trong việc phát triển ứng dụng di động cho khách hàng, tôi cảm thấy MVVM vẫn có tính ứng dụng cao nhất trong việc kiểm thử và dễ dàng duy trì. Điều quan trọng nhất là nó có khái niệm `use case`, cho phép bóc tách chúng từ các `user story` để thiết kế tài liệu cơ bản.
 
 ## Jetpack Compose là gì và tại sao nên sử dụng nó?
 
@@ -59,29 +59,37 @@ Tôi tạo ra ứng dụng MVP với các tính năng tối giản nhất, nhưn
 ```md
 +-----------+        +-----------+        +------------+
 |           |        |           |        |            |
-|  Splash   | ------>|   Login   | ------>|  Màn Hình  |
-|  Screen   |        |  Screen   |        |    Chính   |
-|           |        |           |        |(Danh sách) |
+|  Splash   | ------>|   Login   | ------>|    Main    |
+|  Screen   |        |   Flow    |        |    Flow    |
+|           |        |           |        |            |
 +-----------+        +-----------+        +------------+
 ```
+
 ## Ảnh chụp màn hình
 
 Dưới đây là các ảnh chụp màn hình của ứng dụng Android trong các chế độ khác nhau.
-
-### Màn Hình Khởi Động
-
-![Màn Hình Khởi Động](/static/images/clean-android/login-android.png)
-**Màn Hình Khởi Động**
-
-### Chế Độ Sáng
-
-![Chế Độ Sáng](/static/images/clean-android/register-android.png)
-**Chế Độ Sáng**
-
-### Chế Độ Tối
-
-![Chế Độ Tối](/static/images/clean-android/register-android.png)
-**Chế Độ Tối**
+<table>
+  <tr>
+    <td align="center">
+      <img src="/static/images/clean-android/splash-android.png" alt="Màn Hình Splash" width="300"/>
+      **Màn Hình Splash**
+    </td>
+    <td align="center">
+      <img src="/static/images/clean-android/login-android.png" alt="Màn Hình Login" width="300"/>
+      **Màn Hình Login**
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="/static/images/clean-android/course-android.png" alt="Màn Hình Course" width="300"/>
+      **Màn Hình Course**
+    </td>
+    <td align="center">
+      <img src="/static/images/clean-android/register-android.png" alt="Màn Hình Student" width="300"/>
+      **Màn Hình Student**
+    </td>
+  </tr>
+</table>
 
 *Android*
 
@@ -89,9 +97,31 @@ Dưới đây là các ảnh chụp màn hình của ứng dụng Android trong 
 
 Cấu trúc gồm 3 phần chính:
 
-- **App**: chứa giao diện như view, activity, viewmodel, xử lý logic nghiệp vụ,...
+- **App**: chứa giao diện như view, activity, viewmodel, xử lý logic nghiệp vụ, v.v.
 - **buildSrc**: tầng có nhiệm vụ quản lý các phụ thuộc, thư viện và quản lý phiên bản.
 - **framework**: tầng chứa các xử lý chung.
+
+## App
+
+- **Component**: Chứa view chung.
+- **Controller**: Các xử lý chung.
+- **Theme**: Quản lý style của đặc thù.
+- **Data**: Quản lý dữ liệu cho toàn ứng dụng, chứa cả repository, quản lý API, database và usecase.
+- **Presentation**: Các màn hình.
+- **Provider**: Cung cấp các hàm truy xuất tới resource, quản lý navigation.
+
+## buildSrc
+
+Quản lý tất cả các phụ thuộc của ứng dụng, phiên bản, và quản lý version.
+
+## Framework
+
+Quản lý các xử lý chung:
+- **Base**: Chứa các base chung cho ViewModel và State.
+- **Cache**: Khuyến khích sử dụng khi muốn chuyển dữ liệu giữa các view.
+- **Extension**: Xử lý các extension chung.
+- **Pref**: Xử lý Shared Preferences.
+- **Room**: Xử lý Database.
 
 ## Kết luận
 
@@ -99,8 +129,8 @@ Hy vọng bạn sẽ thích mã nguồn này. Nếu có bất kỳ phản hồi 
 
 ## Dự án đầy đủ
 
-Bạn có thể truy cập mã nguồn của dự án từ liên kết dưới đây: [Github](https://github.com/samyoney/compose_clean_base).
+Bạn có thể truy cập mã nguồn của dự án từ liên kết dưới đây: [GitHub](https://github.com/samyoney/compose_clean_base).
 
 ## Giấy phép
 
-[MIT](https://github.com/samyoney/compose_clean_base/blob/develop/LICENSE) © [Yoneyama SAM](https://www.timrlx.com)
+[MIT](https://github.com/samyoney/compose_clean_base/blob/develop/LICENSE) © [Yoneyama SAM](https://www.samyone.git.io)
