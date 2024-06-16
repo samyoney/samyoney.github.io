@@ -1,11 +1,11 @@
 ---
-title: 'Clean Architecture trên Jetpack Compose cho Android'
-date: '2024-06-15'
-lastmod: '2024-06-15'
-tags: ['jetpack-compose', 'clean-architecture', 'kotlin', 'solid', 'android']
+title: 'Clean Architecture trên SwiftUI(iOS)'
+date: '2024-06-16'
+lastmod: '2024-06-16'
+tags: ['iOS', 'clean-architecture', 'swift', 'swiftUI']
 draft: false
-summary: 'Base resource về Clean Architecture trên Jetpack Compose cho Android'
-images: ['/static/images/clean-android/jetpack-card.png']
+summary: 'Base resource về Clean Architecture trên SwiftUI(iOS)'
+images: ['/static/images/clean-android/ios-clean.png']
 ---
 
 ## Giới thiệu
@@ -65,71 +65,13 @@ Tôi tạo ra ứng dụng MVP với các tính năng tối giản nhất, nhưn
 +-----------+        +-----------+        +------------+
 ```
 
-## Ảnh chụp màn hình
-
-Dưới đây là các ảnh chụp màn hình của ứng dụng Android trong các chế độ khác nhau.
-<table>
-  <tr>
-    <td align="center">
-      <img src="/static/images/clean-android/splash-android.png" alt="Màn Hình Splash" width="300"/>
-      **Màn Hình Splash**
-    </td>
-    <td align="center">
-      <img src="/static/images/clean-android/login-android.png" alt="Màn Hình Login" width="300"/>
-      **Màn Hình Login**
-    </td>
-  </tr>
-  <tr>
-    <td align="center">
-      <img src="/static/images/clean-android/course-android.png" alt="Màn Hình Course" width="300"/>
-      **Màn Hình Course**
-    </td>
-    <td align="center">
-      <img src="/static/images/clean-android/register-android.png" alt="Màn Hình Student" width="300"/>
-      **Màn Hình Student**
-    </td>
-  </tr>
-</table>
-
-*Android*
-
-## Cấu trúc ứng dụng
-
-Cấu trúc gồm 3 phần chính:
-
-- **App**: chứa giao diện như view, activity, viewmodel, xử lý logic nghiệp vụ, v.v.
-- **buildSrc**: tầng có nhiệm vụ quản lý các phụ thuộc, thư viện và quản lý phiên bản.
-- **framework**: tầng chứa các xử lý chung.
-
-## App
-
-- **Component**: Chứa view chung.
-- **Controller**: Các xử lý chung.
-- **Theme**: Quản lý style của đặc thù.
-- **Data**: Quản lý dữ liệu cho toàn ứng dụng, chứa cả repository, quản lý API, database và usecase.
-- **Presentation**: Các màn hình.
-- **Provider**: Cung cấp các hàm truy xuất tới resource, quản lý navigation.
-
-## buildSrc
-
-Quản lý tất cả các phụ thuộc của ứng dụng, phiên bản, và quản lý version.
-
-## Framework
-
-Quản lý các xử lý chung:
-- **Base**: Chứa các base chung cho ViewModel và State.
-- **Cache**: Khuyến khích sử dụng khi muốn chuyển dữ liệu giữa các view.
-- **Extension**: Xử lý các extension chung.
-- **Pref**: Xử lý Shared Preferences.
-- **Room**: Xử lý Database.
-
 ## Kết luận
 
 Hy vọng bạn sẽ thích mã nguồn này. Nếu có bất kỳ phản hồi hoặc đề xuất nào, vui lòng mở một vấn đề trên GitHub hoặc liên hệ với tôi trên [LinkedIn](https://www.linkedin.com/in/sam-nguyen-204876192/).
 
 ## Dự án đầy đủ
 
-Bạn có thể truy cập mã nguồn của dự án từ liên kết dưới đây: [GitHub](https://github.com/samyoney/compose_clean_base).
+Bạn có thể truy cập mã nguồn của dự án từ liên kết dưới đây: [GitHub](https://github.com/samyoney/SwiftCleanBase).
 
 ## Giấy phép
 

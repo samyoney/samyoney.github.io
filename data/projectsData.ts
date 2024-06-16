@@ -7,20 +7,16 @@ interface Project {
 
 const projectsData: Project[] = [
   {
-    title: 'A Search Engine',
-    description: `What if you could look up any information in the world? Webpages, images, videos
-    and more. Google has many features to help you find exactly what you're looking
-    for.`,
-    imgSrc: '/static/images/google.png',
-    href: 'https://www.google.com',
+    title: 'GMOクリック FXneo-Android',
+    description: `https://www.click-sec.com/corp/tool/fxneo_app/`,
+    imgSrc: '/static/images/android-fx.png',
+    href: 'https://play.google.com/store/apps/details?id=com.click_sec.fxneo',
   },
   {
-    title: 'The Time Machine',
-    description: `Imagine being able to travel back in time or to the future. Simple turn the knob
-    to the desired date and press "Go". No more worrying about lost keys or
-    forgotten headphones with this simple yet affordable solution.`,
-    imgSrc: '/static/images/time-machine.jpg',
-    href: '/blog/the-time-machine',
+    title: 'GMOクリック FXneo-iOS',
+    description: `https://www.click-sec.com/corp/tool/fxneo_app/`,
+    imgSrc: '/static/images/ios-fx.png',
+    href: 'https://apps.apple.com/jp/app/gmo%E3%82%AF%E3%83%AA%E3%83%83%E3%82%AF-fxneo/id1436251478',
   },
 ]
 
