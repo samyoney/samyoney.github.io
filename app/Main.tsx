@@ -9,7 +9,14 @@ import SEO from '@/components/SEO'
 
 const MAX_DISPLAY = 5
 
-const INTERESTED_TECH_TAGS = ['Android', 'iOS', 'Flutter', 'NextJS']
+const INTERESTED_TECH_TAGS = [
+  'Kotlin Multiplatform',
+  'Android',
+  'iOS',
+  'Flutter',
+  'NextJS',
+  'Javascript',
+]
 
 export default function Home({ posts, author }) {
   return (
@@ -48,8 +55,8 @@ export default function Home({ posts, author }) {
           </div>
         </div>
         <div className="space-y-2 pb-2 pt-6 md:space-y-5">
-          <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
-            Latest Posts
+          <h1 className="text-xl font-extrabold leading-7 tracking-tight text-gray-900 dark:text-gray-100 sm:text-2xl sm:leading-8 md:text-4xl md:leading-10">
+            Recent Articles
           </h1>
         </div>
 

@@ -3,22 +3,22 @@ const siteMetadata = {
   title: 'SAM米',
   author: 'SAM米',
   headerTitle: 'SAM',
-  description: '履歴書と技術記事についてブロック',
+  description:
+    "A place to share personal knowledge and experiences. I'm happy if you find it helpful.",
   language: 'en-us',
   theme: 'system', // system, dark or light
   siteUrl: 'https://samyoney.github.io',
   siteRepo: 'https://github.com/samyoney/samyoney.github.io',
   siteLogo: '/static/images/logo.png',
   socialBanner: '/static/images/clean-android/jetpack-card.png',
-  mastodon: 'https://mastodon.social/@mastodonuser',
   email: 'yoneyama1459@gmail.com',
   github: 'https://github.com/samyoney',
-  twitter: 'https://twitter.com/Twitter',
-  facebook: 'https://facebook.com',
-  youtube: 'https://youtube.com',
+  twitter: 'https://x.com/samhon1459',
+  facebook: 'https://www.facebook.com/o0oga0nljn3/',
+  youtube: 'https://youtube.com/@yoneyama_1459',
   linkedin: 'https://www.linkedin.com/in/son-nguyen-204876192/',
   threads: 'https://www.threads.net',
-  instagram: 'https://www.instagram.com',
+  instagram: 'https://www.instagram.com/sam.yoneyama/',
   locale: 'en-US',
   analytics: {
     // If you want to use an analytics provider you have to add it to the

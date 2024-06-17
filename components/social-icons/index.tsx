@@ -17,7 +17,6 @@ const components = {
   youtube: Youtube,
   linkedin: Linkedin,
   twitter: Twitter,
-  mastodon: Mastodon,
   threads: Threads,
   instagram: Instagram,
 }
