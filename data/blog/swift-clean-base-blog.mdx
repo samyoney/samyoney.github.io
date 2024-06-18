@@ -1,11 +1,11 @@
 ---
 title: 'Clean Architecture trên SwiftUI(iOS)'
-date: '2024-06-16'
-lastmod: '2024-06-16'
+date: '2024-06-17'
+lastmod: '2024-06-17'
 tags: ['iOS', 'clean-architecture', 'swift', 'swiftUI']
 draft: false
 summary: 'Base resource về Clean Architecture trên SwiftUI(iOS)'
-images: ['/static/images/clean-android/ios-clean.png']
+images: ['/static/images/clean/ios-clean.png']
 ---
 
 ## Giới thiệu
@@ -13,23 +13,33 @@ images: ['/static/images/clean-android/ios-clean.png']
 Xin chào các bạn, trong bài viết này tôi muốn chia sẻ với mọi người bộ mã nguồn mà tôi đã xây dựng để phát triển ứng dụng Android theo Clean Architecture.
 <TOCInline toc={props.toc} exclude="Giới thiệu" />
 
-![Jetpack Compose](/static/images/clean-android/jetpack-card.png)
-
 Tôi đang đăng tải bộ mã nguồn này trên GitHub cá nhân tại [GitHub](https://github.com/samyoney).
-
-Trong quá trình phát triển bộ mã nguồn này, tôi xin cảm ơn tác giả [Mesut G](https://developersancho.medium.com/). Bài viết của bạn rất hữu ích và đã thay đổi quan điểm của tôi về Clean Architecture.
 
 Mặc dù đã từng sử dụng các mô hình như MVVM, MVC, MVP, TCA trong việc phát triển ứng dụng di động cho khách hàng, tôi cảm thấy MVVM vẫn có tính ứng dụng cao nhất trong việc kiểm thử và dễ dàng duy trì. Điều quan trọng nhất là nó có khái niệm `use case`, cho phép bóc tách chúng từ các `user story` để thiết kế tài liệu cơ bản.
 
-## Jetpack Compose là gì và tại sao nên sử dụng nó?
+## SwiftUI là gì và tại sao nên sử dụng nó?
 
-Jetpack Compose là một bộ công cụ UI (User Interface) hiện đại do Google phát triển dành cho Android, cho phép tạo giao diện người dùng một cách dễ dàng và linh hoạt. Được viết bằng Kotlin, nó giúp xây dựng giao diện thông qua các thành phần (composable functions) thay vì các phương thức truyền thống như XML.
+SwiftUI là một framework do Apple phát triển để xây dựng giao diện người dùng (UI) cho các ứng dụng iOS, macOS, watchOS và tvOS. Được giới thiệu lần đầu tiên tại WWDC 2019, SwiftUI cung cấp một cách tiếp cận hiện đại và khai báo để phát triển UI, cho phép lập trình viên tạo ra các giao diện người dùng dễ dàng hơn và trực quan hơn.
 
-### Lợi ích:
 
-- **Phát triển nhanh hơn**: Giảm thời gian viết và bảo trì mã.
-- **Giao diện người dùng tương tác tốt hơn**: Dễ dàng tạo các hiệu ứng và chuyển đổi phức tạp.
-- **Khả năng mở rộng**: Dễ dàng thêm tính năng mới và thay đổi UI mà không gây ảnh hưởng lớn đến mã nguồn hiện có.
+### Lợi ích của việc sử dụng SwiftUI
+
+1. **Cú pháp khai báo dễ đọc (Declarative Syntax)**:
+  - Tạo UI bằng cách định nghĩa trạng thái mong muốn, giúp mã ngắn gọn và dễ hiểu.
+
+2. **Phát triển và bảo trì nhanh chóng (Fast Development and Maintenance)**:
+  - Thấy ngay thay đổi trong UI qua SwiftUI Preview, tăng tốc phát triển và gỡ lỗi.
+
+3. **Khả năng tái sử dụng và nhất quán (Reusability and Consistency)**:
+  - Tạo và tái sử dụng các thành phần UI một cách dễ dàng, giảm thiểu lặp lại mã.
+
+4. **Hỗ trợ đa nền tảng (Cross-Platform Support)**:
+  - Sử dụng cùng một mã cho iOS, macOS, watchOS, và tvOS, tiết kiệm thời gian và công sức.
+
+5. **Tích hợp tốt với công nghệ Apple khác (Integration with Apple Technologies)**:
+  - Hoạt động tốt với Combine và Core Data, giúp xây dựng ứng dụng mạnh mẽ hơn.
+
+---
 
 ## Tại sao nên sử dụng Clean Architecture?
 
@@ -50,9 +60,11 @@ Clean Architecture mang lại nhiều lợi ích, tôi xin tóm tắt ngắn g�
 
 Clean Architecture giúp tạo ra một ứng dụng linh hoạt, dễ bảo trì và dễ kiểm thử, đồng thời hỗ trợ thay đổi và phát triển lâu dài mà không làm gián đoạn hoạt động hiện tại của hệ thống.
 
+---
+
 ## Tổng quan về mã nguồn
 
-Tôi tạo ra ứng dụng MVP với các tính năng tối giản nhất, nhưng tôi tin sự tối giản này không làm cho nền tảng của nó trở nên sơ sài, ngược lại giúp cho người mới tiếp cận dễ dàng hơn. Nếu có thể, hãy sử dụng phiên bản Android Studio mới nhất và Java phiên bản tối thiểu là 1.8.
+Tôi đã tạo ra một ứng dụng MVP với các tính năng tối giản nhất. Sự tối giản này không làm cho nền tảng của ứng dụng trở nên sơ sài mà ngược lại, giúp người mới tiếp cận dễ dàng hơn. Trong mã nguồn lần này, tôi đã áp dụng tất cả các công nghệ mới nhất hiện có như [Swift-Data](https://developer.apple.com/xcode/swiftdata/), [R.swift](https://github.com/mac-cain13/R.swift), [Resolver](https://github.com/hmlongco/Resolver) và sử dụng các quy tắc code clean được đề xuất cho SwiftUI.
 
 ## Sơ đồ luồng các màn hình
 
@@ -65,6 +77,50 @@ Tôi tạo ra ứng dụng MVP với các tính năng tối giản nhất, nhưn
 +-----------+        +-----------+        +------------+
 ```
 
+## Ảnh chụp màn hình
+
+Dưới đây là các ảnh chụp màn hình của ứng dụng iOS trong các chế độ khác nhau.
+<table>
+  <tr>
+    <td align="center">
+      <img src="/static/images/clean/splash-ios.png" alt="Màn Hình Splash" width="300"/>
+      **Màn Hình Splash**
+    </td>
+    <td align="center">
+      <img src="/static/images/clean/login-ios.png" alt="Màn Hình Login" width="300"/>
+      **Màn Hình Login**
+    </td>
+    <td align="center">
+      <img src="/static/images/clean/register-ios.png" alt="Màn Hình Login" width="300"/>
+      **Màn Hình Register**
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="/static/images/clean/course-ios.png" alt="Màn Hình Course" width="300"/>
+      **Màn Hình Course**
+    </td>
+    <td align="center">
+      <img src="/static/images/clean/student-ios.png" alt="Màn Hình Student" width="300"/>
+      **Màn Hình Student**
+    </td>
+  </tr>
+</table>
+
+*iOS*
+
+## Cấu trúc ứng dụng
+
+Cấu trúc của ứng dụng bao gồm 5 phần chính:
+
+- **App**: Quản lý điều hướng, ứng dụng và các phụ thuộc của app.
+- **Core**: Chứa tất cả các xử lý chung của app như xử lý user defaults, các view chung, lưu cache, và xử lý mạng.
+- **Presentation**: Chứa các màn hình giao diện.
+- **Resource**: Chứa các tài nguyên của app như string, animation.
+- **Data**: Quản lý dữ liệu cho toàn ứng dụng, bao gồm repository, quản lý API, cơ sở dữ liệu và các usecase.
+
+---
+
 ## Kết luận
 
 Hy vọng bạn sẽ thích mã nguồn này. Nếu có bất kỳ phản hồi hoặc đề xuất nào, vui lòng mở một vấn đề trên GitHub hoặc liên hệ với tôi trên [LinkedIn](https://www.linkedin.com/in/sam-nguyen-204876192/).
@@ -73,6 +129,11 @@ Hy vọng bạn sẽ thích mã nguồn này. Nếu có bất kỳ phản hồi 
 
 Bạn có thể truy cập mã nguồn của dự án từ liên kết dưới đây: [GitHub](https://github.com/samyoney/SwiftCleanBase).
 
+## Tham khảo
+- [SwiftUI Overview - Apple Developer](https://developer.apple.com/xcode/swiftui/)
+- [SwiftUI Essentials - Apple](https://developer.apple.com/tutorials/swiftui/creating-and-combining-views)
+- [Why Use SwiftUI - Hacking with Swift](https://www.hackingwithswift.com/quick-start/swiftui/why-swiftui-is-the-future)
+
 ## Giấy phép
 
-[MIT](https://github.com/samyoney/compose_clean_base/blob/develop/LICENSE) © [Yoneyama SAM](https://www.samyone.git.io)
+[MIT](https://github.com/samyoney/compose_clean_base/blob/develop/LICENSE) © [Yoneyama SAM](https://samyoney.github.io/)

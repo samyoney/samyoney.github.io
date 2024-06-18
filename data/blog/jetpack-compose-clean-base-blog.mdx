@@ -1,23 +1,23 @@
 ---
 title: 'Clean Architecture trên Jetpack Compose cho Android'
-date: '2024-06-15'
-lastmod: '2024-06-15'
+date: '2024-06-18'
+lastmod: '2024-06-18'
 tags: ['jetpack-compose', 'clean-architecture', 'kotlin', 'solid', 'android']
 draft: false
 summary: 'Base resource về Clean Architecture trên Jetpack Compose cho Android'
-images: ['/static/images/clean-android/jetpack-card.png']
+images: ['/static/images/clean/jetpack-card.png']
 ---
+
+## 日本語版：[Link Qiita](https://qiita.com/samyoney/items/d53d0b58c1b5e4b6fa08)
 
 ## Giới thiệu
 
 Xin chào các bạn, trong bài viết này tôi muốn chia sẻ với mọi người bộ mã nguồn mà tôi đã xây dựng để phát triển ứng dụng Android theo Clean Architecture.
 <TOCInline toc={props.toc} exclude="Giới thiệu" />
 
-![Jetpack Compose](/static/images/clean-android/jetpack-card.png)
+![Jetpack Compose](/static/images/clean/jetpack-card.png)
 
 Tôi đang đăng tải bộ mã nguồn này trên GitHub cá nhân tại [GitHub](https://github.com/samyoney).
-
-Trong quá trình phát triển bộ mã nguồn này, tôi xin cảm ơn tác giả [Mesut G](https://developersancho.medium.com/). Bài viết của bạn rất hữu ích và đã thay đổi quan điểm của tôi về Clean Architecture.
 
 Mặc dù đã từng sử dụng các mô hình như MVVM, MVC, MVP, TCA trong việc phát triển ứng dụng di động cho khách hàng, tôi cảm thấy MVVM vẫn có tính ứng dụng cao nhất trong việc kiểm thử và dễ dàng duy trì. Điều quan trọng nhất là nó có khái niệm `use case`, cho phép bóc tách chúng từ các `user story` để thiết kế tài liệu cơ bản.
 
@@ -71,21 +71,25 @@ Dưới đây là các ảnh chụp màn hình của ứng dụng Android trong 
 <table>
   <tr>
     <td align="center">
-      <img src="/static/images/clean-android/splash-android.png" alt="Màn Hình Splash" width="300"/>
+      <img src="/static/images/clean/splash-android.png" alt="Màn Hình Splash" width="300"/>
       **Màn Hình Splash**
     </td>
     <td align="center">
-      <img src="/static/images/clean-android/login-android.png" alt="Màn Hình Login" width="300"/>
+      <img src="/static/images/clean/login-android.png" alt="Màn Hình Login" width="300"/>
       **Màn Hình Login**
+    </td>
+    <td align="center">
+      <img src="/static/images/clean/register-android.png" alt="Màn Hình Login" width="300"/>
+      **Màn Hình Register**
     </td>
   </tr>
   <tr>
     <td align="center">
-      <img src="/static/images/clean-android/course-android.png" alt="Màn Hình Course" width="300"/>
+      <img src="/static/images/clean/course-android.png" alt="Màn Hình Course" width="300"/>
       **Màn Hình Course**
     </td>
     <td align="center">
-      <img src="/static/images/clean-android/register-android.png" alt="Màn Hình Student" width="300"/>
+      <img src="/static/images/clean/student-android.png" alt="Màn Hình Student" width="300"/>
       **Màn Hình Student**
     </td>
   </tr>
@@ -133,4 +137,4 @@ Bạn có thể truy cập mã nguồn của dự án từ liên kết dưới �
 
 ## Giấy phép
 
-[MIT](https://github.com/samyoney/compose_clean_base/blob/develop/LICENSE) © [Yoneyama SAM](https://www.samyone.git.io)
+[MIT](https://github.com/samyoney/compose_clean_base/blob/develop/LICENSE) © [Yoneyama SAM](https://samyoney.github.io/)

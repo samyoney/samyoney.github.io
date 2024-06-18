@@ -27,16 +27,16 @@ export default function Home({ posts, author }) {
           <div className="flex h-auto flex-1 flex-col items-start justify-start">
             <div className="mb-4 flex text-3xl font-extrabold leading-9 tracking-tight sm:text-5xl sm:leading-10 md:text-6xl md:leading-14 ">
               <h1 className="mb-2 bg-gradient-to-r from-slate-500 to-slate-800 bg-clip-text text-transparent dark:from-gray-200 dark:to-slate-300">
-                Hi Everyone, I'm Sam
+                Hi Everyone, I'm Son
               </h1>
-              <p>&nbsp;👋🏻</p>
+              <p>&nbsp;💮</p>
             </div>
             <div className="flex h-auto flex-col">
               <div className="mb-2 flex bg-gradient-to-r from-slate-500 to-slate-800 bg-clip-text text-lg text-transparent dark:from-gray-200 dark:to-slate-300">
-                <div className="pr-1">Interested Tech&nbsp;</div>
-                <RoughNotation type="box" show color="#1d4ed8">
-                  Android, iOS
-                </RoughNotation>
+                <div className="pr-1">But feel free to call me Sam, it makes me happy!</div>
+              </div>
+              <div className="mb-2 flex bg-gradient-to-r from-slate-500 to-slate-800 bg-clip-text text-lg text-transparent dark:from-gray-200 dark:to-slate-300">
+                <div className="pr-1">でも、サムって呼んでくれると嬉しいです！</div>
               </div>
               <div className="gap- flex w-full flex-col pt-4 xl:flex-row">
                 {INTERESTED_TECH_TAGS.map((tag, index) => {
