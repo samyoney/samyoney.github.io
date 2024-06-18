@@ -82,6 +82,18 @@ const projectsData: Project[] = [
     href: 'https://apps.apple.com/jp/app/e%E3%82%AA%E3%83%AA%E3%82%B3%E3%82%A2%E3%83%97%E3%83%AA/id998424815',
   },
   {
+    title: '聖教電子版 for Android',
+    description: `Discover the Seikyo Digital Edition app for Android, providing instant access to articles, news, and learning materials from the Seikyo newspaper. With a user-friendly interface, stay updated on the latest information and enjoy a seamless reading experience. Utilize convenient features such as offline access to stay informed anytime, anywhere. Optimized for Android, this app brings knowledge and information right to your fingertips.`,
+    imgSrc: '/static/images/seikyou-android.png',
+    href: 'https://play.google.com/store/apps/details?id=com.seikyoonline.app&hl=ja',
+  },
+  {
+    title: '聖教電子版 for iOS',
+    description: `Discover the Seikyo Digital Edition app for iOS, providing instant access to articles, news, and learning materials from the Seikyo newspaper. With a user-friendly interface, stay updated on the latest information and enjoy a seamless reading experience. Utilize convenient features such as offline access to stay informed anytime, anywhere. Optimized for iOS, this app brings knowledge and information right to your fingertips.`,
+    imgSrc: '/static/images/seikyou-ios.png',
+    href: 'https://apps.apple.com/jp/app/%E8%81%96%E6%95%99%E9%9B%BB%E5%AD%90%E7%89%88/id1064820174',
+  },
+  {
     title: '痛みアプリ for iOS',
     description: `Monitor your health with 痛みアプリ, available on iOS (Swift). Utilizing Google Tensor technology, the app analyzes facial data to assess your health status and provide personalized advice. Stay informed about your well-being and receive expert recommendations right on your mobile device.`,
     imgSrc: '/static/images/itami-ios.png',
