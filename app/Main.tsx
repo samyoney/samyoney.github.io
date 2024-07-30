@@ -36,7 +36,20 @@ export default function Home({ posts, author }) {
                 <div className="pr-1">But feel free to call me Sam, it makes me happy!</div>
               </div>
               <div className="mb-2 flex bg-gradient-to-r from-slate-500 to-slate-800 bg-clip-text text-lg text-transparent dark:from-gray-200 dark:to-slate-300">
-                <div className="pr-1">でも、サムって呼んでくれると嬉しいです！</div>
+                <div className="pr-1">
+                  でも、サムって呼んでくれると嬉しいです！
+                  <br />
+                  こちらの
+                  <a
+                    className="mx-1"
+                    href="https://qiita.com/samyoney"
+                    target="_blank"
+                    style={{ color: 'rgb(236 72 153 / var(--tw-text-opacity))' }}
+                  >
+                    私のQiita
+                  </a>
+                  をぜひご覧ください。
+                </div>
               </div>
               <div className="gap- flex w-full flex-col pt-4 xl:flex-row">
                 {INTERESTED_TECH_TAGS.map((tag, index) => {
