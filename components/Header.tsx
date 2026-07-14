@@ -1,7 +1,6 @@
 import siteMetadata from '@/data/siteMetadata'
 import headerNavLinks from '@/data/headerNavLinks'
 import Logo from '@/data/logo.png'
-import DarkModeLogo from '@/data/logo.png'
 import Image from 'next/image'
 import Link from './Link'
 import MobileNav from './MobileNav'
@@ -13,19 +12,17 @@ const Header = () => {
     <header className="flex items-center justify-between py-10">
       <div>
         <Link href="/" aria-label={siteMetadata.headerTitle}>
-          <div className="flex items-center justify-between">
-            <div className="mr-3">
-              <Image
-                className="hidden dark:block"
-                src={DarkModeLogo}
-                alt="Logo"
-                width={30}
-                height={30}
-              />
-              <Image className="dark:hidden" src={Logo} alt="Logo" width={30} height={30} />
-            </div>
+          <div className="group flex items-center gap-3">
+            <Image
+              className="h-11 w-11 transition-transform duration-200 group-hover:scale-105"
+              src={Logo}
+              alt="SAM mascot"
+              width={44}
+              height={44}
+              priority
+            />
             {typeof siteMetadata.headerTitle === 'string' ? (
-              <div className="hidden h-6 text-2xl font-semibold sm:block">
+              <div className="hidden text-xl font-bold tracking-[0.16em] text-gray-950 dark:text-white sm:block">
                 {siteMetadata.headerTitle}
               </div>
             ) : (

@@ -1,10 +1,10 @@
 /** @type {import('pliny/config').PlinyConfig } */
 const siteMetadata = {
-  title: 'SAM米',
-  author: 'SAM米',
+  title: 'Nguyen Hong Son | Bridge SE & Tech Lead',
+  author: 'Nguyen Hong Son (Sam)',
   headerTitle: 'SAM',
   description:
-    "A place to share personal knowledge and experiences. I'm happy if you find it helpful.",
+    'Bridge SE and Tech Lead specializing in mobile, cloud, system architecture, and offshore delivery.',
   language: 'en-us',
   theme: 'system', // system, dark or light
   siteUrl: 'https://samyoney.github.io',

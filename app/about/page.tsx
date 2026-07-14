@@ -6,6 +6,7 @@ import AuthorLayout from '@/layouts/AuthorLayout'
 import { coreContent } from 'pliny/utils/contentlayer'
 import { useState } from 'react'
 import './about_page.css'
+import { components } from '@/components/MDXComponents'
 
 export default function Page() {
   const [authorSlug, setAuthorSlug] = useState('default_jp')
@@ -22,10 +23,10 @@ export default function Page() {
       <AuthorLayout content={mainContent}>
         <div className="button-container">
           <button onClick={toggleAuthor} className="toggle-button">
-            {authorSlug === 'default' ? '履歴書' : 'English Version'}
+            {authorSlug === 'default' ? '日本語' : 'English'}
           </button>
         </div>
-        <MDXLayoutRenderer code={author.body.code} />
+        <MDXLayoutRenderer code={author.body.code} components={components} />
       </AuthorLayout>
     </>
   )

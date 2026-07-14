@@ -4,18 +4,17 @@ import { TypedIntroduce } from '@/components/TypedIntroduce'
 import siteMetadata from '@/data/siteMetadata'
 import Image from 'next/image'
 import { formatDate } from 'pliny/utils/formatDate'
-import { RoughNotation } from 'react-rough-notation'
 import SEO from '@/components/SEO'
 
 const MAX_DISPLAY = 5
 
 const INTERESTED_TECH_TAGS = [
-  'Kotlin Multiplatform',
-  'Android',
-  'iOS',
+  'Bridge SE',
+  'Tech Lead',
+  'Mobile Architecture',
   'Flutter',
-  'NextJS',
-  'Javascript',
+  '.NET MAUI',
+  'AWS',
 ]
 
 export default function Home({ posts, author }) {
@@ -23,48 +22,57 @@ export default function Home({ posts, author }) {
     <>
       <SEO />
       <div className="">
-        <div className="flex h-auto w-auto items-center justify-between p-0 md:p-8">
-          <div className="flex h-auto flex-1 flex-col items-start justify-start">
-            <div className="mb-4 flex text-3xl font-extrabold leading-9 tracking-tight sm:text-5xl sm:leading-10 md:text-6xl md:leading-14 ">
-              <h1 className="mb-2 bg-gradient-to-r from-slate-500 to-slate-800 bg-clip-text text-transparent dark:from-gray-200 dark:to-slate-300">
-                Hi Everyone, I'm Son
-              </h1>
-              <p>&nbsp;💮</p>
+        <div className="grid items-center gap-10 py-10 md:grid-cols-[minmax(0,1fr)_280px] md:py-16">
+          <div className="flex flex-col items-start">
+            <p className="mb-4 text-sm font-bold uppercase tracking-[0.22em] text-primary-500">
+              Nguyen Hong Son · Sam
+            </p>
+            <h1 className="bg-gradient-to-r from-slate-600 to-slate-900 bg-clip-text text-4xl font-extrabold leading-tight tracking-tight text-transparent dark:from-gray-100 dark:to-slate-400 sm:text-6xl">
+              Bridge SE & Tech Lead
+            </h1>
+            <p className="mt-5 max-w-3xl text-lg leading-8 text-gray-600 dark:text-gray-300">
+              I lead mobile, cloud, IoT, and POS development from customer alignment and
+              architecture to review, quality, and delivery.
+            </p>
+            <p className="mt-2 max-w-3xl text-base leading-7 text-gray-500 dark:text-gray-400">
+              顧客調整から設計、技術判断、品質・リリース管理まで、開発全体を一貫して推進します。
+            </p>
+            <div className="mt-6 flex flex-wrap gap-2">
+              {INTERESTED_TECH_TAGS.map((tag) => (
+                <Tag key={tag} text={tag} />
+              ))}
             </div>
-            <div className="flex h-auto flex-col">
-              <div className="mb-2 flex bg-gradient-to-r from-slate-500 to-slate-800 bg-clip-text text-lg text-transparent dark:from-gray-200 dark:to-slate-300">
-                <div className="pr-1">But feel free to call me Sam, it makes me happy!</div>
-              </div>
-              <div className="mb-2 flex bg-gradient-to-r from-slate-500 to-slate-800 bg-clip-text text-lg text-transparent dark:from-gray-200 dark:to-slate-300">
-                <div className="pr-1">
-                  でも、サムって呼んでくれると嬉しいです！
-                  <br />
-                  こちらの
-                  <a
-                    className="mx-1"
-                    href="https://qiita.com/samyoney"
-                    target="_blank"
-                    style={{ color: 'rgb(236 72 153 / var(--tw-text-opacity))' }}
-                  >
-                    私のQiita
-                  </a>
-                  をぜひご覧ください。
-                </div>
-              </div>
-              <div className="gap- flex w-full flex-col pt-4 xl:flex-row">
-                {INTERESTED_TECH_TAGS.map((tag, index) => {
-                  return (
-                    <div key={index} className="mx-1">
-                      <Tag text={tag} />
-                    </div>
-                  )
-                })}
-              </div>
-            </div>
-            <div className="min-h-42 py-4">
+            <div className="min-h-16 py-6">
               <TypedIntroduce />
             </div>
-            <div className="p-2">{/* <MyInformation /> */}</div>
+            <div className="flex flex-wrap gap-3">
+              <Link
+                href="/about"
+                className="rounded-full bg-primary-500 px-5 py-2.5 font-semibold text-white transition hover:bg-primary-600"
+              >
+                View profile
+              </Link>
+              <Link
+                href="/projects"
+                className="rounded-full border border-gray-300 px-5 py-2.5 font-semibold text-gray-700 transition hover:border-primary-500 hover:text-primary-500 dark:border-gray-700 dark:text-gray-200"
+              >
+                Explore projects
+              </Link>
+            </div>
+          </div>
+          <div className="mx-auto w-full max-w-[280px]">
+            <div className="relative aspect-square overflow-hidden rounded-full bg-gradient-to-br from-primary-400 via-purple-400 to-sky-400 p-1 shadow-2xl">
+              <div className="relative h-full w-full overflow-hidden rounded-full bg-white dark:bg-gray-900">
+                <Image
+                  src={author.avatar as string}
+                  alt="Nguyen Hong Son avatar"
+                  fill
+                  priority
+                  sizes="280px"
+                  className="object-cover"
+                />
+              </div>
+            </div>
           </div>
         </div>
         <div className="space-y-2 pb-2 pt-6 md:space-y-5">

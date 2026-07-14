@@ -1,107 +1,203 @@
-interface Project {
+export interface Project {
   title: string
+  period: string
+  role: string
+  category: string
   description: string
+  technologies: string[]
   href?: string
   imgSrc?: string
 }
 
 const projectsData: Project[] = [
   {
-    title: 'ビットコイン・暗号資産（仮想通貨）取引ならGMOコイン for Android',
-    description: `Experience seamless cryptocurrency trading with the GMO Coin app, built with Kotlin for Android. Monitor real-time prices, execute trades swiftly, and manage your digital assets securely. Benefit from advanced features and a user-friendly interface to stay ahead in the crypto market.`,
-    imgSrc: '/static/images/android-coin.png',
-    href: 'https://apps.apple.com/jp/app/%E3%83%93%E3%83%83%E3%83%88%E3%82%B3%E3%82%A4%E3%83%B3-%E6%9A%97%E5%8F%B7%E8%B3%87%E7%94%A3-%E4%BB%AE%E6%83%B3%E9%80%9A%E8%B2%A8-%E5%8F%96%E5%BC%95%E3%81%AA%E3%82%89gmo%E3%82%B3%E3%82%A4%E3%83%B3/id1388836948',
+    title: 'アイテック 法人向けクラウド電話サービス',
+    period: 'May 2026 – Present',
+    role: 'Bridge SE / Tech Lead',
+    category: 'Cloud Communication',
+    description:
+      'Leading customer and partner alignment, architecture reviews, security and incident response, acceptance, production migration, and release stabilization across mobile, web administration, APIs, and AWS infrastructure.',
+    technologies: ['Kotlin', 'Swift', 'Java', 'TypeScript', 'Spring Boot', 'Vue.js', 'AWS', 'SIP'],
   },
   {
-    title: 'ビットコイン・暗号資産（仮想通貨）取引ならGMOコイン for iOS',
-    description: `Experience seamless cryptocurrency trading with the GMO Coin app, built with Swift for iOS. Monitor real-time prices, execute trades swiftly, and manage your digital assets securely. Benefit from advanced features and a user-friendly interface to stay ahead in the crypto market.`,
-    imgSrc: '/static/images/ios-coin.png',
-    href: 'https://play.google.com/store/apps/details?id=com.gmowallet.mobilewallet&hl=en',
+    title: 'Next-generation KS-POS',
+    period: 'Jan 2026 – Present',
+    role: 'Bridge SE / Tech Lead',
+    category: 'POS Architecture',
+    description:
+      'Leading a multi-platform POS foundation from customer alignment and system architecture to peripheral integration, persistent state, observability, design documentation, and test strategy.',
+    technologies: ['C#', '.NET MAUI', 'React', 'TypeScript', 'SQLite', 'Sentry', 'OPOS'],
   },
   {
-    title: 'GMOクリック CFD for Android',
-    description: `Trade CFDs effortlessly with the Click Securities app, built natively with Kotlin for Android. Enjoy real-time market data, intuitive trading features, and seamless portfolio management. Stay ahead in the market with secure, reliable, and fast trading on the go.`,
-    imgSrc: '/static/images/android-cfd.png',
-    href: 'https://play.google.com/store/apps/details?id=com.click_sec.gmoclickcfd&hl=en',
+    title: 'EDION Business Web Systems',
+    period: 'May 2025 – Sep 2025',
+    role: 'Bridge SE / Senior SE',
+    category: 'Web Operations',
+    description:
+      'Coordinated requirements, incident and impact analysis, implementation reviews, progress, risk, and stable operations across multiple internal business systems.',
+    technologies: ['PHP', 'Laravel', 'JavaScript', 'HTML', 'CSS', 'MySQL', 'AWS'],
   },
   {
-    title: 'GMOクリック CFD for iOS',
-    description: `Trade CFDs effortlessly with the Click Securities app, built natively with Swift for iOS. Enjoy real-time market data, intuitive trading features, and seamless portfolio management. Stay ahead in the market with secure, reliable, and fast trading on the go.`,
-    imgSrc: '/static/images/ios-cfd.png',
-    href: 'https://apps.apple.com/jp/app/gmo%E3%82%AF%E3%83%AA%E3%83%83%E3%82%AF-cfd/id1542314599',
+    title: 'Sharp Mobile Application Maintenance',
+    period: 'Mar 2025 – May 2025',
+    role: 'Bridge SE / Tech Lead',
+    category: 'Mobile Platform',
+    description:
+      'Owned customer communication, code investigation, implementation review, priority decisions, and quality improvement for a large Flutter application on Android and iOS.',
+    technologies: ['Dart', 'Flutter', 'Android', 'iOS', 'GitHub'],
   },
   {
-    title: 'GMOクリック FXneo for Apple Watch',
-    description: `Stay on top of the Forex market with the Click Securities FXWatch app, designed exclusively for Apple Watch. Receive real-time market updates, monitor currency pairs, and set custom alerts for key market movements. Experience the convenience of managing your Forex trading right from your wrist.`,
-    imgSrc: '/static/images/fx-watch.png',
-    href: 'https://www.click-sec.com/corp/tool/fxwatch_apple/',
+    title: 'Ticketing and Payment Cloud Platform',
+    period: 'Feb 2025 – May 2025',
+    role: 'Bridge SE',
+    category: 'Cloud Platform',
+    description:
+      'Drove requirements, APIs, non-functional design, external payment integration, and delivery planning for a cloud platform supporting ticketing, verification, QR scanning, and printing.',
+    technologies: ['PHP', 'Laravel', 'AWS', 'ECS Fargate', 'Aurora MySQL', 'Redis'],
   },
   {
-    title: 'GMOクリック FXneo for Android',
-    description: `Trade Forex with precision using the Click Securities FX Neo app, developed natively with Kotlin for Android. Access real-time market data, execute trades efficiently, and manage your Forex portfolio with ease. Enjoy a secure, user-friendly trading experience on the go.
-`,
-    imgSrc: '/static/images/android-fx.png',
-    href: 'https://play.google.com/store/apps/details?id=com.click_sec.fxneo',
+    title: 'S-Point Shared Loyalty Platform',
+    period: 'Sep 2024 – Sep 2025',
+    role: 'Bridge SE / Tech Lead',
+    category: 'Enterprise Integration',
+    description:
+      'Led requirement clarification, API and batch integration reviews, Japan–Vietnam coordination, shared specifications, and exception handling for a multi-company loyalty platform.',
+    technologies: ['PHP', 'JavaScript', 'MySQL', 'AWS', 'REST API', 'DataSpider', 'HULFT'],
   },
   {
-    title: 'GMOクリック FXneo for iOS',
-    description: `Trade Forex with precision using the Click Securities FX Neo app, developed natively with Swift for iOS. Access real-time market data, execute trades efficiently, and manage your Forex portfolio with ease. Enjoy a secure, user-friendly trading experience on the go.
-`,
-    imgSrc: '/static/images/ios-fx.png',
-    href: 'https://apps.apple.com/jp/app/gmo%E3%82%AF%E3%83%AA%E3%83%83%E3%82%AF-fxneo/id1436251478',
+    title: 'Sharp Field Service Support System',
+    period: 'Sep 2024 – Feb 2025',
+    role: 'Bridge SE / Tech Lead',
+    category: 'Field Operations',
+    description:
+      'Led customer alignment, Japan–Vietnam coordination, mobile and web enhancements, device integration, printing, and production incident analysis for field repair operations.',
+    technologies: ['Kotlin', 'PHP', 'JavaScript', 'WebView', 'Bluetooth', 'Symfony'],
   },
   {
-    title: 'Adam byGMO NFTビューアー for Android',
-    description: `Explore the world of Adam with our Flutter app, available on both Android and iOS. Access insights, manage your account, and stay updated with personalized content effortlessly. Experience convenience and connectivity, wherever you are.`,
-    imgSrc: '/static/images/android-adam.png',
-    href: 'https://play.google.com/store/apps/details?id=jp.adam.AdambyGMO&hl=en_US',
+    title: 'Seikyo Digital Edition',
+    period: 'Mar 2024 – Sep 2024',
+    role: 'Senior SE',
+    category: 'Digital Publishing',
+    description:
+      'Designed and implemented reading and distribution capabilities across Android and iOS while aligning behavior and screen specifications between both platforms.',
+    technologies: ['Objective-C', 'Java', 'UIKit', 'SQLite', 'Android', 'iOS'],
+    imgSrc: '/static/images/seikyou-ios.png',
+    href: 'https://www.seikyoonline.com/',
   },
   {
-    title: 'Adam byGMO NFTビューアー for iOS',
-    description: `Explore the world of Adam with our Flutter app, available on both Android and iOS. Access insights, manage your account, and stay updated with personalized content effortlessly. Experience convenience and connectivity, wherever you are.`,
-    imgSrc: '/static/images/ios-adam.png',
-    href: 'https://apps.apple.com/jp/app/adam-bygmo-nft%E3%83%93%E3%83%A5%E3%83%BC%E3%82%A2%E3%83%BC/id1611494620',
-  },
-  {
-    title: 'アツラエ パリミキ（iPad）',
-    description: `Streamline inventory management for Paris Miki stores with this iPad app. Track stock, scan barcodes, and manage eyewear effortlessly. Perfect for maintaining up-to-date records and enhancing store efficiency.`,
+    title: 'Paris Miki iPad Inventory Application',
+    period: 'Dec 2023 – Mar 2024',
+    role: 'Senior SE',
+    category: 'Retail Mobile',
+    description:
+      'Designed and implemented inventory search, confirmation, updates, and real-time synchronization for an iPad application used in retail stores.',
+    technologies: ['Swift', 'SwiftUI', 'SQLite', 'iPadOS', 'Real-time Sync'],
     imgSrc: '/static/images/ipad-paris-miki.png',
     href: 'https://www.paris-miki.co.jp/',
   },
   {
-    title: 'eオリコアプリ for Android',
-    description: `Manage your Orico account effortlessly with our Android app. View balances, track transactions, make payments, and access exclusive offers on the go. Stay connected with your finances anytime, anywhere.
-`,
-    imgSrc: '/static/images/orico-android.png',
-    href: 'https://play.google.com/store/apps/details?id=jp.co.orico.point.appopgw&hl=en',
-  },
-  {
-    title: 'eオリコアプリ for iOS',
-    description: `Manage your Orico account effortlessly with our iOS app. View balances, track transactions, make payments, and access exclusive offers on the go. Stay connected with your finances anytime, anywhere.`,
-    imgSrc: '/static/images/orico-ios.png',
-    href: 'https://apps.apple.com/jp/app/e%E3%82%AA%E3%83%AA%E3%82%B3%E3%82%A2%E3%83%97%E3%83%AA/id998424815',
-  },
-  {
-    title: '聖教電子版 for Android',
-    description: `Discover the Seikyo Digital Edition app for Android, providing instant access to articles, news, and learning materials from the Seikyo newspaper. With a user-friendly interface, stay updated on the latest information and enjoy a seamless reading experience. Utilize convenient features such as offline access to stay informed anytime, anywhere. Optimized for Android, this app brings knowledge and information right to your fingertips.`,
-    imgSrc: '/static/images/seikyou-android.png',
-    href: 'https://play.google.com/store/apps/details?id=com.seikyoonline.app&hl=ja',
-  },
-  {
-    title: '聖教電子版 for iOS',
-    description: `Discover the Seikyo Digital Edition app for iOS, providing instant access to articles, news, and learning materials from the Seikyo newspaper. With a user-friendly interface, stay updated on the latest information and enjoy a seamless reading experience. Utilize convenient features such as offline access to stay informed anytime, anywhere. Optimized for iOS, this app brings knowledge and information right to your fingertips.`,
-    imgSrc: '/static/images/seikyou-ios.png',
-    href: 'https://apps.apple.com/jp/app/%E8%81%96%E6%95%99%E9%9B%BB%E5%AD%90%E7%89%88/id1064820174',
-  },
-  {
-    title: '痛みアプリ for iOS',
-    description: `Monitor your health with 痛みアプリ, available on iOS (Swift). Utilizing Google Tensor technology, the app analyzes facial data to assess your health status and provide personalized advice. Stay informed about your well-being and receive expert recommendations right on your mobile device.`,
+    title: 'Fatigue Measurement Application',
+    period: 'Aug 2023 – Dec 2023',
+    role: 'Tech Lead',
+    category: 'Computer Vision',
+    description:
+      'Led project setup, image analysis, machine-learning integration, and delivery for a mobile application that evaluates fatigue from eyelid and pupil data.',
+    technologies: ['Swift', 'Kotlin', 'Jetpack Compose', 'TensorFlow', 'Vision', 'Realm'],
     imgSrc: '/static/images/itami-ios.png',
   },
   {
-    title: '痛みアプリ for Android',
-    description: `Monitor your health with 痛みアプリ, available on Android (Jetpack Compose). Utilizing Google Tensor technology, the app analyzes facial data to assess your health status and provide personalized advice. Stay informed about your well-being and receive expert recommendations right on your mobile device.`,
-    imgSrc: '/static/images/itami-android.png',
+    title: 'e-Orico Mobile Security Enhancement',
+    period: 'Aug 2023 – Nov 2023',
+    role: 'Senior SE',
+    category: 'Fintech Security',
+    description:
+      'Strengthened authentication, encryption, data protection, and automated testing for a major financial mobile application.',
+    technologies: ['Swift', 'Kotlin', 'Realm', 'Encryption', 'Automated Testing'],
+    imgSrc: '/static/images/orico-ios.png',
+    href: 'https://www.orico.co.jp/',
+  },
+  {
+    title: 'GMO Click CFD',
+    period: 'May 2021 – Jun 2023',
+    role: 'Tech Lead',
+    category: 'Fintech Mobile',
+    description:
+      'Led technical direction, design reviews, quality, and release management for a CFD trading application with real-time prices, charts, orders, and news.',
+    technologies: ['Kotlin', 'Realm', 'MVVM', 'Android', 'Automated Testing'],
+    imgSrc: '/static/images/android-cfd.png',
+    href: 'https://www.click-sec.com/corp/guide/cfd/',
+  },
+  {
+    title: 'Adam byGMO NFT Viewer',
+    period: 'Feb 2021 – May 2021',
+    role: 'Tech Lead',
+    category: 'Cross-platform Mobile',
+    description:
+      'Led project launch, UI and image-processing design, task management, and Flutter delivery for a cross-platform NFT viewing application.',
+    technologies: ['Dart', 'Flutter', 'SQLite', 'TensorFlow', 'Android', 'iOS'],
+    imgSrc: '/static/images/android-adam.png',
+    href: 'https://adam.jp/ja/',
+  },
+  {
+    title: 'GMO Click FXneo for Apple Watch',
+    period: 'Oct 2020 – Feb 2021',
+    role: 'Senior SE',
+    category: 'Wearable Fintech',
+    description:
+      'Designed and implemented prices, positions, orders, and notifications for Apple Watch, optimizing interaction and performance for a compact screen.',
+    technologies: ['Swift', 'SwiftUI', 'WatchKit', 'Realm', 'watchOS', 'iOS'],
+    imgSrc: '/static/images/fx-watch.png',
+    href: 'https://www.click-sec.com/corp/tool/fxwatch_apple/',
+  },
+  {
+    title: 'GMO Financial Mobile Test Automation Platform',
+    period: 'Jun 2020 – Jun 2023',
+    role: 'Tech Lead',
+    category: 'Quality Engineering',
+    description:
+      'Built and standardized automated test foundations across multiple Android and iOS financial applications, reducing manual verification and stabilizing quality.',
+    technologies: ['Kotlin', 'Swift', 'Espresso', 'XCUITest', 'Android', 'iOS'],
+    imgSrc: '/static/images/xcuitest-card.png',
+  },
+  {
+    title: 'GMO Coin',
+    period: 'Aug 2019 – Jun 2023',
+    role: 'Senior SE',
+    category: 'Crypto Fintech',
+    description:
+      'Designed, implemented, and improved trading, charts, deposits, withdrawals, notifications, two-factor authentication, and encrypted data handling.',
+    technologies: ['Kotlin', 'Realm', 'MVVM', '2FA', 'Encryption', 'Android'],
+    imgSrc: '/static/images/android-coin.png',
+    href: 'https://coin.z.com/jp/',
+  },
+  {
+    title: 'GMO Click FXneo',
+    period: 'Jul 2018 – Jun 2023',
+    role: 'Senior SE',
+    category: 'FX Trading',
+    description:
+      'Owned screens, core trading functions, API integration, financial data handling, exception design, and continuous quality improvement for a large FX application.',
+    technologies: ['Kotlin', 'Realm', 'MVVM', 'REST API', 'Android'],
+    imgSrc: '/static/images/android-fx.png',
+    href: 'https://www.click-sec.com/corp/guide/fxneo/',
+  },
+  {
+    title: 'Regional Pharmacy Search Application',
+    period: 'Feb 2018 – Jul 2018',
+    role: 'Software Engineer',
+    category: 'Location Services',
+    description:
+      'Implemented nearby pharmacy search, maps, directions, ratings, external APIs, and local data management for an Android application.',
+    technologies: ['Java', 'Android', 'SQLite', 'Maps API', 'Location Services'],
+  },
+  {
+    title: 'Viettel Smart Home IoT Platform',
+    period: 'Jan 2017 – Feb 2018',
+    role: 'Software Engineer',
+    category: 'IoT Platform',
+    description:
+      'Built hardware circuits, MQTT services, Android control applications, authentication, and encryption for a smart-home platform controlling residential equipment.',
+    technologies: ['Arduino', 'C++', 'Java', 'MQTT', 'SQLite', 'CentOS', 'Android'],
   },
 ]
 

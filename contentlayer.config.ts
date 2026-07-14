@@ -150,9 +150,12 @@ export default makeSource({
       rehypePresetMinify,
     ],
   },
-  onSuccess: async (importData) => {
-    const { allBlogs } = await importData()
-    createTagCount(allBlogs)
-    createSearchIndex(allBlogs)
-  },
+  onSuccess:
+    process.platform === 'win32'
+      ? undefined
+      : async (importData) => {
+          const { allBlogs } = await importData()
+          createTagCount(allBlogs)
+          createSearchIndex(allBlogs)
+        },
 })

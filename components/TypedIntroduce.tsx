@@ -8,10 +8,10 @@ export function TypedIntroduce() {
   useEffect(() => {
     const options = {
       strings: [
-        'Hello, Here is Sam blog!',
-        `I've been working as a Mobile developer for 8 years`,
-        `I am interested in Flutter, Jetpack, SwiftUI, Kotlin,...`,
-        'I am interested in every new technology about IT',
+        'Bridge SE & Tech Lead at VTI Japan',
+        '9+ years across mobile, cloud, IoT and POS',
+        'Deep engineering from architecture to delivery',
+        'Bridging Japanese customers and offshore teams',
       ],
       typeSpeed: 50,
       backSpeed: 30,
