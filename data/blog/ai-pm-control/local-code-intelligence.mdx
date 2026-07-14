@@ -1,182 +1,82 @@
 ---
-title: 'Local Code Intelligence with CodeGraph: From Impact Analysis to Verified Changes'
+title: 'Before AI Changes Code, I Want to Know What Else It Will Touch'
+titleJa: 'AIにコードを直してもらう前に、影響範囲を知りたい'
 date: '2026-07-10'
-tags: ['ai', 'software-engineering', 'code-intelligence', 'pm-control']
+lastmod: '2026-07-14'
+tags: ['ai', 'software-engineering', 'code-intelligence']
 draft: false
-summary: 'A practical workflow for giving AI agents structural code context, limiting change scope, and verifying every implementation with evidence.'
+summary: 'I combine fast text search with a local code graph to understand impact before making the smallest verifiable change.'
+summaryJa: '高速な文字検索とローカルcode graphを組み合わせ、影響範囲を理解してから小さく検証可能な変更を行います。'
 images: ['/static/images/blog/pm-control/local-code-intelligence.webp']
 authors: ['default']
 ---
 
-import TOCInline from 'pliny/ui/TOCInline'
+![Looking through code relationships](/static/images/blog/pm-control/local-code-intelligence.webp)
 
-Reading source files is easy. Understanding the consequences of changing them is much harder.
+<LocalizedContent language="en">
 
-An AI agent can quickly locate a class, generate a patch, and explain what the code appears to do. That speed is useful, but it can also hide the most expensive engineering question: **what else will this change affect?**
+AI is very fast at finding a method and changing a few lines. In a real project, however, the question that costs me the most time is usually not “where is the code?” It is “what else will this change affect?”
 
-Local code intelligence closes that gap. In PM-Control, a code graph and repository-native search are used to identify symbols, callers, dependencies, and verification boundaries before a file is modified. The result is a workflow that supports fast implementation without treating the codebase as a collection of isolated text files.
+I have seen a search result look completely correct while pointing to only one of several implementations. Some services are created through dependency injection, so direct calls are hard to see. A configuration value may appear in only a few files while affecting startup, deployment, and tests.
 
-<TOCInline toc={props.toc} exclude="Overview" />
+That is why I do not begin with a filename. I begin with the behavior I want.
 
-## Text search is necessary, but not sufficient
+## Start with an observable behavior
 
-Repository search answers questions such as:
+For example: “When a device reconnects, restore the existing session without creating a duplicate registration.”
 
-- Where is this method defined?
-- Which files contain this configuration key?
-- Where is this endpoint referenced?
+This sentence lets me search across the application, domain, persistence, and tests without locking the investigation to an early guess such as “edit the connection service.”
 
-Those answers are often the correct starting point. They are not always enough to establish change safety.
+I use text search first to find the likely entry points: an event, endpoint, class, or test that already describes the behavior. Text search is still the fastest way to get oriented.
 
-The same method name may exist in multiple namespaces. A service may be created through dependency injection rather than a direct constructor call. A public interface may have several implementations. A configuration value may affect startup, deployment, and tests even though it appears in only one source file.
+Once I have the main symbol, a local code graph helps me follow relationships. I can check who calls it, which interface sits in front of it, which implementations sit behind it, what modules depend on it, and which tests touch the same flow.
 
-Code intelligence adds structure to search. It connects definitions with references and allows the agent to investigate the change as a graph rather than a sequence of guesses.
+I do not need to read the entire repository. I need a small map that is good enough to define the boundary of the change.
 
-## What a local code graph contributes
+## Keep the patch smaller than the investigation
 
-A useful code graph does not need to understand every language feature perfectly. It needs to make the most important relationships easy to inspect:
+Before editing, I write down which files are likely to change, which behavior must remain unchanged, and which test will prove the result.
 
-- symbol definitions and references;
-- callers and callees;
-- inheritance and interface implementation;
-- module and package dependencies;
-- files connected to tests, configuration, or generated artifacts.
+If nearby code looks untidy, I avoid refactoring it unless it blocks the requested behavior. A small patch is easier to review and creates fewer assumptions that need verification.
 
-Keeping the graph local has practical benefits. Repository data stays within the workspace, indexing does not depend on an external service, and the index can be rebuilt deterministically from the checked-out source.
+Verification follows the same impact map. I run the closest test first for quick feedback, then expand to a module test or build when the risk calls for it. A patch applying cleanly is not evidence that the behavior works.
 
-The graph is an aid to reasoning, not a new source of truth. The source files, build configuration, and test suite remain authoritative.
+The code graph is not a new source of truth. Its index may be old or may not understand every language feature. I always return to the source, build configuration, and tests. The graph simply helps me ask better questions and notice relationships I might otherwise miss.
 
-## A disciplined impact-analysis workflow
+This process adds a short pause before editing, but it usually saves time on difficult changes. Instead of fixing the first visible file and discovering side effects later, AI can produce a small change with a clear reason and a clear way to prove it.
 
-The workflow begins with the user request, not the index.
+</LocalizedContent>
 
-### 1. Define the behavioral change
+<LocalizedContent language="ja">
 
-Translate the request into an observable outcome. For example:
+AIは、methodを見つけて数行を修正する作業がとても速いです。しかし実際のプロジェクトで時間がかかるのは、「コードがどこにあるか」よりも「ここを直すと、ほかのどこに影響するか」という確認です。
 
-> When a device reconnects, the current session should be restored without creating a duplicate registration.
+検索結果が正しそうに見えても、複数ある実装の一つにすぎなかったことがあります。dependency injectionで生成されるserviceは、直接の呼び出しが見つけにくいこともあります。数個のfileにしかない設定値が、起動、deploy、testのすべてに影響する場合もあります。
 
-This is more useful than starting with a speculative instruction such as “edit the connection service.” It lets the agent search for the behavior across application, domain, persistence, and test layers.
+そのため、私は最初から変更するfileを決めません。まず、実現したい動作を言葉にします。
 
-### 2. Locate the primary symbols
+## 確認できる動作から始める
 
-Use fast text search to find terms from the behavior, then inspect the most likely definitions. At this stage, the goal is orientation:
+例えば、「端末が再接続したとき、重複した登録を作らず、既存のsessionを復元する」という形です。
 
-- Where does the flow enter the system?
-- Which object owns the state?
-- Which interface separates the layers?
-- Which tests already describe the behavior?
+この一文があれば、「connection serviceを修正する」と早い段階で決めつけず、application、domain、persistence、testを横断して調べられます。
 
-The agent should read the smallest coherent set of files that explains the flow.
+最初は文字検索で、event、endpoint、class、既存testなど、処理の入口になりそうな場所を探します。全体の方向をつかむには、今でも文字検索が最も速い方法です。
 
-### 3. Expand through relationships
+中心となるsymbolが見つかったら、ローカルのcode graphで関係をたどります。誰が呼び出しているか、前にどのinterfaceがあるか、後ろにどの実装があるか、どのmoduleが依存しているか、同じ流れを扱うtestはどれかを確認します。
 
-Query the graph for callers, implementations, and downstream dependencies. This step reveals whether the apparently local change crosses a boundary.
+リポジトリ全体を読む必要はありません。変更範囲を決められる、小さな地図があれば十分です。
 
-A modification to an interface may affect several adapters. A change to a domain event may affect serialization and consumers. A database model change may require a migration, fixture updates, and compatibility handling.
+## 調査は広く、変更は小さく
 
-The output should be a bounded impact map, not an exhaustive dump of every connected symbol.
+修正前に、変更する可能性があるfile、変えてはいけない動作、結果を確認するtestを整理します。
 
-### 4. Establish the change boundary
+近くのcodeが少し読みにくくても、今回の変更を妨げない限り、ついでのrefactorはしません。patchが小さいほどreviewしやすく、検証が必要な仮説も少なくなります。
 
-Before editing, classify files into three groups:
+確認も影響範囲に合わせます。まず変更に近いtestを実行し、riskに応じてmodule testやbuildへ広げます。patchが問題なく適用できたことは、動作が正しい証拠にはなりません。
 
-1. files that must change;
-2. files that must be inspected or tested;
-3. files that are related but outside the requested scope.
+code graphも新しい正解ではありません。indexが古いことも、言語の機能をすべて理解できないこともあります。最後は必ずsource code、build設定、testを確認します。graphは、より良い質問を作り、見落としやすい関係に気づくための補助です。
 
-This boundary prevents opportunistic refactoring. It also makes the plan reviewable: the user can see why each proposed file belongs in the change.
+編集前に少し立ち止まる流れですが、難しい変更ほど結果的に早く進みます。最初に見えたfileを直して後から影響に気づくより、理由と確認方法が明確な小さな変更を作るほうが安心です。
 
-### 5. Implement the smallest coherent patch
-
-The best patch is not necessarily the one with the fewest changed lines. It is the smallest patch that leaves the affected behavior internally consistent.
-
-If a contract changes, its implementations and tests may need to change together. If only one implementation changes, widening the interface may be unnecessary. Structural context helps the agent make that distinction.
-
-## Verification is part of impact analysis
-
-A code graph predicts impact. Build and test evidence confirm it.
-
-Verification should match the risk and scope of the change:
-
-- format or lint checks for local syntax and conventions;
-- targeted unit tests for the changed behavior;
-- integration tests when storage, APIs, or process boundaries are involved;
-- a project or solution build for contract compatibility;
-- a broader regression suite when a shared component changes.
-
-The verification plan should be selected before implementation whenever possible. That keeps the definition of success independent from the patch the agent eventually writes.
-
-When a command cannot run because of a missing service, credential, device, or environment, the agent should state the limitation precisely. “Not verified” is actionable. Silent confidence is not.
-
-## Keep the index disposable
-
-Indexes become dangerous when teams start treating them as authoritative artifacts.
-
-A local code graph should be:
-
-- generated from source;
-- stored outside portable project knowledge;
-- rebuildable with a documented command;
-- invalidated when the source revision changes significantly;
-- excluded from Git unless there is a specific reason to version it.
-
-This design avoids stale structural conclusions and keeps repository history focused on durable assets.
-
-## Combine structural and historical context
-
-The graph explains how the current code is connected. Project knowledge explains why some of those connections exist.
-
-For difficult changes, an agent may need both:
-
-- the code graph identifies the affected modules;
-- architecture notes describe the intended ownership boundary;
-- decision records explain a compatibility constraint;
-- previous session memory records a known test or environment limitation.
-
-These sources serve different purposes. Combining them is powerful as long as their authority remains clear.
-
-## Common failure modes
-
-### Editing the first search result
-
-Multiple modules may expose similar names. Confirm namespace, callers, and runtime path first.
-
-### Expanding scope because related code looks untidy
-
-Related code is not automatically in scope. Record follow-up opportunities separately.
-
-### Trusting the graph without reading source
-
-Static indexes can miss dynamic resolution, reflection, generated code, and runtime configuration. Use the graph to navigate, then verify against files and execution evidence.
-
-### Running only the broadest test suite
-
-A full suite can be slow and may not explain a failure. Start with targeted evidence, then expand in proportion to shared impact.
-
-### Reporting success after a patch applies
-
-A clean diff is not proof of correct behavior. Success requires the agreed verification results or an explicit account of what could not be verified.
-
-## A compact operating loop
-
-The entire workflow can be summarized as:
-
-```text
-Request
-  -> define observable behavior
-  -> search for entry points
-  -> trace structural impact
-  -> set the change boundary
-  -> implement the coherent patch
-  -> build and test
-  -> report evidence and remaining limits
-```
-
-This loop turns code generation into controlled engineering work. The AI agent still moves quickly, but its speed is directed by repository structure, explicit scope, and verification.
-
-## Conclusion
-
-Senior engineering is not demonstrated by producing a large patch quickly. It is demonstrated by understanding where a change belongs, what it can affect, and how to prove that it works.
-
-Local code intelligence gives AI agents the context to operate at that level. Combined with precise search, scoped rules, durable project knowledge, and proportionate testing, it creates a practical path from impact analysis to verified change.
+</LocalizedContent>

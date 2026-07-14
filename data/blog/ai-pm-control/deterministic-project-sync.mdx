@@ -1,201 +1,77 @@
 ---
-title: 'Synchronizing Google Sheets, Backlog, and Git Without Losing Control'
+title: 'Keeping Google Sheets, Backlog, and Git in Sync Without Losing Control'
+titleJa: 'Google Sheets・Backlog・Gitを無理なく同期する方法'
 date: '2026-07-11'
 lastmod: '2026-07-14'
-tags: ['ai', 'project-management', 'google-sheets', 'backlog', 'automation']
+tags: ['ai', 'project-management', 'automation']
 draft: false
-summary: 'A deterministic fetch, plan, apply, and verify workflow for keeping project-management systems aligned through stable identities.'
+summary: 'What looked like an API problem turned out to be a question of ownership, stable IDs, and verification.'
+summaryJa: 'API連携より難しかったのは、データの持ち主、安定したID、更新後の確認を決めることでした。'
 images: ['/static/images/blog/pm-control/deterministic-project-sync.webp']
 ---
 
-## Introduction
+![A calm project synchronization workflow](/static/images/blog/pm-control/deterministic-project-sync.webp)
 
-Project automation becomes dangerous when several systems appear to own the same fact.
+<LocalizedContent language="en">
 
-A spreadsheet contains the WBS. An issue tracker contains execution tasks. Git contains delivery history. Local YAML makes automation easier. An AI agent can reach all of them, but easy access does not create consistency.
+Project information rarely lives in one place. A WBS may be in Google Sheets, execution tasks in Backlog, source code in Git, and a local script may prefer YAML. Each tool is useful for a different part of the work.
 
-The solution is not more synchronization. It is explicit ownership and deterministic synchronization.
+The trouble starts when two places both look authoritative. If a task status differs between Sheets and Backlog, which one wins? Can yesterday's YAML snapshot update today's spreadsheet? If an API returns success but Japanese text is corrupted, is the task really complete?
 
-<TOCInline toc={props.toc} exclude="Introduction" />
+After checking too many updates by hand, I reduced the workflow to four steps.
 
-![Deterministic project synchronization](/static/images/blog/pm-control/deterministic-project-sync.webp)
+## Fetch, plan, apply, verify
 
-## Define ownership before automation
+First, **fetch** the latest data from the authoritative source. This prevents an old local snapshot from overwriting a teammate's change.
 
-A practical PM-Control setup can declare:
+Next, **plan** the update. I want a readable diff that says what will be added, changed, or removed before a script calls an external API.
 
-- **Google Sheets** as the source of truth for WBS, risks, decisions, stakeholders, and communication plans;
-- **Backlog** as the source of truth for issue execution, comments, attachments, and workflow status;
-- **Git** as the source of truth for application code and reviewed configuration;
-- **YAML snapshots** as portable caches used by deterministic scripts;
-- **Markdown knowledge** as the source of truth for durable technical understanding.
+Only then do I **apply** the change. Records are addressed by stable IDs, not row numbers or titles. Rows move when someone sorts a sheet, and titles are not always unique. An ID such as `WBS-042` lets Sheets, Backlog, and local data refer to the same item.
 
-The same data may appear in several places, but each field still has one authority.
+Finally, **verify** by reading the result back from the destination. An HTTP 200 response only proves that the server accepted a request. It does not prove that the final data is correct. Reading it back also catches encoding problems in Japanese and Vietnamese text.
 
-For example, a WBS record can store the ID of an issue created from it. That does not make the issue tracker authoritative for the WBS title, dates, and acceptance criteria. It creates a traceable relationship between two systems.
+## One owner for each kind of data
 
-## Stable IDs are the backbone
+The workflow became much easier once I stopped asking every system to own everything.
 
-Row numbers are presentation details. They change when users sort, filter, insert, or reorganize a sheet.
+Google Sheets can own the WBS, risks, and decisions. Backlog can own execution status, comments, and attachments. Git owns source code. YAML is a convenient local snapshot, not a quiet second database.
 
-Automation should address records through stable IDs:
+The same information can appear in more than one place, but its owner should still be clear.
 
-```yaml
-id: WBS-042
-type: Task
-title: Implement account lifecycle validation
-status: In Progress
-issue_id: TEAM-318
-definition_of_done: Integration tests pass and behavior is documented
-```
+I also keep connection metadata separate from the scripts. Project IDs, sheet names, and repository locations are looked up from a small registry instead of being hardcoded in each workflow.
 
-The synchronization process can now find the correct record regardless of its visible row.
+At first, these checks seemed slower than calling the API immediately. In practice, they let me automate more confidently because every change can be previewed, traced, and checked. The goal is not to synchronize as much as possible. It is to know exactly what moved, where it went, and why.
 
-Stable IDs also make deletion explicit. If a record is intentionally removed from the source plan, the sync workflow can identify that exact record instead of guessing from a title or position.
+</LocalizedContent>
 
-## The safe synchronization loop
+<LocalizedContent language="ja">
 
-### 1. Fetch
+プロジェクトの情報が一か所だけにあることは、ほとんどありません。WBSはGoogle Sheets、実行タスクはBacklog、ソースコードはGitにあり、ローカルのスクリプトではYAMLのほうが扱いやすいこともあります。それぞれのツールに得意な役割があります。
 
-Always fetch the latest source before editing a local snapshot.
+困るのは、複数の場所がどちらも正しそうに見えるときです。SheetsとBacklogでステータスが違ったら、どちらを採用するのか。昨日作ったYAMLから今日のSheetを更新してよいのか。APIが成功しても日本語が文字化けしていたら、本当に完了と言えるのか。
 
-```text
-Google Sheets -> validated YAML snapshot
-```
+手作業で何度も確認した経験から、同期の流れを四つに整理しました。
 
-This protects against overwriting changes made by project members since the last local run. The fetch should preserve IDs, normalize data types, and record enough state to detect drift.
+## 取得、確認、反映、再確認
 
-### 2. Plan
+最初に、正となるシステムから最新データを **取得** します。古いローカルデータで、ほかのメンバーの変更を上書きしないためです。
 
-Edit the local representation, then calculate a dry-run diff.
+次に、更新内容を **確認** します。外部APIを呼ぶ前に、何を追加し、何を変更し、何を削除するのかを、読みやすい差分で見られるようにします。
 
-The plan should show:
+内容を確認してから **反映** します。対象の特定には、行番号やタイトルではなく、安定したIDを使います。行番号は並び替えで変わり、タイトルは重複することがあります。`WBS-042` のようなIDがあれば、Sheets、Backlog、ローカルデータが同じ項目を指せます。
 
-- records to create;
-- fields to update;
-- records to delete;
-- unchanged records;
-- validation errors;
-- unresolved references.
+最後に、反映先からデータを読み直して **再確認** します。HTTP 200はリクエストが受け付けられたことを示すだけで、最終結果が正しいとは限りません。読み直すことで、日本語やベトナム語の文字化けにも気づけます。
 
-An AI agent can explain the diff in business language before any external mutation occurs.
+## データごとに持ち主を一つ決める
 
-### 3. Apply
+すべてのシステムに同じ役割を持たせるのをやめると、運用がかなり分かりやすくなりました。
 
-Apply only the approved plan through the workflow that owns the invariants.
+WBS、リスク、決定事項はGoogle Sheets。実行状況、コメント、添付ファイルはBacklog。ソースコードはGit。YAMLはスクリプトのための便利なスナップショットであり、二つ目のデータベースではありません。
 
-For management sheets, that may include column mapping, dropdown validation, protected formulas, Gantt formatting, and stable-ID reconciliation. A generic cell update would bypass those rules.
+同じ情報が複数の場所に表示されても、どこが持ち主なのかは一つに決めておきます。
 
-For Backlog, the write path resolves the allowed project from a registry, sends UTF-8 payloads from a file, and maps official project metadata rather than guessing issue types or user IDs.
+接続情報もスクリプトから分離しました。プロジェクトID、シート名、リポジトリの場所は、小さなレジストリから取得し、個別の処理に直接書き込みません。
 
-### 4. Verify
+最初は、すぐAPIを呼ぶより手順が多いように感じました。しかし実際には、事前に内容を確認でき、履歴を追えて、反映後も検証できるため、安心して自動化できる範囲が広がりました。大切なのは、何でも同期することではなく、何が、どこへ、なぜ動いたのかを説明できることだと思っています。
 
-Read the result back from the external system.
-
-The verification should confirm record identity and meaningful values, not only a successful HTTP status. For a created issue, read its title, project, status, assignee, and attachment metadata. For a WBS update, fetch the record again and compare the intended fields.
-
-```text
-fetch -> plan -> approve -> apply -> read back
-  ^                                      |
-  +--------------------------------------+
-```
-
-The loop closes only when observed external state matches the plan.
-
-## Management data as typed domains
-
-A mature project sheet is more than a grid. It contains several related domains.
-
-### WBS
-
-Work packages and tasks need owners, dates, deadlines, statuses, priorities, acceptance criteria, and links to risks or issues.
-
-### Risks
-
-Risks need probability, impact, mitigation, contingency, owner, and related work. They should not be hidden as comments inside a task row.
-
-### Decisions
-
-Decisions record context, the chosen option, reason, impact, related WBS items, supporting knowledge, and verification evidence.
-
-### Stakeholders
-
-Stakeholder records support ownership and communication without hardcoding names into dropdowns or scripts.
-
-### Communications
-
-Communication rules define purpose, channel, frequency, owner, escalation, and customer-facing expectations.
-
-Treating these as typed records makes automation safer and reporting more useful.
-
-## Connecting WBS and Backlog
-
-A common workflow creates internal issues from approved WBS records.
-
-The safe sequence is:
-
-1. Fetch the latest WBS.
-2. Select records that meet explicit creation criteria.
-3. Resolve Backlog project metadata from the configured registry.
-4. Produce a dry-run showing issue payloads.
-5. Create the issues after approval.
-6. Read back each new issue.
-7. Save the returned issue ID on the original WBS record.
-8. Synchronize and verify the WBS again.
-
-This creates bidirectional traceability without pretending that one system fully replaces the other.
-
-## UTF-8 is an operational requirement
-
-Multilingual projects often fail in unglamorous ways. Vietnamese and Japanese content can be corrupted when it passes through a shell command, an incorrectly encoded form body, or a platform-default code page.
-
-External writes should therefore use UTF-8 files for non-ASCII payloads. API clients should set the charset explicitly when possible. After the write, read the content back and check for replacement characters or question marks.
-
-Encoding verification belongs in the workflow, not in a troubleshooting note after customer data is damaged.
-
-## Registries instead of hardcoded connections
-
-Connection details should be resolved from a registry:
-
-```text
-logical project + role
-          |
-          v
-allowed connection -> official project key -> credential reference
-```
-
-The agent can request "the internal issue tracker for `<project_id>`" without copying a domain or API key into the command or generated script.
-
-The registry also creates an allowlist. A workflow cannot casually write to a different customer space because the model recognized a similar project name.
-
-## Failure modes to design out
-
-### Updating by visible row
-
-Sorting a sheet should never change record identity. Use stable IDs.
-
-### Editing a stale cache
-
-Fetch before modifying source-of-truth data.
-
-### Applying without a plan
-
-External writes should be reviewable as a dry-run diff.
-
-### Assuming success from an API response
-
-Read the created or updated record back.
-
-### Duplicating issue and WBS ownership
-
-Declare which system owns each field and store references between them.
-
-### Hardcoding metadata
-
-Issue types, priorities, users, and custom fields should be read from the target project instead of guessed.
-
-## Conclusion
-
-Reliable project automation is not a collection of API calls. It is a controlled data pipeline built around ownership, stable identity, reviewable plans, and read-back verification.
-
-Google Sheets, Backlog, Git, and local snapshots can work together cleanly when each system has a declared role. The AI agent then becomes an operator of a deterministic process rather than an improviser moving data between interfaces.
+</LocalizedContent>

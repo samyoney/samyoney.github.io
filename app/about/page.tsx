@@ -4,12 +4,12 @@ import { Authors, allAuthors } from 'contentlayer/generated'
 import { MDXLayoutRenderer } from 'pliny/mdx-components'
 import AuthorLayout from '@/layouts/AuthorLayout'
 import { coreContent } from 'pliny/utils/contentlayer'
-import { useState } from 'react'
-import './about_page.css'
 import { components } from '@/components/MDXComponents'
+import { useLanguage } from '@/components/LanguageProvider'
 
 export default function Page() {
-  const [authorSlug, setAuthorSlug] = useState('default_jp')
+  const { language } = useLanguage()
+  const authorSlug = language === 'ja' ? 'default_jp' : 'default'
 
   const author = allAuthors.find((p) => p.slug === authorSlug) as Authors
   const mainContent = {
@@ -17,20 +17,9 @@ export default function Page() {
     avatar: '/static/images/resume-profile.webp',
   }
 
-  const toggleAuthor = () => {
-    setAuthorSlug((prevSlug) => (prevSlug === 'default' ? 'default_jp' : 'default'))
-  }
-
   return (
-    <>
-      <AuthorLayout content={mainContent}>
-        <div className="button-container">
-          <button onClick={toggleAuthor} className="toggle-button">
-            {authorSlug === 'default' ? '日本語' : 'English'}
-          </button>
-        </div>
-        <MDXLayoutRenderer code={author.body.code} components={components} />
-      </AuthorLayout>
-    </>
+    <AuthorLayout content={mainContent}>
+      <MDXLayoutRenderer code={author.body.code} components={components} />
+    </AuthorLayout>
   )
 }

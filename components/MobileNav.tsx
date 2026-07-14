@@ -3,9 +3,18 @@
 import { useState } from 'react'
 import Link from './Link'
 import headerNavLinks from '@/data/headerNavLinks'
+import { useLanguage } from './LanguageProvider'
+
+const japaneseNavTitles: Record<string, string> = {
+  Home: 'ホーム',
+  Blog: 'ブログ',
+  Projects: 'プロジェクト',
+  Resume: '経歴',
+}
 
 const MobileNav = () => {
   const [navShow, setNavShow] = useState(false)
+  const { language } = useLanguage()
 
   const onToggleNav = () => {
     setNavShow((status) => {
@@ -64,7 +73,7 @@ const MobileNav = () => {
                 className="text-2xl font-bold tracking-widest text-gray-900 dark:text-gray-100"
                 onClick={onToggleNav}
               >
-                {link.title}
+                {language === 'ja' ? japaneseNavTitles[link.title] : link.title}
               </Link>
             </div>
           ))}

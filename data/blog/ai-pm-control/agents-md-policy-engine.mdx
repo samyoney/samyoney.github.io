@@ -1,194 +1,89 @@
 ---
-title: 'AGENTS.md as a Policy Engine for AI-Assisted Development'
+title: 'How I Use AGENTS.md to Help AI Work Inside a Repository'
+titleJa: 'AIにリポジトリの働き方を伝えるためのAGENTS.md'
 date: '2026-07-13'
 lastmod: '2026-07-14'
-tags: ['ai', 'agents-md', 'governance', 'developer-experience', 'security']
+tags: ['ai', 'agents-md', 'developer-experience']
 draft: false
-summary: 'How hierarchical repository rules turn broad AI capability into scoped, reviewable, and safe engineering behavior.'
+summary: 'Prompts explain the task. AGENTS.md explains how work should be done inside a repository.'
+summaryJa: 'プロンプトが依頼内容を伝えるものなら、AGENTS.mdはリポジトリ内での進め方を伝えるためのものです。'
 images: ['/static/images/blog/pm-control/agents-policy-engine.webp']
 ---
 
-## Introduction
+![AGENTS.md and AI workflow](/static/images/blog/pm-control/agents-policy-engine.webp)
 
-Prompts are useful for intent, but they are a weak place to store engineering policy. They disappear between sessions, vary between users, and rarely capture the operational boundaries of a real repository.
+<LocalizedContent language="en">
 
-`AGENTS.md` solves a different problem. It gives the workspace a persistent policy layer that an AI agent must load before acting.
+When I first started using AI at work, I put almost every instruction into the prompt. That worked for small tasks. As soon as a task crossed repositories, project data, source code, and customer-facing communication, the prompt became long and easy to forget.
 
-<TOCInline toc={props.toc} exclude="Introduction" />
+The bigger issue was that the prompt only lived in one conversation. On the next task I had to explain the same things again: which source was authoritative, what needed approval, how Japanese content should be reviewed, and which test counted as evidence.
 
-![AGENTS.md policy engine](/static/images/blog/pm-control/agents-policy-engine.webp)
+That is why I started using `AGENTS.md`.
 
-## Why a prompt is not a policy
+## A small set of working rules
 
-A request such as "update the customer task and fix the code" contains two outcomes but almost no operational guidance.
+I do not treat `AGENTS.md` as a giant prompt. It feels closer to a repository handbook. The root file contains a few shared rules, such as keeping changes within scope, checking the latest source before an update, and verifying the result before reporting completion.
 
-It does not answer:
+When one folder needs a different workflow, I place another `AGENTS.md` closer to it. A project-management folder may require a fresh data fetch before editing. A source folder may require checking references and running a focused test. The closest relevant rule takes priority.
 
-- Which tracker is authoritative?
-- Must the latest WBS be fetched first?
-- Which repository contains the source?
-- Is customer-facing Japanese reviewed before publishing?
-- Are production writes allowed?
-- Which tests prove the fix?
-- Where may credentials be resolved from?
+This makes the guidance specific without repeating everything in every directory.
 
-An experienced team already has answers to these questions, but they are often distributed across onboarding documents, conventions, and tribal knowledge. An AI agent cannot reliably infer them from the task text.
+## What I keep in the file
 
-`AGENTS.md` makes those answers executable as repository-local instructions.
+I only keep rules that are stable and testable:
 
-## Hierarchical rules
+- what belongs in the folder;
+- which system is the source of truth;
+- when confirmation is required;
+- which tool or workflow should be used;
+- what evidence is needed before a task is complete.
 
-The policy model is hierarchical:
+Temporary task history, secrets, and machine-specific paths belong elsewhere. If the file tries to describe everything, it quickly becomes another document nobody trusts.
 
-```text
-workspace/AGENTS.md
-  sources/AGENTS.md
-    application-a/AGENTS.md
-  project-store/AGENTS.md
-    management/AGENTS.md
-    knowledge/AGENTS.md
-  registry/AGENTS.md
-```
+I also avoid vague rules such as “be careful.” A useful rule should change the next action. “Read the latest WBS before updating a task” is much easier to follow and verify.
 
-The root file defines workspace-wide behavior: language, safety boundaries, tool routing, Git policy, and the folder map.
+## What changed for me
 
-A deeper file defines rules only for its subtree. The management folder may require stable record IDs and prohibit direct row-number updates. The source folder may require code-graph analysis before reading implementation files. The registry folder can define where connection metadata belongs and forbid secret duplication.
+After adopting this approach, I spent less time repeating the same operational context. More importantly, AI stopped behaving like a tool dropped into an unfamiliar repository and started working more like a new team member who had read the local handbook.
 
-When rules differ, the closest applicable file takes precedence. This lets the workspace stay consistent without forcing every folder to repeat the root policy.
+`AGENTS.md` does not make AI smarter. It gives that capability a clear place to operate. For real project work, that difference is often more valuable than adding another long paragraph to a prompt.
 
-## What belongs in the policy layer
+</LocalizedContent>
 
-### Scope and ownership
+<LocalizedContent language="ja">
 
-The first responsibility is to state what belongs in a folder and what does not.
+仕事でAIを使い始めた頃は、ほとんどの指示をプロンプトに書いていました。小さな作業ならそれで十分です。しかし、複数のリポジトリやプロジェクトデータ、ソースコード、顧客向けの文章が関わると、プロンプトはすぐに長くなり、大事な条件も抜けやすくなりました。
 
-Good boundary rules are testable. Instead of saying "put project files here," define the allowed data, its source, and the correct destination for anything outside that category.
+もう一つ困ったのは、プロンプトがその会話の中にしか残らないことです。次のタスクでは、どのデータが正なのか、どこで確認が必要なのか、日本語の文章をどうレビューするのか、完了前に何をテストするのかを、また最初から説明しなければなりません。
 
-For example:
+そこで使い始めたのが `AGENTS.md` です。
 
-```text
-project-store/ contains portable project snapshots.
-Application source belongs under sources/.
-Secrets and local indexes must not be stored in project-store/.
-```
+## リポジトリの小さな仕事ルール
 
-An agent can evaluate those rules before writing a file.
+私は `AGENTS.md` を巨大なプロンプトにはしていません。リポジトリの簡単な作業ガイドに近いものとして扱っています。ルートには、変更範囲を広げないこと、更新前に最新データを確認すること、完了を伝える前に結果を検証することなど、共通のルールだけを書きます。
 
-### Approval gates
+特定のフォルダに別の進め方が必要なら、その近くにもう一つ `AGENTS.md` を置きます。管理データのフォルダでは編集前の再取得を求め、ソースコードのフォルダでは参照先の確認や関連テストを求める、といった使い分けです。作業対象に最も近いルールを優先します。
 
-The policy should identify actions that require human confirmation. Typical gates include:
+この形なら、同じ説明を何度も繰り返さずに、必要な場所だけ具体的にできます。
 
-- editing source code;
-- changing a source of truth;
-- adding dependencies;
-- creating a new storage or indexing workflow;
-- deploying to an environment;
-- mutating production data;
-- publishing customer-facing content.
+## 書いていること、書かないこと
 
-Approval gates should reflect business impact. They are not a blanket demand for confirmation before every read-only check.
+残すのは、長く使えて確認できるルールです。
 
-### Tool routing
+- そのフォルダに置くもの
+- 正とするデータやシステム
+- 事前確認が必要な場面
+- 選ぶべきツールや進め方
+- 完了前に必要な確認結果
 
-Different tools can reach the same system, but not every path preserves the same invariants.
+一時的なタスク履歴、秘密情報、特定PCだけのパスは別の場所に置きます。何でも書こうとすると、すぐに古くなり、読まれない文書になってしまうからです。
 
-If a project uses a deterministic synchronization script to maintain stable IDs, writing directly through a generic spreadsheet connector may bypass that logic. If issue-tracker operations require a registry allowlist and UTF-8 file payloads, an inline API call is the wrong route even when it technically succeeds.
+「注意して作業する」のような曖昧な表現も避けています。「タスクを更新する前に最新のWBSを取得する」のように、次の行動が決まる書き方のほうが実際に役立ちます。
 
-The policy should therefore say which workflow owns each operation and when a fallback is acceptable.
+## 使ってみて変わったこと
 
-### Verification requirements
+この形にしてから、同じ前提を何度も説明する時間が減りました。それ以上に、AIが何も知らずにリポジトリへ入ってくるツールではなく、最初に作業ガイドを読んだ新しいメンバーに近い動きをするようになりました。
 
-Rules should describe evidence, not just actions.
+`AGENTS.md` がAIそのものを賢くするわけではありません。AIがどこで、どのように力を使うかを明確にするものです。実際のプロジェクトでは、長いプロンプトを追加するより、この違いのほうが大きいと感じています。
 
-Examples include:
-
-- build or test after source changes;
-- dry-run before applying management changes;
-- read-back after external writes;
-- render-and-review for document layout;
-- semantic-index health checks after knowledge updates;
-- Git status checks before staging.
-
-This changes the agent's definition of done from "I changed the file" to "I changed the correct artifact and verified the outcome."
-
-### Communication constraints
-
-Customer communication is part of engineering risk.
-
-A repository can require an internal review language first, define the expected level of Japanese, prohibit unresolved questions in a formal deliverable, and specify how product names or technical identifiers should be written.
-
-These rules prevent a capable language model from producing polished but operationally premature communication.
-
-## Keep policy generic, not historical
-
-An `AGENTS.md` file should contain reusable operating principles. It should not become a diary of one incident.
-
-This is a good rule:
-
-```text
-After an external write, verify the resulting state with a read-back.
-```
-
-This is a historical note:
-
-```text
-On Tuesday, the update failed because field X was empty, so remember to set it next time.
-```
-
-The historical observation belongs in memory. If it reveals a durable constraint, that constraint can later become a general policy with clear scope.
-
-## A small but effective root policy
-
-A useful root policy does not need to be enormous. It should answer the questions that prevent expensive mistakes:
-
-```md
-# Operating rules
-
-- Read the nearest AGENTS.md before changing files.
-- State a plan and wait for approval before source edits.
-- Use the declared source of truth for management data.
-- Keep secrets in the registry; never copy them into scripts.
-- Preserve unrelated work in a dirty worktree.
-- Verify source changes with the relevant build or test.
-- Do not deploy, commit, or push unless explicitly requested.
-```
-
-Subtree policies then add the precision needed for their artifact type.
-
-## Common failure modes
-
-### Rules that are too broad
-
-"Be careful with data" is not actionable. Name the protected data, allowed operation, owner, and verification method.
-
-### Rules that hardcode temporary structure
-
-Policies that list every current project or agent name age quickly. Prefer placeholders such as `<project_id>` unless the entity is a required source-of-truth identifier.
-
-### Conflicting rules without precedence
-
-If the root says one thing and a folder says another, the agent needs an explicit precedence model. "Nearest applicable rule wins" is simple and predictable.
-
-### Mixing policy, secrets, and commands
-
-Rules can reference registry paths, but they should never contain API keys, passwords, or copied connection strings.
-
-### No validation of the policy itself
-
-Repository rules are code-like infrastructure. Broken script paths and contradictory instructions should be linted. A lightweight verification command can check rule references, knowledge metadata, and index health together.
-
-## Adoption strategy
-
-Start with one root policy and one high-risk subtree.
-
-Observe where the agent repeatedly needs clarification. Convert stable answers into rules. Keep event-specific evidence in memory. Add specialized workflows only when an operation must be repeatable or preserve invariants that a generic tool would miss.
-
-Over time, the policy becomes a compact representation of how the team actually works.
-
-## Conclusion
-
-`AGENTS.md` is more than an instruction file. Used well, it is a policy engine for AI-assisted development.
-
-It translates organizational expectations into scoped repository behavior: where the agent may act, which workflow it must use, when approval is required, and what evidence closes the task.
-
-The result is not less capable AI. It is capability aligned with engineering ownership.
+</LocalizedContent>

@@ -1,20 +1,22 @@
 ---
 title: 'Clean Architecture with SwiftUI for iOS'
+titleJa: 'SwiftUIで実践するiOS Clean Architecture'
 date: '2024-06-17'
 lastmod: '2026-07-14'
 tags: ['iOS', 'clean-architecture', 'swift', 'swiftUI']
 draft: false
 summary: 'A practical SwiftUI starter that separates presentation, business rules, and data access for maintainable iOS development.'
+summaryJa: '画面、業務ルール、データアクセスを分離し、保守しやすいiOS開発を目指すSwiftUIスターターです。'
 images: ['/static/images/clean/ios-clean.png']
 ---
 
-## Japanese version: [Qiita](https://qiita.com/samyoney/items/5f5dff044bc1b5339952)
+![SwiftUI sample application](/static/images/clean/ios-clean.png)
+
+<LocalizedContent language="en">
 
 ## Introduction
 
 This sample shows how I structure an iOS application with SwiftUI, MVVM, and Clean Architecture principles. The application is intentionally compact so that its state flow, dependency boundaries, and testing strategy remain easy to follow.
-
-<TOCInline toc={props.toc} exclude="Introduction" />
 
 The complete source is available in the [Swift Clean Base repository](https://github.com/samyoney/SwiftCleanBase).
 
@@ -50,10 +52,8 @@ The sample uses SwiftUI for the interface and demonstrates integrations such as 
 
 ```text
 +-----------+        +-----------+        +------------+
-|           |        |           |        |            |
 |  Splash   | ------>|   Login   | ------>|    Main    |
 |  Screen   |        |   Flow    |        |    Flow    |
-|           |        |           |        |            |
 +-----------+        +-----------+        +------------+
 ```
 
@@ -115,3 +115,107 @@ For a small feature, separate use-case and repository layers may add more ceremo
 This starter provides a practical baseline for SwiftUI applications: explicit state, clear dependency boundaries, and testable behavior without tying the domain to a specific UI or persistence framework.
 
 For questions or suggestions, open an issue in the [source repository](https://github.com/samyoney/SwiftCleanBase) or contact me on [LinkedIn](https://www.linkedin.com/in/son-nguyen-204876192/).
+
+</LocalizedContent>
+
+<LocalizedContent language="ja">
+
+## はじめに
+
+このサンプルでは、SwiftUI、MVVM、Clean Architectureの考え方を使って、iOSアプリをどのように構成しているかを紹介します。stateの流れ、依存関係の境界、テスト方針を追いやすくするため、あえてコンパクトなアプリにしています。
+
+ソースコードは[Swift Clean Baseリポジトリ](https://github.com/samyoney/SwiftCleanBase)で公開しています。日本語の元記事は[Qiita](https://qiita.com/samyoney/items/5f5dff044bc1b5339952)でも確認できます。
+
+## SwiftUIを選ぶ理由
+
+[SwiftUI](https://developer.apple.com/swiftui/)は、Apple platform向けの画面を構築する宣言的frameworkです。Viewは現在のstateに対して必要なUIを表現し、stateが変わったときの更新はframeworkが管理します。
+
+このサンプルでは、次の利点を活用しています。
+
+- **読みやすいstate中心のView:** stateから表示結果までの流れを追いやすくなります。
+- **再利用しやすいcomponent:** 小さなViewを組み合わせて大きな機能を作れます。
+- **効率的な画面開発:** previewにより、短いfeedback loopで確認できます。
+- **Apple SDKとの連携:** 必要に応じてUIKitと共存しながら、ほかのApple frameworkも利用できます。
+
+Apple platform間でSwiftUIの考え方を共有できるのは便利ですが、実際の製品ではplatformごとのnavigation、操作、layoutも考慮する必要があります。
+
+## Architectureの考え方
+
+ここではClean Architectureを固定templateではなく、依存関係を整えるためのルールとして使っています。
+
+1. **Presentation:** SwiftUI Viewがstateを描画し、ViewModelがユーザー操作と画面stateをまとめます。
+2. **Domain:** entityとuse caseが、UIやstorage frameworkに依存せず業務動作を表現します。
+3. **Data:** repository実装がAPI、persistence、mappingをまとめます。
+4. **Infrastructure:** 交換やテストが重要なApple framework・外部libraryの具体実装をinterfaceの後ろに置きます。
+
+MVVMだけでuse caseの有無が決まるわけではありません。このサンプルでは、MVVMは画面側の関心を扱い、独立してテスト・再利用したい処理だけにuse caseというdomain境界を用意しています。
+
+## 使用技術
+
+画面にはSwiftUIを使用し、[SwiftData](https://developer.apple.com/documentation/swiftdata)、[R.swift](https://github.com/mac-cain13/R.swift)、[Resolver](https://github.com/hmlongco/Resolver)などの連携例も含めています。これらはサンプルで選んだ実装方法であり、Clean Architectureの必須条件ではありません。
+
+## 画面フロー
+
+```text
++-----------+        +-----------+        +------------+
+|  Splash   | ------>|   Login   | ------>|    Main    |
+|  Screen   |        |   Flow    |        |    Flow    |
++-----------+        +-----------+        +------------+
+```
+
+## 画面イメージ
+
+<table>
+  <tbody>
+    <tr>
+      <td align="center">
+        <img src="/static/images/clean/splash-ios.png" alt="iOSスプラッシュ画面" width="300" />
+        <strong>スプラッシュ</strong>
+      </td>
+      <td align="center">
+        <img src="/static/images/clean/login-ios.png" alt="iOSログイン画面" width="300" />
+        <strong>ログイン</strong>
+      </td>
+      <td align="center">
+        <img src="/static/images/clean/register-ios.png" alt="iOS登録画面" width="300" />
+        <strong>登録</strong>
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+        <img src="/static/images/clean/course-ios.png" alt="iOSコース画面" width="300" />
+        <strong>コース</strong>
+      </td>
+      <td align="center">
+        <img src="/static/images/clean/student-ios.png" alt="iOS受講者画面" width="300" />
+        <strong>受講者</strong>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+## リポジトリ構成
+
+プロジェクトは主に五つの領域で構成しています。
+
+- **App:** application lifecycle、dependencyの組み立て、navigation。
+- **Core:** network、preference、cache、共通Viewなどのutilityとinfrastructure。
+- **Presentation:** SwiftUI画面とViewModel。
+- **Resources:** 多言語文字列、asset、animation。
+- **Data:** repository、API client、persistence、mapping、このサンプルで使うdomain処理。
+
+大切なのは依存の向きです。Presentationは、API requestやdatabase queryがどのように実装されているかを知りません。この分離により、ViewModelとuse caseのtestを安定させ、frameworkの変更も限定できます。
+
+## テストとtrade-off
+
+Unit testでは、業務処理、repositoryの動作、ViewModelのstate遷移を確認します。UI testは、認証や主要navigationなど、重要なユーザーフローに絞ると効果的です。
+
+小さな機能では、use caseとrepositoryを個別に作ることで、価値より手順が増える場合もあります。製品の成長に合わせて構造も育て、変更、責任範囲、riskを分離できる場所にだけ境界を置くのが良いと考えています。
+
+## まとめ
+
+このstarterは、明確なstate、分かりやすい依存関係、特定のUIやpersistence frameworkにdomainを結び付けないテスト可能な動作という、SwiftUIアプリの実践的な基準を示しています。
+
+質問や提案があれば、[GitHubリポジトリ](https://github.com/samyoney/SwiftCleanBase)のissue、または[LinkedIn](https://www.linkedin.com/in/son-nguyen-204876192/)からご連絡ください。
+
+</LocalizedContent>

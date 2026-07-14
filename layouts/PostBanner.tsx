@@ -1,3 +1,5 @@
+'use client'
+
 import { ReactNode } from 'react'
 import Image from '@/components/Image'
 import Bleed from 'pliny/ui/Bleed'
@@ -9,16 +11,19 @@ import PageTitle from '@/components/PageTitle'
 import SectionContainer from '@/components/SectionContainer'
 import siteMetadata from '@/data/siteMetadata'
 import ScrollTopAndComment from '@/components/ScrollTopAndComment'
+import { useLanguage } from '@/components/LanguageProvider'
 
 interface LayoutProps {
   content: CoreContent<Blog>
   children: ReactNode
-  next?: { path: string; title: string }
-  prev?: { path: string; title: string }
+  next?: { path: string; title: string; titleJa?: string }
+  prev?: { path: string; title: string; titleJa?: string }
 }
 
 export default function PostMinimal({ content, next, prev, children }: LayoutProps) {
-  const { slug, title, images } = content
+  const { language } = useLanguage()
+  const { slug, title, titleJa, images } = content
+  const displayTitle = language === 'ja' && titleJa ? titleJa : title
   const displayImage =
     images && images.length > 0 ? images[0] : 'https://picsum.photos/seed/picsum/800/400'
 
@@ -31,12 +36,12 @@ export default function PostMinimal({ content, next, prev, children }: LayoutPro
             <div className="w-full">
               <Bleed>
                 <div className="relative aspect-[2/1] w-full">
-                  <Image src={displayImage} alt={title} fill className="object-cover" />
+                  <Image src={displayImage} alt={displayTitle} fill className="object-cover" />
                 </div>
               </Bleed>
             </div>
             <div className="relative pt-10">
-              <PageTitle>{title}</PageTitle>
+              <PageTitle>{displayTitle}</PageTitle>
             </div>
           </div>
           <div className="prose max-w-none py-4 dark:prose-invert">{children}</div>
@@ -54,7 +59,7 @@ export default function PostMinimal({ content, next, prev, children }: LayoutPro
                     className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
                     aria-label={`Previous post: ${prev.title}`}
                   >
-                    &larr; {prev.title}
+                    &larr; {language === 'ja' && prev.titleJa ? prev.titleJa : prev.title}
                   </Link>
                 </div>
               )}
@@ -65,7 +70,7 @@ export default function PostMinimal({ content, next, prev, children }: LayoutPro
                     className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
                     aria-label={`Next post: ${next.title}`}
                   >
-                    {next.title} &rarr;
+                    {language === 'ja' && next.titleJa ? next.titleJa : next.title} &rarr;
                   </Link>
                 </div>
               )}

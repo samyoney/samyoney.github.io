@@ -7,6 +7,7 @@ import CustomLink from './Link'
 import TableWrapper from './TableWrapper'
 import CredentialGallery from './CredentialGallery'
 import ProjectHistory from './ProjectHistory'
+import LocalizedContent from './LocalizedContent'
 
 export const components: MDXComponents = {
   Image,
@@ -17,4 +18,5 @@ export const components: MDXComponents = {
   BlogNewsletterForm,
   CredentialGallery,
   ProjectHistory,
+  LocalizedContent,
 }

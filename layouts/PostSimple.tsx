@@ -1,3 +1,5 @@
+'use client'
+
 import { ReactNode } from 'react'
 import { formatDate } from 'pliny/utils/formatDate'
 import { CoreContent } from 'pliny/utils/contentlayer'
@@ -8,16 +10,19 @@ import PageTitle from '@/components/PageTitle'
 import SectionContainer from '@/components/SectionContainer'
 import siteMetadata from '@/data/siteMetadata'
 import ScrollTopAndComment from '@/components/ScrollTopAndComment'
+import { useLanguage } from '@/components/LanguageProvider'
 
 interface LayoutProps {
   content: CoreContent<Blog>
   children: ReactNode
-  next?: { path: string; title: string }
-  prev?: { path: string; title: string }
+  next?: { path: string; title: string; titleJa?: string }
+  prev?: { path: string; title: string; titleJa?: string }
 }
 
 export default function PostLayout({ content, next, prev, children }: LayoutProps) {
-  const { path, slug, date, title } = content
+  const { language } = useLanguage()
+  const { path, slug, date, title, titleJa } = content
+  const displayTitle = language === 'ja' && titleJa ? titleJa : title
 
   return (
     <SectionContainer>
@@ -30,12 +35,14 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
                 <div>
                   <dt className="sr-only">Published on</dt>
                   <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                    <time dateTime={date}>{formatDate(date, siteMetadata.locale)}</time>
+                    <time dateTime={date}>
+                      {formatDate(date, language === 'ja' ? 'ja-JP' : siteMetadata.locale)}
+                    </time>
                   </dd>
                 </div>
               </dl>
               <div>
-                <PageTitle>{title}</PageTitle>
+                <PageTitle>{displayTitle}</PageTitle>
               </div>
             </div>
           </header>
@@ -57,7 +64,7 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
                       className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
                       aria-label={`Previous post: ${prev.title}`}
                     >
-                      &larr; {prev.title}
+                      &larr; {language === 'ja' && prev.titleJa ? prev.titleJa : prev.title}
                     </Link>
                   </div>
                 )}
@@ -68,7 +75,7 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
                       className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
                       aria-label={`Next post: ${next.title}`}
                     >
-                      {next.title} &rarr;
+                      {language === 'ja' && next.titleJa ? next.titleJa : next.title} &rarr;
                     </Link>
                   </div>
                 )}

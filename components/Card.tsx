@@ -10,6 +10,7 @@ interface CardProps {
   technologies: string[]
   imgSrc?: string
   href?: string
+  linkLabel?: string
 }
 
 const Card = ({
@@ -21,6 +22,7 @@ const Card = ({
   technologies,
   imgSrc,
   href,
+  linkLabel = 'View public product →',
 }: CardProps) => (
   <div className="w-full p-4 lg:w-1/2">
     <article className="flex h-full flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl dark:border-gray-700 dark:bg-gray-900">
@@ -76,7 +78,7 @@ const Card = ({
             className="mt-6 inline-flex font-semibold text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
             aria-label={`Learn more about ${title}`}
           >
-            View public product &rarr;
+            {linkLabel}
           </Link>
         )}
       </div>

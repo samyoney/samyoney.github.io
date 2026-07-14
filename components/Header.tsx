@@ -1,3 +1,5 @@
+'use client'
+
 import siteMetadata from '@/data/siteMetadata'
 import headerNavLinks from '@/data/headerNavLinks'
 import Logo from '@/data/logo.png'
@@ -6,8 +8,19 @@ import Link from './Link'
 import MobileNav from './MobileNav'
 import ThemeSwitch from './ThemeSwitch'
 import SearchButton from './SearchButton'
+import LanguageSwitch from './LanguageSwitch'
+import { useLanguage } from './LanguageProvider'
+
+const japaneseNavTitles: Record<string, string> = {
+  Home: 'ホーム',
+  Blog: 'ブログ',
+  Projects: 'プロジェクト',
+  Resume: '経歴',
+}
 
 const Header = () => {
+  const { language } = useLanguage()
+
   return (
     <header className="flex items-center justify-between py-10">
       <div>
@@ -40,9 +53,10 @@ const Header = () => {
               href={link.href}
               className="hidden font-medium text-gray-900 dark:text-gray-100 sm:block"
             >
-              {link.title}
+              {language === 'ja' ? japaneseNavTitles[link.title] : link.title}
             </Link>
           ))}
+        <LanguageSwitch />
         <SearchButton />
         <ThemeSwitch />
         <MobileNav />

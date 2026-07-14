@@ -1,28 +1,28 @@
 ---
 title: 'Clean Architecture with Jetpack Compose for Android'
+titleJa: 'Jetpack Composeで実践するAndroid Clean Architecture'
 date: '2024-06-18'
 lastmod: '2026-07-14'
 tags: ['jetpack-compose', 'clean-architecture', 'kotlin', 'solid', 'android']
 draft: false
 summary: 'A practical Android starter that combines Jetpack Compose, MVVM, clear layer boundaries, and testable use cases.'
+summaryJa: 'Jetpack Compose、MVVM、明確なレイヤー分離、テスト可能なuse caseを組み合わせたAndroidスターターです。'
 images: ['/static/images/clean/jetpack-card.png']
 ---
 
-## Japanese version: [Qiita](https://qiita.com/samyoney/items/d53d0b58c1b5e4b6fa08)
+![Jetpack Compose sample application](/static/images/clean/jetpack-card.png)
+
+<LocalizedContent language="en">
 
 ## Introduction
 
 This sample shows how I structure an Android application with Jetpack Compose, MVVM, and Clean Architecture principles. It is intentionally small: the goal is to make the dependency flow, state management, and testing boundaries easy to understand before adding production complexity.
 
-<TOCInline toc={props.toc} exclude="Introduction" />
-
-![Jetpack Compose sample application](/static/images/clean/jetpack-card.png)
-
 The complete source is available in the [Compose Clean Base repository](https://github.com/samyoney/compose_clean_base).
 
 ## Why Jetpack Compose?
 
-[Jetpack Compose](https://developer.android.com/develop/ui/compose) is Android's modern declarative UI toolkit. UI is described as composable functions that react to state, which reduces the amount of synchronization code normally required between views and application state.
+[Jetpack Compose](https://developer.android.com/develop/ui/compose) is Android's modern declarative UI toolkit. UI is described as composable functions that react to state, which reduces the synchronization code normally required between views and application state.
 
 For this sample, Compose provides three practical advantages:
 
@@ -34,7 +34,7 @@ For this sample, Compose provides three practical advantages:
 
 Clean Architecture is an organizing approach, not a mandatory framework. The useful part is the dependency rule: business decisions should not depend directly on UI, storage, or network implementations.
 
-The sample follows the same broad separation described in the [Android architecture recommendations](https://developer.android.com/topic/architecture/recommendations):
+The sample follows the broad separation described in the [Android architecture recommendations](https://developer.android.com/topic/architecture/recommendations):
 
 1. **Presentation:** Compose screens and ViewModels expose observable UI state and handle user actions.
 2. **Domain:** use cases express application-specific operations when that extra layer adds clarity.
@@ -47,10 +47,8 @@ This separation improves testability and makes implementation details easier to 
 
 ```text
 +-----------+        +-----------+        +------------+
-|           |        |           |        |            |
 |  Splash   | ------>|   Login   | ------>|    Main    |
 |  Screen   |        |   Flow    |        |    Flow    |
-|           |        |           |        |            |
 +-----------+        +-----------+        +------------+
 ```
 
@@ -109,16 +107,117 @@ The repository is organized around three top-level areas:
 - **buildSrc:** centralized build configuration and dependency versions used by this sample.
 - **Framework:** reusable Android-specific implementations for persistence, preferences, caching, and shared base types.
 
-Within the app, presentation code depends on domain contracts rather than concrete network or database classes. Repositories hide data-source details, and ViewModels translate results into immutable UI state. This keeps screen behavior testable without rendering the UI or calling real services.
+Presentation code depends on domain contracts rather than concrete network or database classes. Repositories hide data-source details, and ViewModels translate results into immutable UI state. This keeps screen behavior testable without rendering the UI or calling real services.
 
 ## Testing and maintenance
 
-The most valuable tests target use cases, repository behavior, and ViewModel state transitions. Compose UI tests can then focus on critical user journeys. This balance gives fast feedback while avoiding fragile tests for every visual detail.
+The most valuable tests target use cases, repository behavior, and ViewModel state transitions. Compose UI tests can then focus on critical user journeys. This gives fast feedback without creating fragile tests for every visual detail.
 
-When extending the starter, I recommend adding abstractions only when there is a real boundary to protect. A clear two-layer feature is better than a five-layer design with pass-through classes.
+When extending the starter, I recommend adding abstractions only when there is a real boundary to protect. A clear two-layer feature is better than a five-layer design filled with pass-through classes.
 
 ## Conclusion
 
-This starter demonstrates a maintainable baseline for Compose projects: state-driven UI, explicit dependencies, testable business operations, and framework code kept at the edges. It is a reference implementation, so the structure should be adapted to the size and risk profile of the product.
+This starter demonstrates a maintainable baseline for Compose projects: state-driven UI, explicit dependencies, testable business operations, and framework code kept at the edges. Adapt the structure to the size and risk profile of the product.
 
 For questions or suggestions, open an issue in the [source repository](https://github.com/samyoney/compose_clean_base) or contact me on [LinkedIn](https://www.linkedin.com/in/son-nguyen-204876192/).
+
+</LocalizedContent>
+
+<LocalizedContent language="ja">
+
+## はじめに
+
+このサンプルでは、Jetpack Compose、MVVM、Clean Architectureの考え方を使って、Androidアプリをどのように構成しているかを紹介します。実運用の複雑さを加える前に、依存関係、状態管理、テストの境界を理解しやすくするため、あえて小さな構成にしています。
+
+ソースコードは[Compose Clean Baseリポジトリ](https://github.com/samyoney/compose_clean_base)で公開しています。日本語の元記事は[Qiita](https://qiita.com/samyoney/items/d53d0b58c1b5e4b6fa08)でも確認できます。
+
+## Jetpack Composeを選ぶ理由
+
+[Jetpack Compose](https://developer.android.com/develop/ui/compose)は、Androidのモダンな宣言的UI toolkitです。現在のstateに応じたUIをcomposable functionで表現するため、Viewとアプリ状態を手作業で同期するcodeを減らせます。
+
+このサンプルでは、特に次の三点が役立っています。
+
+- **state中心のUI:** 各画面を明確なUI stateから描画できます。
+- **再利用しやすいcomponent:** framework classを継承せず、小さな要素を組み合わせられます。
+- **短いfeedback loop:** previewと簡潔なKotlin codeにより、画面を素早く確認できます。
+
+## Architectureの考え方
+
+Clean Architectureは、必ず従うframeworkではなく、依存関係を整理するための考え方です。大切なのは、業務上の判断がUI、storage、networkの具体的な実装へ直接依存しないことです。
+
+このサンプルは、[Androidのarchitecture推奨事項](https://developer.android.com/topic/architecture/recommendations)に近い形で、次の役割に分けています。
+
+1. **Presentation:** Compose画面とViewModelがUI stateを公開し、ユーザー操作を受け取ります。
+2. **Domain:** 独立してテスト・再利用する価値がある処理をuse caseとして表現します。
+3. **Data:** repositoryが安定したinterfaceの後ろでlocalとremoteのdata sourceをまとめます。
+4. **Framework:** Android固有のstorage、network、platform連携を外側の境界に置きます。
+
+この分離によりテストしやすくなり、具体的な実装も交換しやすくなります。ただし、小さなアプリで無理にすべてのlayerを分ける必要はありません。architectureは複雑さを減らすために使うべきで、手順を増やすことが目的ではありません。
+
+## 画面フロー
+
+```text
++-----------+        +-----------+        +------------+
+|  Splash   | ------>|   Login   | ------>|    Main    |
+|  Screen   |        |   Flow    |        |    Flow    |
++-----------+        +-----------+        +------------+
+```
+
+## 画面イメージ
+
+<table>
+  <tbody>
+    <tr>
+      <td align="center">
+        <img
+          src="/static/images/clean/splash-android.png"
+          alt="Androidスプラッシュ画面"
+          width="300"
+        />
+        <strong>スプラッシュ</strong>
+      </td>
+      <td align="center">
+        <img src="/static/images/clean/login-android.png" alt="Androidログイン画面" width="300" />
+        <strong>ログイン</strong>
+      </td>
+      <td align="center">
+        <img src="/static/images/clean/register-android.png" alt="Android登録画面" width="300" />
+        <strong>登録</strong>
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+        <img src="/static/images/clean/course-android.png" alt="Androidコース画面" width="300" />
+        <strong>コース</strong>
+      </td>
+      <td align="center">
+        <img src="/static/images/clean/student-android.png" alt="Android受講者画面" width="300" />
+        <strong>受講者</strong>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+## リポジトリ構成
+
+主に三つの領域で構成しています。
+
+- **App:** アプリのentry point、navigation、Compose UI、ViewModel、use case、data contract。
+- **buildSrc:** build設定と、このサンプルで使うdependency versionの一元管理。
+- **Framework:** persistence、preference、cache、共通base typeなど、Android固有の再利用可能な実装。
+
+Presentationは、具体的なnetwork classやdatabase classではなく、domainのcontractに依存します。Repositoryがdata sourceの詳細を隠し、ViewModelが結果をimmutableなUI stateへ変換します。そのため、実際のserviceを呼んだりUIを描画したりせずに、画面の動作をテストできます。
+
+## テストと保守
+
+特に価値が高いのは、use case、repositoryの動作、ViewModelのstate遷移を確認するテストです。Compose UI testは、重要なユーザーフローに絞ります。このバランスなら素早いfeedbackを得ながら、細かな見た目に依存する壊れやすいテストを増やさずに済みます。
+
+機能を追加するときも、守るべき境界がある場合にだけ抽象化を増やすことを勧めます。中身をそのまま通すclassが多い五層構成より、役割が明確な二層構成のほうが良い場合もあります。
+
+## まとめ
+
+このstarterは、state中心のUI、明確な依存関係、テスト可能な業務処理、外側に分離したframework codeという、Composeプロジェクトの保守しやすい基準を示しています。実際には、製品の規模とriskに合わせて調整してください。
+
+質問や提案があれば、[GitHubリポジトリ](https://github.com/samyoney/compose_clean_base)のissue、または[LinkedIn](https://www.linkedin.com/in/son-nguyen-204876192/)からご連絡ください。
+
+</LocalizedContent>

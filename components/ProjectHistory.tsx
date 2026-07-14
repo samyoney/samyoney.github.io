@@ -6,7 +6,7 @@ interface Props {
   locale?: Locale
 }
 
-const japaneseProjects: Record<string, { title: string; summary: string }> = {
+export const japaneseProjects: Record<string, { title: string; summary: string }> = {
   'アイテック 法人向けクラウド電話サービス': {
     title: 'アイテック 法人向けクラウド電話サービス',
     summary:
@@ -99,7 +99,7 @@ const japaneseProjects: Record<string, { title: string; summary: string }> = {
   },
 }
 
-const japaneseRoles: Record<string, string> = {
+export const japaneseRoles: Record<string, string> = {
   'Bridge SE / Tech Lead': 'ブリッジSE／テックリード',
   'Bridge SE / Senior SE': 'ブリッジSE／シニアSE',
   'Bridge SE': 'ブリッジSE',
@@ -123,7 +123,7 @@ const japaneseMonths: Record<string, number> = {
   Dec: 12,
 }
 
-function japanesePeriod(period: string) {
+export function japanesePeriod(period: string) {
   return period
     .split(' – ')
     .map((value) => {

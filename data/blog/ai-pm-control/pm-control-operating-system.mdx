@@ -1,159 +1,73 @@
 ---
-title: 'PM-Control: Turning AI Agents into Disciplined Project Contributors'
+title: 'PM-Control Started with a Simple Need: Help AI Work More Carefully'
+titleJa: 'PM-Controlの始まりは、AIともう少し丁寧に仕事をすること'
 date: '2026-07-14'
 lastmod: '2026-07-14'
-tags: ['ai', 'pm-control', 'agentic-workflow', 'project-management', 'engineering-leadership']
+tags: ['ai', 'pm-control', 'project-management']
 draft: false
-summary: 'A practical operating model that gives AI agents clear scope, durable context, controlled tools, and verifiable delivery.'
+summary: 'PM-Control is not an autonomous AI platform. It is how I organize rules, context, project data, and verification around everyday work.'
+summaryJa: 'PM-Controlは自律型AIの製品ではなく、日々の仕事に必要なルール、文脈、データ、確認を整理するための仕組みです。'
 images: ['/static/images/blog/pm-control/pm-control-operating-system.webp']
 ---
 
-## Introduction
+![A personal workspace supported by AI](/static/images/blog/pm-control/pm-control-operating-system.webp)
 
-The biggest problem with AI-assisted engineering is rarely the quality of a single prompt. The real problem is the lack of an operating system around the agent.
+<LocalizedContent language="en">
 
-An agent may understand code, write documents, call APIs, and run tests. Yet without clear boundaries it can still read the wrong source, update stale data, expose sensitive context, or produce a technically correct change that does not match the project decision.
+I did not start PM-Control because I wanted to build another “AI platform.” The reason was much more practical. Every day I moved between project documents, Backlog, Google Sheets, source code, and conversations. AI could help with each part, but without a shared way of working it could easily use stale data or perform the right action in the wrong context.
 
-I built **PM-Control** around a simple idea: an AI agent should work like a disciplined project contributor, not an unrestricted automation script.
+At first, I collected a few scripts and prompts that I used often. Over time I realized the missing piece was not another tool. It was a steady loop: retrieve the right context, understand the scope, make a plan, act on the real source, and verify the result before calling the task complete.
 
-<TOCInline toc={props.toc} exclude="Introduction" />
+PM-Control gradually formed around five ideas.
 
-![PM-Control operating system](/static/images/blog/pm-control/pm-control-operating-system.webp)
+## The five pieces I keep returning to
 
-## The missing layer between prompts and delivery
+The first is **clear ownership of data**. I decide where the WBS belongs, where issues belong, where source code belongs, and which knowledge can be trusted. Local snapshots make processing easier but do not quietly replace the original system.
 
-Most AI workflows jump directly from a request to an action:
+The second is **rules close to the work**. Each repository or folder can explain what AI may do, when it should ask, and what evidence is required. Shared rules stay at the root; specific rules stay near the relevant files.
 
-```text
-request -> generate -> apply
-```
+The third is **a workflow for each kind of task**. A code change, a project-data update, and a customer-facing document should not use the same sequence. They have different sources, approval points, and ways to verify success.
 
-That path is fast, but it removes the controls that experienced engineers normally rely on: source selection, impact analysis, review boundaries, verification, and traceability.
+The fourth is **portable project context**. I keep durable information in readable Markdown and YAML so it can be reviewed, versioned, and used on another machine. Temporary indexes and generated data stay separate because they can be rebuilt.
 
-PM-Control adds those controls back:
+The last is **evidence before completion**. For code, that may be a focused test or build. For an API update, it is a read-back from the destination. For a document, it is a preview in the right format and language. I want “done” to come with something I can check.
 
-```text
-retrieve context
-      |
-      v
-understand scope -> plan -> approve when required
-      |                         |
-      +-------------------------+
-      v
-act on the correct source of truth
-      |
-      v
-verify -> read back -> record useful lessons
-```
+## What PM-Control is not
 
-The agent is still capable of moving quickly. The difference is that speed is placed inside a repeatable delivery loop.
+PM-Control is not an attempt to let AI decide everything. People still choose the scope, approve important changes, and own the final decision. AI handles retrieval, summarization, and repetitive operations; the workflow keeps those abilities pointed in the right direction.
 
-## Five foundations
+After using it for a while, the biggest benefit was not saving a few commands. I repeated less context, resumed old tasks more easily, and understood why each change had been made.
 
-### 1. Explicit sources of truth
+That was the point where AI started to feel less like a fast answer generator and more like a useful collaborator in my everyday work.
 
-Every kind of project data has an owner. A planning spreadsheet may own the WBS. An issue tracker may own execution status. Git owns application source. A knowledge directory owns durable technical understanding.
+</LocalizedContent>
 
-The agent does not silently replace those systems with its own notes. Local files may be used as portable snapshots or deterministic caches, but their authority is declared.
+<LocalizedContent language="ja">
 
-This distinction prevents a common failure: updating a convenient local copy while the real project continues to evolve elsewhere.
+PM-Controlを始めたのは、新しい「AI platform」を作りたかったからではありません。理由はもっと日常的なものでした。毎日、プロジェクト資料、Backlog、Google Sheets、ソースコード、会話を行き来しています。AIはそれぞれの作業を支援できますが、共通の進め方がないと、古いデータを使ったり、操作は正しくても文脈を間違えたりします。
 
-### 2. Scoped rules
+最初は、よく使うscriptとpromptを少しずつ集めていました。しかし続けるうちに、足りないのは新しいtoolではないと気づきました。必要だったのは、正しい情報を取得し、範囲を理解し、進め方を決め、元のシステムに反映し、完了前に結果を確認するという安定した流れでした。
 
-The workspace contains operational rules that define what the agent may read, what it may change, which tool is appropriate, and what must be verified.
+PM-Controlは、少しずつ五つの考え方を中心にまとまりました。
 
-Rules can become more specific deeper in the directory tree. A source-code folder can require compiler evidence. A management-data folder can require stable IDs and read-back after an API write. A customer-deliverable folder can impose language and confidentiality requirements.
+## 繰り返し大切になる五つのこと
 
-The nearest applicable rule wins. This is similar to configuration inheritance in mature build systems: broad defaults at the root, precise behavior near the artifact.
+一つ目は、**データの持ち主を明確にすること** です。WBS、issue、source code、確認済みの知識がどこに属するのかを先に決めます。ローカルのsnapshotは処理を便利にしますが、元のシステムを静かに置き換えるものではありません。
 
-### 3. Specialized workflows
+二つ目は、**作業の近くにruleを置くこと** です。各repositoryやfolderで、AIができること、確認が必要な場面、完了に必要な証拠を説明します。共通ruleはrootに、具体的なruleは対象fileの近くに置きます。
 
-A general-purpose agent should not improvise every operational procedure. PM-Control routes recurring work through small, documented skills:
+三つ目は、**taskの種類ごとにworkflowを分けること** です。code修正、管理データの更新、顧客向け文書の作成では、同じ手順を使いません。参照する情報、確認のタイミング、成功の確かめ方がそれぞれ違うからです。
 
-- knowledge and memory synchronization;
-- source-code intelligence and impact analysis;
-- project-management synchronization;
-- issue-tracker operations;
-- document and media production;
-- environment-specific verification.
+四つ目は、**持ち運べるプロジェクト情報** です。長く使う情報はMarkdownやYAMLで残し、人が読めて、version管理でき、別の環境でも使えるようにします。作り直せるindexや生成データは分けて管理します。
 
-Each workflow defines its inputs, commands, safety checks, and expected evidence. This makes the result reproducible across sessions and across agents.
+最後は、**完了前に証拠を確認すること** です。codeなら関連testやbuild、API更新なら反映先からの読み直し、文書なら正しい形式と言語でのpreviewです。「完了しました」という言葉には、確認できる結果を添えたいと考えています。
 
-### 4. Portable project state
+## PM-Controlが目指していないこと
 
-Project context is separated from generated caches and application source:
+PM-Controlは、すべてをAIに決めてもらう仕組みではありません。作業範囲を決め、重要な変更を承認し、最終判断を持つのは人です。AIは検索、整理、繰り返し作業を担当し、workflowがその力を正しい方向へ案内します。
 
-```text
-project-store/
-  knowledge/    durable technical understanding
-  memory/       historical session evidence
-  management/   portable management snapshots
-  artifacts/    reports and deliverables
+しばらく使って感じた一番の効果は、commandを数回減らせたことではありません。同じ背景を説明する回数が減り、以前のtaskを再開しやすくなり、変更した理由も追いやすくなりました。
 
-sources/         application source code
-registry/        connection metadata and secret references
-scratch/         disposable local work
-```
+そのとき初めて、AIが「すぐ答えを出すtool」ではなく、日々の仕事を一緒に進める相手に少し近づいたと感じました。
 
-The structure is intentionally boring. A new agent can inspect it, understand ownership, and avoid mixing a temporary index with a durable project record.
-
-### 5. Evidence before completion
-
-"The change looks correct" is not a completion criterion.
-
-Depending on the task, evidence may include:
-
-- a production build;
-- focused unit or integration tests;
-- a compiler result;
-- a dry-run diff;
-- an API read-back;
-- a search confirming that old values are gone;
-- a rendered document or screenshot;
-- an index health check.
-
-The verification method should be proportional to the risk. A copy edit does not need an integration environment, but a production configuration change should not end with a visual inspection of the diff.
-
-## A practical task lifecycle
-
-Consider a request to change a feature and update its delivery plan.
-
-First, the agent retrieves related knowledge and historical memory. It identifies the concrete application project instead of scanning every repository. It reads the closest rules and the relevant build files.
-
-Second, it traces the affected symbols and dependencies. It reads only the files involved in the flow, then proposes a focused plan. If the workspace requires approval before source changes, execution pauses at that boundary.
-
-Third, it implements the approved change using the existing patterns. It updates the minimum necessary tests and avoids unrelated refactoring.
-
-Fourth, it verifies the application. Only after source verification does it fetch the latest management data, update the matching record by stable ID, run a dry-run, apply the change, and read it back.
-
-Finally, it records a durable lesson only if the work produced knowledge worth keeping. A one-time command remains historical memory; an architectural rule can be promoted into project knowledge with supporting evidence.
-
-This lifecycle is slower than an uncontrolled one-shot edit by a few minutes. It is much faster than debugging silent divergence weeks later.
-
-## What PM-Control deliberately does not do
-
-PM-Control is not an attempt to make the agent autonomous at any cost.
-
-It does not grant permission to deploy because the agent can build. It does not treat a cache as a source of truth. It does not hardcode credentials into scripts. It does not create new storage systems without an owner. It does not rewrite unrelated code while fixing a local issue.
-
-These are not limitations of the model. They are properties of a trustworthy engineering process.
-
-## Design principles that scale
-
-Several principles have proven more important than any individual tool:
-
-1. **Make ownership explicit.** Every artifact should have one declared authority.
-2. **Keep rules close to the work.** Generic rules cannot describe every delivery boundary.
-3. **Prefer deterministic workflows.** Repeated operations should not depend on prompt luck.
-4. **Separate history from truth.** Session memory explains what happened; knowledge explains what remains valid.
-5. **Verify external writes.** A successful API response is not the same as correct project state.
-6. **Use the smallest effective scope.** Targeted context improves accuracy and protects unrelated work.
-7. **Preserve human authority.** Approval gates should match business risk, not model confidence.
-
-## Conclusion
-
-AI agents become genuinely useful when they inherit the discipline of the engineering organization around them.
-
-PM-Control provides that surrounding system: scoped rules, explicit sources of truth, specialized workflows, durable local context, and evidence-based completion. The result is not an agent that acts on everything. It is an agent that knows what it is doing, why it is allowed to do it, and how to prove the work is complete.
-
-The next articles in this series examine the individual mechanisms behind that operating model: policy through `AGENTS.md`, long-term memory with local semantic retrieval, deterministic project synchronization, and code intelligence with verified impact analysis.
+</LocalizedContent>

@@ -1,3 +1,5 @@
+'use client'
+
 import Link from '@/components/Link'
 import Tag from '@/components/Tag'
 import { TypedIntroduce } from '@/components/TypedIntroduce'
@@ -5,6 +7,7 @@ import siteMetadata from '@/data/siteMetadata'
 import Image from 'next/image'
 import { formatDate } from 'pliny/utils/formatDate'
 import SEO from '@/components/SEO'
+import { useLanguage } from '@/components/LanguageProvider'
 
 const MAX_DISPLAY = 5
 
@@ -18,6 +21,9 @@ const INTERESTED_TECH_TAGS = [
 ]
 
 export default function Home({ posts, author }) {
+  const { language } = useLanguage()
+  const isJapanese = language === 'ja'
+
   return (
     <>
       <SEO />
@@ -28,14 +34,12 @@ export default function Home({ posts, author }) {
               Nguyen Hong Son · Sam
             </p>
             <h1 className="bg-gradient-to-r from-slate-600 to-slate-900 bg-clip-text text-4xl font-extrabold leading-tight tracking-tight text-transparent dark:from-gray-100 dark:to-slate-400 sm:text-6xl">
-              Bridge SE & Tech Lead
+              {isJapanese ? 'ブリッジSE／テックリード' : 'Bridge SE & Tech Lead'}
             </h1>
             <p className="mt-5 max-w-3xl text-lg leading-8 text-gray-600 dark:text-gray-300">
-              I lead mobile, cloud, IoT, and POS development from customer alignment and
-              architecture to review, quality, and delivery.
-            </p>
-            <p className="mt-2 max-w-3xl text-base leading-7 text-gray-500 dark:text-gray-400">
-              顧客調整から設計、技術判断、品質・リリース管理まで、開発全体を一貫して推進します。
+              {isJapanese
+                ? '顧客調整から設計、技術判断、品質・リリース管理まで、モバイル、クラウド、IoT、POS開発を一貫して推進しています。'
+                : 'I lead mobile, cloud, IoT, and POS development from customer alignment and architecture to review, quality, and delivery.'}
             </p>
             <div className="mt-6 flex flex-wrap gap-2">
               {INTERESTED_TECH_TAGS.map((tag) => (
@@ -48,20 +52,20 @@ export default function Home({ posts, author }) {
               ))}
             </div>
             <div className="min-h-16 py-6">
-              <TypedIntroduce />
+              <TypedIntroduce language={language} />
             </div>
             <div className="flex flex-wrap gap-3">
               <Link
                 href="/about"
                 className="rounded-full bg-primary-500 px-5 py-2.5 font-semibold text-white transition hover:bg-primary-600"
               >
-                View profile
+                {isJapanese ? 'プロフィールを見る' : 'View profile'}
               </Link>
               <Link
                 href="/projects"
                 className="rounded-full border border-gray-300 px-5 py-2.5 font-semibold text-gray-700 transition hover:border-primary-500 hover:text-primary-500 dark:border-gray-700 dark:text-gray-200"
               >
-                Explore projects
+                {isJapanese ? 'プロジェクトを見る' : 'Explore projects'}
               </Link>
             </div>
           </div>
@@ -82,15 +86,17 @@ export default function Home({ posts, author }) {
         </div>
         <div className="space-y-2 pb-2 pt-6 md:space-y-5">
           <h1 className="text-xl font-extrabold leading-7 tracking-tight text-gray-900 dark:text-gray-100 sm:text-2xl sm:leading-8 md:text-4xl md:leading-10">
-            Recent Articles
+            {isJapanese ? '最近の記事' : 'Recent Articles'}
           </h1>
         </div>
 
         <ul className=" grid grid-cols-1 gap-4 pt-6 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
           {/* <ul className="flex-col md:flex-row gap-6"> */}
-          {!posts.length && 'No posts found.'}
+          {!posts.length && (isJapanese ? '記事がありません。' : 'No posts found.')}
           {posts.slice(0, MAX_DISPLAY).map((post, index) => {
-            const { slug, date, title, summary, tags, images } = post
+            const { slug, date, title, titleJa, summary, summaryJa, tags, images } = post
+            const displayTitle = isJapanese && titleJa ? titleJa : title
+            const displaySummary = isJapanese && summaryJa ? summaryJa : summary
             const isLastElement = index === MAX_DISPLAY - 1
 
             return (
@@ -104,7 +110,7 @@ export default function Home({ posts, author }) {
                       <Link
                         className="relative block h-72 w-auto overflow-hidden rounded-xl bg-clip-border"
                         href={`/blog/${slug}`}
-                        aria-label={`Read "${title}"`}
+                        aria-label={`${isJapanese ? '読む' : 'Read'} "${displayTitle}"`}
                       >
                         <Image
                           className="h-auto w-full"
@@ -121,7 +127,7 @@ export default function Home({ posts, author }) {
                   <div className="mt-2 flex min-h-full w-full flex-col items-start justify-start lg:mt-0 lg:h-72">
                     <div className="flex-1">
                       <p className="block text-xl font-semibold text-gray-800 dark:text-white md:text-xl">
-                        {title}
+                        {displayTitle}
                       </p>
                       <div className="mt-4 flex flex-wrap">
                         {tags.map((tag) => (
@@ -130,7 +136,7 @@ export default function Home({ posts, author }) {
                       </div>
 
                       <p className=" prose mt-3 max-w-none text-sm text-gray-500 dark:text-gray-400 ">
-                        {summary}
+                        {displaySummary}
                       </p>
                     </div>
                     <button className="btn group mt-3 flex items-center bg-transparent text-base font-medium leading-6 tracking-widest">
@@ -138,9 +144,9 @@ export default function Home({ posts, author }) {
                         <Link
                           href={`/blog/${slug}`}
                           className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-                          aria-label={`Read "${title}"`}
+                          aria-label={`${isJapanese ? '読む' : 'Read'} "${displayTitle}"`}
                         >
-                          Read more
+                          {isJapanese ? '続きを読む' : 'Read more'}
                         </Link>
                       </span>
                       <svg
@@ -193,7 +199,9 @@ export default function Home({ posts, author }) {
                         <dl>
                           <dt className="sr-only">Published on</dt>
                           <dd className="text-sm font-medium leading-6 text-gray-500 dark:text-gray-400">
-                            <time dateTime={date}>{formatDate(date, siteMetadata.locale)}</time>
+                            <time dateTime={date}>
+                              {formatDate(date, isJapanese ? 'ja-JP' : siteMetadata.locale)}
+                            </time>
                           </dd>
                         </dl>
                       </div>
@@ -214,7 +222,7 @@ export default function Home({ posts, author }) {
                 className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
                 aria-label={`All Post`}
               >
-                All Posts
+                {isJapanese ? 'すべての記事' : 'All Posts'}
               </Link>
             </span>
             <svg

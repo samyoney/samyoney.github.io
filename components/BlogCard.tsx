@@ -1,3 +1,5 @@
+'use client'
+
 import Link from '@/components/Link'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
@@ -5,6 +7,7 @@ import { Authors, Blog } from 'contentlayer/generated'
 import Image from 'next/image'
 import { CoreContent } from 'pliny/utils/contentlayer'
 import { formatDate } from 'pliny/utils/formatDate'
+import { useLanguage } from './LanguageProvider'
 
 export default function BlogCard({
   post,
@@ -13,7 +16,11 @@ export default function BlogCard({
   post: Blog | CoreContent<Blog>
   author: Authors
 }) {
-  const { slug, date, title, summary, tags, images } = post
+  const { language } = useLanguage()
+  const isJapanese = language === 'ja'
+  const { slug, date, title, titleJa, summary, summaryJa, tags, images } = post
+  const displayTitle = isJapanese && titleJa ? titleJa : title
+  const displaySummary = isJapanese && summaryJa ? summaryJa : summary
 
   return (
     <div className="container">
@@ -22,7 +29,7 @@ export default function BlogCard({
           <Link
             className="relative block h-72 w-full overflow-hidden rounded-xl bg-white bg-clip-border"
             href={`/blog/${slug}`}
-            aria-label={`Read "${title}"`}
+            aria-label={`${isJapanese ? '読む' : 'Read'} "${displayTitle}"`}
           >
             <Image
               className="h-72 w-full"
@@ -38,7 +45,7 @@ export default function BlogCard({
         <div className="mt-2 flex min-h-full flex-col items-start justify-start lg:mt-0 lg:h-72 lg:w-1/2">
           <div className="flex-1">
             <p className="block text-2xl font-semibold text-gray-800 dark:text-white md:text-3xl">
-              {title}
+              {displayTitle}
             </p>
             <div className="mt-4 flex flex-wrap">
               {tags.map((tag) => (
@@ -47,16 +54,16 @@ export default function BlogCard({
             </div>
 
             <p className=" prose mt-3 max-w-none text-sm text-gray-500 dark:text-gray-400 ">
-              {summary}
+              {displaySummary}
             </p>
             <button className="btn group mt-3 flex items-center bg-transparent text-base font-medium leading-6 tracking-widest">
               <span className="relative pb-1 pr-2 text-white after:absolute after:bottom-0 after:left-0 after:block after:h-[2px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-primary-500 after:transition-transform after:duration-500 after:ease-out after:content-[''] after:group-hover:origin-bottom-left after:group-hover:scale-x-100 ">
                 <Link
                   href={`/blog/${slug}`}
                   className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-                  aria-label={`Read "${title}"`}
+                  aria-label={`${isJapanese ? '読む' : 'Read'} "${displayTitle}"`}
                 >
-                  Read more
+                  {isJapanese ? '続きを読む' : 'Read more'}
                 </Link>
               </span>
               <svg
@@ -110,7 +117,9 @@ export default function BlogCard({
               <dl>
                 <dt className="sr-only">Published on</dt>
                 <dd className="text-sm font-medium leading-6 text-gray-500 dark:text-gray-400">
-                  <time dateTime={date}>{formatDate(date, siteMetadata.locale)}</time>
+                  <time dateTime={date}>
+                    {formatDate(date, isJapanese ? 'ja-JP' : siteMetadata.locale)}
+                  </time>
                 </dd>
               </dl>
             </div>

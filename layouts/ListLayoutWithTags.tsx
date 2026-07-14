@@ -8,6 +8,7 @@ import siteMetadata from '@/data/siteMetadata'
 import tagData from 'app/tag-data.json'
 import BlogCard from '@/components/BlogCard'
 import SEO from '@/components/SEO'
+import { useLanguage } from '@/components/LanguageProvider'
 
 interface PaginationProps {
   totalPages: number
@@ -20,12 +21,14 @@ function PaginationWithTag({ totalPages, currentPage }: PaginationProps) {
   const prevPage = currentPage - 1 > 0
   const nextPage = currentPage + 1 <= totalPages
   const author = allAuthors.find((p) => p.slug === 'default') as Authors
+  const { language } = useLanguage()
+  const isJapanese = language === 'ja'
   return (
     <div className="space-y-2 pb-8 pt-6 md:space-y-5">
       <nav className="flex justify-between">
         {!prevPage && (
           <button className="cursor-auto disabled:opacity-50" disabled={!prevPage}>
-            Previous
+            {isJapanese ? '前へ' : 'Previous'}
           </button>
         )}
         {prevPage && (
@@ -33,20 +36,20 @@ function PaginationWithTag({ totalPages, currentPage }: PaginationProps) {
             href={currentPage - 1 === 1 ? `/${basePath}/` : `/${basePath}/page/${currentPage - 1}`}
             rel="prev"
           >
-            Previous
+            {isJapanese ? '前へ' : 'Previous'}
           </Link>
         )}
         <span>
-          {currentPage} of {totalPages}
+          {isJapanese ? `${currentPage} / ${totalPages}` : `${currentPage} of ${totalPages}`}
         </span>
         {!nextPage && (
           <button className="cursor-auto disabled:opacity-50" disabled={!nextPage}>
-            Next
+            {isJapanese ? '次へ' : 'Next'}
           </button>
         )}
         {nextPage && (
           <Link href={`/${basePath}/page/${currentPage + 1}`} rel="next">
-            Next
+            {isJapanese ? '次へ' : 'Next'}
           </Link>
         )}
       </nav>
@@ -79,6 +82,8 @@ export default function ListLayoutWithTags({
   // const sortedTags = tagKeys.sort((a, b) => tagCounts[b] - tagCounts[a])
   const author = allAuthors.find((p) => p.slug === 'default') as Authors
   const displayPosts = initialDisplayPosts.length > 0 ? initialDisplayPosts : posts
+  const { language } = useLanguage()
+  const isJapanese = language === 'ja'
 
   return (
     <>
@@ -86,10 +91,14 @@ export default function ListLayoutWithTags({
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
         <div className="space-y-2 pb-8 pt-6 md:space-y-5">
           <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
-            {title}
+            {isJapanese && (title === 'All Posts' || title === 'All my posts')
+              ? 'すべての記事'
+              : title}
           </h1>
           <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
-            {siteMetadata.description}
+            {isJapanese
+              ? '技術、プロジェクト運営、日々の仕事から得た気づきを、自分の言葉でまとめています。'
+              : siteMetadata.description}
           </p>
         </div>
 

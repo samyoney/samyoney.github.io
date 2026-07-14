@@ -59,11 +59,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html
-      lang={siteMetadata.language}
-      className={`${space_grotesk.variable} scroll-smooth`}
-      suppressHydrationWarning
-    >
+    <html lang="ja" className={`${space_grotesk.variable} scroll-smooth`} suppressHydrationWarning>
       <link rel="apple-touch-icon" sizes="180x180" href="/static/favicons/resume-apple-touch.png" />
       <link
         rel="icon"
