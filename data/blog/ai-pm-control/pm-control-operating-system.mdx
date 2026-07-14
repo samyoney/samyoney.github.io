@@ -1,0 +1,159 @@
+---
+title: 'PM-Control: Turning AI Agents into Disciplined Project Contributors'
+date: '2026-07-14'
+lastmod: '2026-07-14'
+tags: ['ai', 'pm-control', 'agentic-workflow', 'project-management', 'engineering-leadership']
+draft: false
+summary: 'A practical operating model that gives AI agents clear scope, durable context, controlled tools, and verifiable delivery.'
+images: ['/static/images/blog/pm-control/pm-control-operating-system.webp']
+---
+
+## Introduction
+
+The biggest problem with AI-assisted engineering is rarely the quality of a single prompt. The real problem is the lack of an operating system around the agent.
+
+An agent may understand code, write documents, call APIs, and run tests. Yet without clear boundaries it can still read the wrong source, update stale data, expose sensitive context, or produce a technically correct change that does not match the project decision.
+
+I built **PM-Control** around a simple idea: an AI agent should work like a disciplined project contributor, not an unrestricted automation script.
+
+<TOCInline toc={props.toc} exclude="Introduction" />
+
+![PM-Control operating system](/static/images/blog/pm-control/pm-control-operating-system.webp)
+
+## The missing layer between prompts and delivery
+
+Most AI workflows jump directly from a request to an action:
+
+```text
+request -> generate -> apply
+```
+
+That path is fast, but it removes the controls that experienced engineers normally rely on: source selection, impact analysis, review boundaries, verification, and traceability.
+
+PM-Control adds those controls back:
+
+```text
+retrieve context
+      |
+      v
+understand scope -> plan -> approve when required
+      |                         |
+      +-------------------------+
+      v
+act on the correct source of truth
+      |
+      v
+verify -> read back -> record useful lessons
+```
+
+The agent is still capable of moving quickly. The difference is that speed is placed inside a repeatable delivery loop.
+
+## Five foundations
+
+### 1. Explicit sources of truth
+
+Every kind of project data has an owner. A planning spreadsheet may own the WBS. An issue tracker may own execution status. Git owns application source. A knowledge directory owns durable technical understanding.
+
+The agent does not silently replace those systems with its own notes. Local files may be used as portable snapshots or deterministic caches, but their authority is declared.
+
+This distinction prevents a common failure: updating a convenient local copy while the real project continues to evolve elsewhere.
+
+### 2. Scoped rules
+
+The workspace contains operational rules that define what the agent may read, what it may change, which tool is appropriate, and what must be verified.
+
+Rules can become more specific deeper in the directory tree. A source-code folder can require compiler evidence. A management-data folder can require stable IDs and read-back after an API write. A customer-deliverable folder can impose language and confidentiality requirements.
+
+The nearest applicable rule wins. This is similar to configuration inheritance in mature build systems: broad defaults at the root, precise behavior near the artifact.
+
+### 3. Specialized workflows
+
+A general-purpose agent should not improvise every operational procedure. PM-Control routes recurring work through small, documented skills:
+
+- knowledge and memory synchronization;
+- source-code intelligence and impact analysis;
+- project-management synchronization;
+- issue-tracker operations;
+- document and media production;
+- environment-specific verification.
+
+Each workflow defines its inputs, commands, safety checks, and expected evidence. This makes the result reproducible across sessions and across agents.
+
+### 4. Portable project state
+
+Project context is separated from generated caches and application source:
+
+```text
+project-store/
+  knowledge/    durable technical understanding
+  memory/       historical session evidence
+  management/   portable management snapshots
+  artifacts/    reports and deliverables
+
+sources/         application source code
+registry/        connection metadata and secret references
+scratch/         disposable local work
+```
+
+The structure is intentionally boring. A new agent can inspect it, understand ownership, and avoid mixing a temporary index with a durable project record.
+
+### 5. Evidence before completion
+
+"The change looks correct" is not a completion criterion.
+
+Depending on the task, evidence may include:
+
+- a production build;
+- focused unit or integration tests;
+- a compiler result;
+- a dry-run diff;
+- an API read-back;
+- a search confirming that old values are gone;
+- a rendered document or screenshot;
+- an index health check.
+
+The verification method should be proportional to the risk. A copy edit does not need an integration environment, but a production configuration change should not end with a visual inspection of the diff.
+
+## A practical task lifecycle
+
+Consider a request to change a feature and update its delivery plan.
+
+First, the agent retrieves related knowledge and historical memory. It identifies the concrete application project instead of scanning every repository. It reads the closest rules and the relevant build files.
+
+Second, it traces the affected symbols and dependencies. It reads only the files involved in the flow, then proposes a focused plan. If the workspace requires approval before source changes, execution pauses at that boundary.
+
+Third, it implements the approved change using the existing patterns. It updates the minimum necessary tests and avoids unrelated refactoring.
+
+Fourth, it verifies the application. Only after source verification does it fetch the latest management data, update the matching record by stable ID, run a dry-run, apply the change, and read it back.
+
+Finally, it records a durable lesson only if the work produced knowledge worth keeping. A one-time command remains historical memory; an architectural rule can be promoted into project knowledge with supporting evidence.
+
+This lifecycle is slower than an uncontrolled one-shot edit by a few minutes. It is much faster than debugging silent divergence weeks later.
+
+## What PM-Control deliberately does not do
+
+PM-Control is not an attempt to make the agent autonomous at any cost.
+
+It does not grant permission to deploy because the agent can build. It does not treat a cache as a source of truth. It does not hardcode credentials into scripts. It does not create new storage systems without an owner. It does not rewrite unrelated code while fixing a local issue.
+
+These are not limitations of the model. They are properties of a trustworthy engineering process.
+
+## Design principles that scale
+
+Several principles have proven more important than any individual tool:
+
+1. **Make ownership explicit.** Every artifact should have one declared authority.
+2. **Keep rules close to the work.** Generic rules cannot describe every delivery boundary.
+3. **Prefer deterministic workflows.** Repeated operations should not depend on prompt luck.
+4. **Separate history from truth.** Session memory explains what happened; knowledge explains what remains valid.
+5. **Verify external writes.** A successful API response is not the same as correct project state.
+6. **Use the smallest effective scope.** Targeted context improves accuracy and protects unrelated work.
+7. **Preserve human authority.** Approval gates should match business risk, not model confidence.
+
+## Conclusion
+
+AI agents become genuinely useful when they inherit the discipline of the engineering organization around them.
+
+PM-Control provides that surrounding system: scoped rules, explicit sources of truth, specialized workflows, durable local context, and evidence-based completion. The result is not an agent that acts on everything. It is an agent that knows what it is doing, why it is allowed to do it, and how to prove the work is complete.
+
+The next articles in this series examine the individual mechanisms behind that operating model: policy through `AGENTS.md`, long-term memory with local semantic retrieval, deterministic project synchronization, and code intelligence with verified impact analysis.

@@ -1,76 +1,54 @@
 ---
-title: 'Clean Architecture trên SwiftUI(iOS)'
+title: 'Clean Architecture with SwiftUI for iOS'
 date: '2024-06-17'
-lastmod: '2024-06-17'
+lastmod: '2026-07-14'
 tags: ['iOS', 'clean-architecture', 'swift', 'swiftUI']
 draft: false
-summary: 'Base resource về Clean Architecture trên SwiftUI(iOS)'
+summary: 'A practical SwiftUI starter that separates presentation, business rules, and data access for maintainable iOS development.'
 images: ['/static/images/clean/ios-clean.png']
 ---
 
-## 日本版：：[Link Qiita](https://qiita.com/samyoney/items/5f5dff044bc1b5339952)
+## Japanese version: [Qiita](https://qiita.com/samyoney/items/5f5dff044bc1b5339952)
 
-## Giới thiệu
+## Introduction
 
-Xin chào các bạn, trong bài viết này tôi muốn chia sẻ với mọi người bộ mã nguồn mà tôi đã xây dựng để phát triển ứng dụng Android theo Clean Architecture.
-<TOCInline toc={props.toc} exclude="Giới thiệu" />
+This sample shows how I structure an iOS application with SwiftUI, MVVM, and Clean Architecture principles. The application is intentionally compact so that its state flow, dependency boundaries, and testing strategy remain easy to follow.
 
-Tôi đang đăng tải bộ mã nguồn này trên GitHub cá nhân tại [GitHub](https://github.com/samyoney).
+<TOCInline toc={props.toc} exclude="Introduction" />
 
-Mặc dù đã từng sử dụng các mô hình như MVVM, MVC, MVP, TCA trong việc phát triển ứng dụng di động cho khách hàng, tôi cảm thấy MVVM vẫn có tính ứng dụng cao nhất trong việc kiểm thử và dễ dàng duy trì. Điều quan trọng nhất là nó có khái niệm `use case`, cho phép bóc tách chúng từ các `user story` để thiết kế tài liệu cơ bản.
+The complete source is available in the [Swift Clean Base repository](https://github.com/samyoney/SwiftCleanBase).
 
-## SwiftUI là gì và tại sao nên sử dụng nó?
+## Why SwiftUI?
 
-SwiftUI là một framework do Apple phát triển để xây dựng giao diện người dùng (UI) cho các ứng dụng iOS, macOS, watchOS và tvOS. Được giới thiệu lần đầu tiên tại WWDC 2019, SwiftUI cung cấp một cách tiếp cận hiện đại và khai báo để phát triển UI, cho phép lập trình viên tạo ra các giao diện người dùng dễ dàng hơn và trực quan hơn.
+[SwiftUI](https://developer.apple.com/swiftui/) is Apple's declarative framework for building interfaces across its platforms. Views describe the desired UI for the current state, while the framework manages the updates required when that state changes.
 
+For this sample, SwiftUI offers several practical benefits:
 
-### Lợi ích của việc sử dụng SwiftUI
+- **Readable state-driven views:** screen behavior is easier to trace from state to output.
+- **Reusable components:** small views can be composed into larger features.
+- **Efficient iteration:** previews provide a short feedback loop during UI development.
+- **Platform integration:** SwiftUI works with the broader Apple SDK and can coexist with UIKit when needed.
 
-1. **Cú pháp khai báo dễ đọc (Declarative Syntax)**:
-  - Tạo UI bằng cách định nghĩa trạng thái mong muốn, giúp mã ngắn gọn và dễ hiểu.
+Sharing SwiftUI concepts across Apple platforms is useful, but production interfaces still need platform-specific navigation, interaction, and layout decisions.
 
-2. **Phát triển và bảo trì nhanh chóng (Fast Development and Maintenance)**:
-  - Thấy ngay thay đổi trong UI qua SwiftUI Preview, tăng tốc phát triển và gỡ lỗi.
+## Architecture approach
 
-3. **Khả năng tái sử dụng và nhất quán (Reusability and Consistency)**:
-  - Tạo và tái sử dụng các thành phần UI một cách dễ dàng, giảm thiểu lặp lại mã.
+Clean Architecture is used here as a dependency discipline rather than a rigid template:
 
-4. **Hỗ trợ đa nền tảng (Cross-Platform Support)**:
-  - Sử dụng cùng một mã cho iOS, macOS, watchOS, và tvOS, tiết kiệm thời gian và công sức.
+1. **Presentation:** SwiftUI views render state, while ViewModels coordinate user actions and screen state.
+2. **Domain:** entities and use cases express business behavior without depending on UI or storage frameworks.
+3. **Data:** repository implementations coordinate APIs, persistence, and mapping.
+4. **Infrastructure:** concrete Apple frameworks and third-party libraries remain behind interfaces where substitution or testing matters.
 
-5. **Tích hợp tốt với công nghệ Apple khác (Integration with Apple Technologies)**:
-  - Hoạt động tốt với Combine và Core Data, giúp xây dựng ứng dụng mạnh mẽ hơn.
+MVVM does not define use cases by itself. In this sample, MVVM handles presentation concerns, while use cases provide an optional domain boundary for operations that deserve independent testing or reuse.
 
----
+## Technology choices
 
-## Tại sao nên sử dụng Clean Architecture?
+The sample uses SwiftUI for the interface and demonstrates integrations such as [SwiftData](https://developer.apple.com/documentation/swiftdata), [R.swift](https://github.com/mac-cain13/R.swift), and [Resolver](https://github.com/hmlongco/Resolver). These are implementation choices for the reference project, not requirements for Clean Architecture.
 
-Clean Architecture mang lại nhiều lợi ích, tôi xin tóm tắt ngắn gọn như sau:
+## Screen flow
 
-1. **Tăng Tính Bảo Trì**: Dễ dàng bảo trì và cập nhật.
-2. **Dễ Dàng Mở Rộng**: Dễ dàng thêm mới tính năng mà không làm ảnh hưởng đến phần còn lại của hệ thống.
-3. **Tăng Khả Năng Kiểm Thử**: Các thành phần được tách riêng, dễ dàng kiểm thử.
-4. **Giảm Phụ Thuộc**: Các lớp phụ thuộc vào nhau ít hơn, giúp dễ dàng quản lý.
-5. **Tập Trung Vào Nghiệp Vụ Cốt Lõi**: Tách biệt rõ ràng giữa logic nghiệp vụ và các thành phần UI.
-
-## Cấu trúc chính của Clean Architecture
-
-1. **Entities**: Định nghĩa các đối tượng nghiệp vụ và quy tắc của ứng dụng.
-2. **Use Cases**: Chứa logic nghiệp vụ, quyết định cách dữ liệu được xử lý và lưu trữ.
-3. **Interface Adapters**: Chuyển đổi dữ liệu giữa các lớp nghiệp vụ và lớp framework.
-4. **Frameworks**: Chứa các thành phần cụ thể của framework như UI, cơ sở dữ liệu, và các dịch vụ bên ngoài.
-
-Clean Architecture giúp tạo ra một ứng dụng linh hoạt, dễ bảo trì và dễ kiểm thử, đồng thời hỗ trợ thay đổi và phát triển lâu dài mà không làm gián đoạn hoạt động hiện tại của hệ thống.
-
----
-
-## Tổng quan về mã nguồn
-
-Tôi đã tạo ra một ứng dụng MVP với các tính năng tối giản nhất. Sự tối giản này không làm cho nền tảng của ứng dụng trở nên sơ sài mà ngược lại, giúp người mới tiếp cận dễ dàng hơn. Trong mã nguồn lần này, tôi đã áp dụng tất cả các công nghệ mới nhất hiện có như [Swift-Data](https://developer.apple.com/xcode/swiftdata/), [R.swift](https://github.com/mac-cain13/R.swift), [Resolver](https://github.com/hmlongco/Resolver) và sử dụng các quy tắc code clean được đề xuất cho SwiftUI.
-
-## Sơ đồ luồng các màn hình
-
-```md
+```text
 +-----------+        +-----------+        +------------+
 |           |        |           |        |            |
 |  Splash   | ------>|   Login   | ------>|    Main    |
@@ -79,63 +57,61 @@ Tôi đã tạo ra một ứng dụng MVP với các tính năng tối giản nh
 +-----------+        +-----------+        +------------+
 ```
 
-## Ảnh chụp màn hình
+## Screenshots
 
-Dưới đây là các ảnh chụp màn hình của ứng dụng iOS trong các chế độ khác nhau.
 <table>
-  <tr>
-    <td align="center">
-      <img src="/static/images/clean/splash-ios.png" alt="Màn Hình Splash" width="300"/>
-      **Màn Hình Splash**
-    </td>
-    <td align="center">
-      <img src="/static/images/clean/login-ios.png" alt="Màn Hình Login" width="300"/>
-      **Màn Hình Login**
-    </td>
-    <td align="center">
-      <img src="/static/images/clean/register-ios.png" alt="Màn Hình Login" width="300"/>
-      **Màn Hình Register**
-    </td>
-  </tr>
-  <tr>
-    <td align="center">
-      <img src="/static/images/clean/course-ios.png" alt="Màn Hình Course" width="300"/>
-      **Màn Hình Course**
-    </td>
-    <td align="center">
-      <img src="/static/images/clean/student-ios.png" alt="Màn Hình Student" width="300"/>
-      **Màn Hình Student**
-    </td>
-  </tr>
+  <tbody>
+    <tr>
+      <td align="center">
+        <img src="/static/images/clean/splash-ios.png" alt="iOS splash screen" width="300" />
+        <strong>Splash</strong>
+      </td>
+      <td align="center">
+        <img src="/static/images/clean/login-ios.png" alt="iOS login screen" width="300" />
+        <strong>Login</strong>
+      </td>
+      <td align="center">
+        <img
+          src="/static/images/clean/register-ios.png"
+          alt="iOS registration screen"
+          width="300"
+        />
+        <strong>Registration</strong>
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+        <img src="/static/images/clean/course-ios.png" alt="iOS course screen" width="300" />
+        <strong>Courses</strong>
+      </td>
+      <td align="center">
+        <img src="/static/images/clean/student-ios.png" alt="iOS student screen" width="300" />
+        <strong>Students</strong>
+      </td>
+    </tr>
+  </tbody>
 </table>
 
-*iOS*
+## Repository structure
 
-## Cấu trúc ứng dụng
+The project is organized into five main areas:
 
-Cấu trúc của ứng dụng bao gồm 5 phần chính:
+- **App:** application lifecycle, dependency composition, and navigation.
+- **Core:** shared utilities and infrastructure such as networking, preferences, caching, and reusable views.
+- **Presentation:** SwiftUI screens and their ViewModels.
+- **Resources:** localized strings, assets, and animations.
+- **Data:** repositories, API clients, persistence, mapping, and domain operations used by the sample.
 
-- **App**: Quản lý điều hướng, ứng dụng và các phụ thuộc của app.
-- **Core**: Chứa tất cả các xử lý chung của app như xử lý user defaults, các view chung, lưu cache, và xử lý mạng.
-- **Presentation**: Chứa các màn hình giao diện.
-- **Resource**: Chứa các tài nguyên của app như string, animation.
-- **Data**: Quản lý dữ liệu cho toàn ứng dụng, bao gồm repository, quản lý API, cơ sở dữ liệu và các usecase.
+The important boundary is the dependency direction: presentation code should not know how an API request or database query is implemented. That separation makes ViewModel and use-case tests deterministic and keeps framework changes localized.
 
----
+## Testing and trade-offs
 
-## Kết luận
+Unit tests should cover business operations, repository behavior, and ViewModel state transitions. UI tests are most effective when reserved for critical journeys such as authentication and primary navigation.
 
-Hy vọng bạn sẽ thích mã nguồn này. Nếu có bất kỳ phản hồi hoặc đề xuất nào, vui lòng mở một vấn đề trên GitHub hoặc liên hệ với tôi trên [LinkedIn](https://www.linkedin.com/in/sam-nguyen-204876192/).
+For a small feature, separate use-case and repository layers may add more ceremony than value. The structure should grow with the product; boundaries are useful when they isolate change, ownership, or risk.
 
-## Dự án đầy đủ
+## Conclusion
 
-Bạn có thể truy cập mã nguồn của dự án từ liên kết dưới đây: [GitHub](https://github.com/samyoney/SwiftCleanBase).
+This starter provides a practical baseline for SwiftUI applications: explicit state, clear dependency boundaries, and testable behavior without tying the domain to a specific UI or persistence framework.
 
-## Tham khảo
-- [SwiftUI Overview - Apple Developer](https://developer.apple.com/xcode/swiftui/)
-- [SwiftUI Essentials - Apple](https://developer.apple.com/tutorials/swiftui/creating-and-combining-views)
-- [Why Use SwiftUI - Hacking with Swift](https://www.hackingwithswift.com/quick-start/swiftui/why-swiftui-is-the-future)
-
-## Giấy phép
-
-[MIT](https://github.com/samyoney/compose_clean_base/blob/develop/LICENSE) © [Yoneyama SAM](https://samyoney.github.io/)
+For questions or suggestions, open an issue in the [source repository](https://github.com/samyoney/SwiftCleanBase) or contact me on [LinkedIn](https://www.linkedin.com/in/son-nguyen-204876192/).

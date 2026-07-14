@@ -12,7 +12,10 @@ export default function Page() {
   const [authorSlug, setAuthorSlug] = useState('default_jp')
 
   const author = allAuthors.find((p) => p.slug === authorSlug) as Authors
-  const mainContent = coreContent(author)
+  const mainContent = {
+    ...coreContent(author),
+    avatar: '/static/images/resume-profile.webp',
+  }
 
   const toggleAuthor = () => {
     setAuthorSlug((prevSlug) => (prevSlug === 'default' ? 'default_jp' : 'default'))

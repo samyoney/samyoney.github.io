@@ -3,7 +3,7 @@
   "short_name": "",
   "icons": [
     {
-      "src": "/favicon.png",
+      "src": "/static/favicons/resume-favicon-96.png",
       "sizes": "96x96",
       "type": "image/png"
     }

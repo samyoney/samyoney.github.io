@@ -1,0 +1,182 @@
+---
+title: 'Local Code Intelligence with CodeGraph: From Impact Analysis to Verified Changes'
+date: '2026-07-10'
+tags: ['ai', 'software-engineering', 'code-intelligence', 'pm-control']
+draft: false
+summary: 'A practical workflow for giving AI agents structural code context, limiting change scope, and verifying every implementation with evidence.'
+images: ['/static/images/blog/pm-control/local-code-intelligence.webp']
+authors: ['default']
+---
+
+import TOCInline from 'pliny/ui/TOCInline'
+
+Reading source files is easy. Understanding the consequences of changing them is much harder.
+
+An AI agent can quickly locate a class, generate a patch, and explain what the code appears to do. That speed is useful, but it can also hide the most expensive engineering question: **what else will this change affect?**
+
+Local code intelligence closes that gap. In PM-Control, a code graph and repository-native search are used to identify symbols, callers, dependencies, and verification boundaries before a file is modified. The result is a workflow that supports fast implementation without treating the codebase as a collection of isolated text files.
+
+<TOCInline toc={props.toc} exclude="Overview" />
+
+## Text search is necessary, but not sufficient
+
+Repository search answers questions such as:
+
+- Where is this method defined?
+- Which files contain this configuration key?
+- Where is this endpoint referenced?
+
+Those answers are often the correct starting point. They are not always enough to establish change safety.
+
+The same method name may exist in multiple namespaces. A service may be created through dependency injection rather than a direct constructor call. A public interface may have several implementations. A configuration value may affect startup, deployment, and tests even though it appears in only one source file.
+
+Code intelligence adds structure to search. It connects definitions with references and allows the agent to investigate the change as a graph rather than a sequence of guesses.
+
+## What a local code graph contributes
+
+A useful code graph does not need to understand every language feature perfectly. It needs to make the most important relationships easy to inspect:
+
+- symbol definitions and references;
+- callers and callees;
+- inheritance and interface implementation;
+- module and package dependencies;
+- files connected to tests, configuration, or generated artifacts.
+
+Keeping the graph local has practical benefits. Repository data stays within the workspace, indexing does not depend on an external service, and the index can be rebuilt deterministically from the checked-out source.
+
+The graph is an aid to reasoning, not a new source of truth. The source files, build configuration, and test suite remain authoritative.
+
+## A disciplined impact-analysis workflow
+
+The workflow begins with the user request, not the index.
+
+### 1. Define the behavioral change
+
+Translate the request into an observable outcome. For example:
+
+> When a device reconnects, the current session should be restored without creating a duplicate registration.
+
+This is more useful than starting with a speculative instruction such as “edit the connection service.” It lets the agent search for the behavior across application, domain, persistence, and test layers.
+
+### 2. Locate the primary symbols
+
+Use fast text search to find terms from the behavior, then inspect the most likely definitions. At this stage, the goal is orientation:
+
+- Where does the flow enter the system?
+- Which object owns the state?
+- Which interface separates the layers?
+- Which tests already describe the behavior?
+
+The agent should read the smallest coherent set of files that explains the flow.
+
+### 3. Expand through relationships
+
+Query the graph for callers, implementations, and downstream dependencies. This step reveals whether the apparently local change crosses a boundary.
+
+A modification to an interface may affect several adapters. A change to a domain event may affect serialization and consumers. A database model change may require a migration, fixture updates, and compatibility handling.
+
+The output should be a bounded impact map, not an exhaustive dump of every connected symbol.
+
+### 4. Establish the change boundary
+
+Before editing, classify files into three groups:
+
+1. files that must change;
+2. files that must be inspected or tested;
+3. files that are related but outside the requested scope.
+
+This boundary prevents opportunistic refactoring. It also makes the plan reviewable: the user can see why each proposed file belongs in the change.
+
+### 5. Implement the smallest coherent patch
+
+The best patch is not necessarily the one with the fewest changed lines. It is the smallest patch that leaves the affected behavior internally consistent.
+
+If a contract changes, its implementations and tests may need to change together. If only one implementation changes, widening the interface may be unnecessary. Structural context helps the agent make that distinction.
+
+## Verification is part of impact analysis
+
+A code graph predicts impact. Build and test evidence confirm it.
+
+Verification should match the risk and scope of the change:
+
+- format or lint checks for local syntax and conventions;
+- targeted unit tests for the changed behavior;
+- integration tests when storage, APIs, or process boundaries are involved;
+- a project or solution build for contract compatibility;
+- a broader regression suite when a shared component changes.
+
+The verification plan should be selected before implementation whenever possible. That keeps the definition of success independent from the patch the agent eventually writes.
+
+When a command cannot run because of a missing service, credential, device, or environment, the agent should state the limitation precisely. “Not verified” is actionable. Silent confidence is not.
+
+## Keep the index disposable
+
+Indexes become dangerous when teams start treating them as authoritative artifacts.
+
+A local code graph should be:
+
+- generated from source;
+- stored outside portable project knowledge;
+- rebuildable with a documented command;
+- invalidated when the source revision changes significantly;
+- excluded from Git unless there is a specific reason to version it.
+
+This design avoids stale structural conclusions and keeps repository history focused on durable assets.
+
+## Combine structural and historical context
+
+The graph explains how the current code is connected. Project knowledge explains why some of those connections exist.
+
+For difficult changes, an agent may need both:
+
+- the code graph identifies the affected modules;
+- architecture notes describe the intended ownership boundary;
+- decision records explain a compatibility constraint;
+- previous session memory records a known test or environment limitation.
+
+These sources serve different purposes. Combining them is powerful as long as their authority remains clear.
+
+## Common failure modes
+
+### Editing the first search result
+
+Multiple modules may expose similar names. Confirm namespace, callers, and runtime path first.
+
+### Expanding scope because related code looks untidy
+
+Related code is not automatically in scope. Record follow-up opportunities separately.
+
+### Trusting the graph without reading source
+
+Static indexes can miss dynamic resolution, reflection, generated code, and runtime configuration. Use the graph to navigate, then verify against files and execution evidence.
+
+### Running only the broadest test suite
+
+A full suite can be slow and may not explain a failure. Start with targeted evidence, then expand in proportion to shared impact.
+
+### Reporting success after a patch applies
+
+A clean diff is not proof of correct behavior. Success requires the agreed verification results or an explicit account of what could not be verified.
+
+## A compact operating loop
+
+The entire workflow can be summarized as:
+
+```text
+Request
+  -> define observable behavior
+  -> search for entry points
+  -> trace structural impact
+  -> set the change boundary
+  -> implement the coherent patch
+  -> build and test
+  -> report evidence and remaining limits
+```
+
+This loop turns code generation into controlled engineering work. The AI agent still moves quickly, but its speed is directed by repository structure, explicit scope, and verification.
+
+## Conclusion
+
+Senior engineering is not demonstrated by producing a large patch quickly. It is demonstrated by understanding where a change belongs, what it can affect, and how to prove that it works.
+
+Local code intelligence gives AI agents the context to operate at that level. Combined with precise search, scoped rules, durable project knowledge, and proportionate testing, it creates a practical path from impact analysis to verified change.

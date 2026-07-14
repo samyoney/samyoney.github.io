@@ -1,0 +1,212 @@
+---
+title: 'Building Long-Term AI Memory with Markdown and Local Qdrant'
+date: '2026-07-12'
+lastmod: '2026-07-14'
+tags: ['ai', 'qdrant', 'knowledge-management', 'local-first', 'semantic-search']
+draft: false
+summary: 'A local-first design for separating durable project knowledge from historical agent memory and retrieving both semantically.'
+images: ['/static/images/blog/pm-control/local-ai-memory.webp']
+---
+
+## Introduction
+
+AI agents are powerful within a conversation and surprisingly forgetful across conversations. The obvious solution is to save everything, but an unfiltered transcript archive quickly becomes noisy, contradictory, and difficult to trust.
+
+A useful long-term memory system needs more than storage. It needs ownership, classification, retrieval, promotion, and verification.
+
+<TOCInline toc={props.toc} exclude="Introduction" />
+
+![Local AI memory](/static/images/blog/pm-control/local-ai-memory.webp)
+
+## Separate knowledge from memory
+
+The most important design decision is to distinguish **durable knowledge** from **historical memory**.
+
+### Knowledge
+
+Knowledge describes facts and models that remain useful after the original task ends:
+
+- architecture and boundaries;
+- domain rules;
+- verified integration behavior;
+- stable runbooks;
+- design decisions with evidence;
+- recurring operational constraints.
+
+Knowledge should be reviewed like documentation. It is a project source of truth.
+
+### Memory
+
+Memory explains what happened during a task or session:
+
+- an incident investigation;
+- a temporary environment observation;
+- a command that worked on one machine;
+- a deployment result;
+- a discovered gotcha;
+- evidence supporting a later decision.
+
+Memory is valuable for continuity and auditability, but it is historical. A later session should not automatically treat every memory note as current truth.
+
+This separation avoids two extremes: losing all session context or turning every transient observation into permanent documentation.
+
+## Markdown remains the source of truth
+
+Vector databases are excellent retrieval engines, but they are poor primary authoring formats for project knowledge.
+
+PM-Control keeps the durable record in readable Markdown files:
+
+```text
+project-store/
+  knowledge/
+    architecture/
+    runbooks/
+    decisions/
+  memory/
+    2026-07-14_feature-investigation.md
+
+scratch/
+  qdrant_db/
+```
+
+Markdown provides important properties:
+
+- reviewable Git history;
+- portable backups;
+- explicit links and evidence;
+- predictable metadata;
+- no dependency on a running service;
+- straightforward human editing.
+
+Qdrant is a derived local index. If the index is deleted, it can be rebuilt from the files.
+
+## Metadata makes retrieval trustworthy
+
+Each note needs structured metadata. A simplified historical memory entry might look like this:
+
+```yaml
+---
+title: API timeout investigation
+project: sample-platform
+type: gotcha
+date: 2026-07-14
+status: historical
+sources:
+  - sources/backend/config/example.yml
+  - ISSUE-123
+---
+```
+
+Metadata supports filtering, linting, promotion, and future migrations. More importantly, it tells the next agent how the content should be interpreted.
+
+A note without provenance may still be useful as a search hint, but it should not silently become an architectural fact.
+
+## The retrieve-act-save loop
+
+### 1. Retrieve
+
+At the beginning of a task, the agent queries the local semantic index with the task name, affected component, or business keyword.
+
+Semantic search is useful because naming changes over time. A task about "deleted accounts" may still find a note titled "user lifecycle visibility" even when the exact words differ.
+
+Search results are candidates, not commands. The agent reads the underlying file and judges whether it is directly relevant, outdated, or only loosely related.
+
+### 2. Act
+
+The agent performs the task using current source, current management state, and applicable rules. Historical memory provides context but does not override present evidence.
+
+### 3. Save
+
+At the end of meaningful work, the agent records only information that will reduce future investigation cost. A useful memory note should answer at least one of these questions:
+
+- What was surprising?
+- What evidence resolved the issue?
+- Which condition could cause the problem again?
+- What must a future agent verify?
+- Which temporary state affected the result?
+
+Routine actions do not all deserve memory files.
+
+### 4. Synchronize
+
+The indexer scans knowledge and memory, chunks the content, upserts current chunks, and removes stale chunks whose files were deleted or changed.
+
+The synchronization step is deterministic. The vector index mirrors the filesystem; it does not become a second uncontrolled knowledge store.
+
+## Why local Qdrant
+
+A local Qdrant database is a strong fit for project memory:
+
+- project context stays on the machine;
+- there is no extra server to operate;
+- the workspace works offline;
+- each project can have an isolated index;
+- cleanup is as simple as removing a scratch directory;
+- the canonical Markdown remains portable.
+
+The default should therefore be disk-backed local storage. A server is an explicit opt-in for cases that genuinely require shared retrieval or centralized operations.
+
+The same principle applies to code indexes: derived search infrastructure should not make the project dependent on an external service unless that dependency has a clear owner.
+
+## Promote memory into knowledge carefully
+
+Promotion is a governance step, not a file move.
+
+A memory note becomes durable knowledge only when:
+
+1. the observation is still valid;
+2. it applies beyond the original incident;
+3. the supporting source or evidence is clear;
+4. the destination and owner are known;
+5. conflicting knowledge has been reconciled.
+
+For example, a session may discover that a particular endpoint requires a role check in two layers. The incident details stay in memory. The verified authorization model belongs in architecture knowledge.
+
+This keeps knowledge concise while preserving the evidence trail.
+
+## Validation is part of memory quality
+
+A memory system should verify itself.
+
+Useful checks include:
+
+- required frontmatter fields;
+- allowed metadata values;
+- valid internal links;
+- existing source references;
+- no secrets or copied credentials;
+- index schema health;
+- separate result scopes for knowledge and memory;
+- a smoke semantic query after synchronization.
+
+Without validation, retrieval quality slowly degrades even when the embedding model remains excellent.
+
+## Common mistakes
+
+### Saving complete transcripts
+
+Transcripts contain repeated speculation, abandoned approaches, and sensitive context. Summarize evidence and outcomes instead.
+
+### Treating similarity as truth
+
+A high semantic score means that text is related, not correct. Always open the source file and compare it with current state.
+
+### Mixing caches with durable files
+
+The vector database belongs in disposable local storage. Knowledge and memory belong in the portable project snapshot.
+
+### Promoting too early
+
+One successful workaround is not automatically a runbook. Durable knowledge needs scope and evidence.
+
+### Keeping secrets for convenience
+
+Memory can reference a credential location, but it should never duplicate passwords, tokens, private keys, or production connection strings.
+
+## Conclusion
+
+Long-term AI memory works best when it looks less like a chatbot transcript and more like a well-governed engineering knowledge system.
+
+Markdown provides the durable, reviewable source. Local Qdrant provides semantic retrieval. Metadata distinguishes history from truth. Promotion turns repeated evidence into stable knowledge. Verification keeps the system healthy.
+
+With those pieces in place, a new agent session can recover project context quickly without pretending that every old observation is still valid.

@@ -18,6 +18,8 @@ const projectsData: Project[] = [
     description:
       'Leading customer and partner alignment, architecture reviews, security and incident response, acceptance, production migration, and release stabilization across mobile, web administration, APIs, and AWS infrastructure.',
     technologies: ['Kotlin', 'Swift', 'Java', 'TypeScript', 'Spring Boot', 'Vue.js', 'AWS', 'SIP'],
+    imgSrc: '/static/images/projects/itech-cloud-phone.svg',
+    href: 'https://www.itechh.ne.jp/',
   },
   {
     title: 'Next-generation KS-POS',
@@ -27,6 +29,8 @@ const projectsData: Project[] = [
     description:
       'Leading a multi-platform POS foundation from customer alignment and system architecture to peripheral integration, persistent state, observability, design documentation, and test strategy.',
     technologies: ['C#', '.NET MAUI', 'React', 'TypeScript', 'SQLite', 'Sentry', 'OPOS'],
+    imgSrc: '/static/images/projects/next-generation-ks-pos.svg',
+    href: 'https://www.ksdenki.co.jp/',
   },
   {
     title: 'EDION Business Web Systems',
@@ -36,6 +40,8 @@ const projectsData: Project[] = [
     description:
       'Coordinated requirements, incident and impact analysis, implementation reviews, progress, risk, and stable operations across multiple internal business systems.',
     technologies: ['PHP', 'Laravel', 'JavaScript', 'HTML', 'CSS', 'MySQL', 'AWS'],
+    imgSrc: '/static/images/projects/edion-business-systems.svg',
+    href: 'https://www.edion.co.jp/',
   },
   {
     title: 'Sharp Mobile Application Maintenance',
@@ -45,6 +51,8 @@ const projectsData: Project[] = [
     description:
       'Owned customer communication, code investigation, implementation review, priority decisions, and quality improvement for a large Flutter application on Android and iOS.',
     technologies: ['Dart', 'Flutter', 'Android', 'iOS', 'GitHub'],
+    imgSrc: '/static/images/projects/sharp-mobile-maintenance.svg',
+    href: 'https://www.sharp.co.jp/',
   },
   {
     title: 'Ticketing and Payment Cloud Platform',
@@ -54,6 +62,7 @@ const projectsData: Project[] = [
     description:
       'Drove requirements, APIs, non-functional design, external payment integration, and delivery planning for a cloud platform supporting ticketing, verification, QR scanning, and printing.',
     technologies: ['PHP', 'Laravel', 'AWS', 'ECS Fargate', 'Aurora MySQL', 'Redis'],
+    imgSrc: '/static/images/projects/ticketing-payment-platform.svg',
   },
   {
     title: 'S-Point Shared Loyalty Platform',
@@ -63,6 +72,8 @@ const projectsData: Project[] = [
     description:
       'Led requirement clarification, API and batch integration reviews, Japan–Vietnam coordination, shared specifications, and exception handling for a multi-company loyalty platform.',
     technologies: ['PHP', 'JavaScript', 'MySQL', 'AWS', 'REST API', 'DataSpider', 'HULFT'],
+    imgSrc: '/static/images/projects/s-point-loyalty-platform.svg',
+    href: 'https://www.s-pt.jp/',
   },
   {
     title: 'Sharp Field Service Support System',
@@ -72,6 +83,8 @@ const projectsData: Project[] = [
     description:
       'Led customer alignment, Japan–Vietnam coordination, mobile and web enhancements, device integration, printing, and production incident analysis for field repair operations.',
     technologies: ['Kotlin', 'PHP', 'JavaScript', 'WebView', 'Bluetooth', 'Symfony'],
+    imgSrc: '/static/images/projects/sharp-field-service.svg',
+    href: 'https://www.sharp.co.jp/',
   },
   {
     title: 'Seikyo Digital Edition',
@@ -81,7 +94,7 @@ const projectsData: Project[] = [
     description:
       'Designed and implemented reading and distribution capabilities across Android and iOS while aligning behavior and screen specifications between both platforms.',
     technologies: ['Objective-C', 'Java', 'UIKit', 'SQLite', 'Android', 'iOS'],
-    imgSrc: '/static/images/seikyou-ios.png',
+    imgSrc: '/static/images/projects/seikyo-digital-edition.svg',
     href: 'https://www.seikyoonline.com/',
   },
   {
@@ -92,7 +105,7 @@ const projectsData: Project[] = [
     description:
       'Designed and implemented inventory search, confirmation, updates, and real-time synchronization for an iPad application used in retail stores.',
     technologies: ['Swift', 'SwiftUI', 'SQLite', 'iPadOS', 'Real-time Sync'],
-    imgSrc: '/static/images/ipad-paris-miki.png',
+    imgSrc: '/static/images/projects/paris-miki-inventory.svg',
     href: 'https://www.paris-miki.co.jp/',
   },
   {
@@ -103,7 +116,7 @@ const projectsData: Project[] = [
     description:
       'Led project setup, image analysis, machine-learning integration, and delivery for a mobile application that evaluates fatigue from eyelid and pupil data.',
     technologies: ['Swift', 'Kotlin', 'Jetpack Compose', 'TensorFlow', 'Vision', 'Realm'],
-    imgSrc: '/static/images/itami-ios.png',
+    imgSrc: '/static/images/projects/fatigue-measurement.svg',
   },
   {
     title: 'e-Orico Mobile Security Enhancement',
@@ -113,7 +126,7 @@ const projectsData: Project[] = [
     description:
       'Strengthened authentication, encryption, data protection, and automated testing for a major financial mobile application.',
     technologies: ['Swift', 'Kotlin', 'Realm', 'Encryption', 'Automated Testing'],
-    imgSrc: '/static/images/orico-ios.png',
+    imgSrc: '/static/images/projects/e-orico-mobile-security.svg',
     href: 'https://www.orico.co.jp/',
   },
   {
@@ -124,7 +137,7 @@ const projectsData: Project[] = [
     description:
       'Led technical direction, design reviews, quality, and release management for a CFD trading application with real-time prices, charts, orders, and news.',
     technologies: ['Kotlin', 'Realm', 'MVVM', 'Android', 'Automated Testing'],
-    imgSrc: '/static/images/android-cfd.png',
+    imgSrc: '/static/images/projects/gmo-click-cfd.svg',
     href: 'https://www.click-sec.com/corp/guide/cfd/',
   },
   {
@@ -135,7 +148,7 @@ const projectsData: Project[] = [
     description:
       'Led project launch, UI and image-processing design, task management, and Flutter delivery for a cross-platform NFT viewing application.',
     technologies: ['Dart', 'Flutter', 'SQLite', 'TensorFlow', 'Android', 'iOS'],
-    imgSrc: '/static/images/android-adam.png',
+    imgSrc: '/static/images/projects/adam-nft-viewer.svg',
     href: 'https://adam.jp/ja/',
   },
   {
@@ -189,6 +202,7 @@ const projectsData: Project[] = [
     description:
       'Implemented nearby pharmacy search, maps, directions, ratings, external APIs, and local data management for an Android application.',
     technologies: ['Java', 'Android', 'SQLite', 'Maps API', 'Location Services'],
+    imgSrc: '/static/images/projects/regional-pharmacy-search.svg',
   },
   {
     title: 'Viettel Smart Home IoT Platform',
@@ -198,6 +212,8 @@ const projectsData: Project[] = [
     description:
       'Built hardware circuits, MQTT services, Android control applications, authentication, and encryption for a smart-home platform controlling residential equipment.',
     technologies: ['Arduino', 'C++', 'Java', 'MQTT', 'SQLite', 'CentOS', 'Android'],
+    imgSrc: '/static/images/projects/viettel-smart-home.svg',
+    href: 'https://viettelhightech.com/',
   },
 ]
 

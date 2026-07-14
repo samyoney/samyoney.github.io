@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#04182c"/>
+      <stop offset="1" stop-color="#0d3154"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientTransform="translate(1310 170) rotate(135) scale(690)">
+      <stop stop-color="#1d4ed8" stop-opacity=".38"/>
+      <stop offset="1" stop-color="#1d4ed8" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="170%">
+      <feDropShadow dx="0" dy="24" stdDeviation="24" flood-color="#020617" flood-opacity=".34"/>
+    </filter>
+    <pattern id="grid" width="54" height="54" patternUnits="userSpaceOnUse">
+      <path d="M54 0H0V54" fill="none" stroke="#fff" stroke-opacity=".045"/>
+    </pattern>
+  </defs>
+  <rect width="1600" height="900" rx="46" fill="url(#bg)"/>
+  <rect width="1600" height="900" rx="46" fill="url(#glow)"/>
+  <rect width="1600" height="900" rx="46" fill="url(#grid)"/>
+  <circle cx="1510" cy="80" r="230" fill="#3ddc84" opacity=".10"/>
+  <circle cx="760" cy="860" r="310" fill="#1d4ed8" opacity=".09"/>
+  <rect x="92" y="82" width="394" height="118" rx="28" fill="#fff" opacity=".96"/><text x="124" y="157" fill="#1d4ed8" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="42" font-weight="900">Adam byGMO</text>
+  <text x="96" y="302" fill="#3ddc84" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="26" font-weight="800" letter-spacing="5">DIGITAL ASSETS</text>
+  <text x="92" y="402" fill="#fff" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="60" font-weight="800">Adam NFT Viewer</text>
+  <text x="96" y="466" fill="#cbd5e1" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="29" font-weight="500">A polished cross-platform experience for digital art</text>
+  <rect x="96" y="540" width="104" height="12" rx="6" fill="#1d4ed8"/>
+  <rect x="216" y="540" width="54" height="12" rx="6" fill="#3ddc84"/>
+  
+      <g transform="translate(850 160)" filter="url(#shadow)">
+        <rect x="56" y="40" width="520" height="440" rx="44" fill="#f8fafc"/>
+        <rect x="94" y="82" width="220" height="260" rx="28" fill="#1d4ed8"/>
+        <circle cx="204" cy="178" r="48" fill="#fff" opacity=".85"/>
+        <path d="M124 310l74-76 52 48 64-72v132H94z" fill="#3ddc84" opacity=".9"/>
+        <rect x="344" y="82" width="194" height="94" rx="24" fill="#e2e8f0"/>
+        <rect x="344" y="198" width="194" height="144" rx="24" fill="#3ddc84" opacity=".18"/>
+        <path d="M376 126h124M376 242h126M376 278h86" stroke="#334155" stroke-width="14" stroke-linecap="round"/>
+        <rect x="94" y="378" width="444" height="62" rx="20" fill="#1d4ed8"/>
+        <g transform="translate(0 356) rotate(-10)">
+          <rect width="180" height="180" rx="34" fill="#071b34"/>
+          <path d="M38 116L90 54l52 62" fill="none" stroke="#fff" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+      </g>
+    
+  <rect x="1.5" y="1.5" width="1597" height="897" rx="44.5" fill="none" stroke="#fff" stroke-opacity=".12" stroke-width="3"/>
+</svg>

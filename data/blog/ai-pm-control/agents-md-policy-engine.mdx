@@ -1,0 +1,194 @@
+---
+title: 'AGENTS.md as a Policy Engine for AI-Assisted Development'
+date: '2026-07-13'
+lastmod: '2026-07-14'
+tags: ['ai', 'agents-md', 'governance', 'developer-experience', 'security']
+draft: false
+summary: 'How hierarchical repository rules turn broad AI capability into scoped, reviewable, and safe engineering behavior.'
+images: ['/static/images/blog/pm-control/agents-policy-engine.webp']
+---
+
+## Introduction
+
+Prompts are useful for intent, but they are a weak place to store engineering policy. They disappear between sessions, vary between users, and rarely capture the operational boundaries of a real repository.
+
+`AGENTS.md` solves a different problem. It gives the workspace a persistent policy layer that an AI agent must load before acting.
+
+<TOCInline toc={props.toc} exclude="Introduction" />
+
+![AGENTS.md policy engine](/static/images/blog/pm-control/agents-policy-engine.webp)
+
+## Why a prompt is not a policy
+
+A request such as "update the customer task and fix the code" contains two outcomes but almost no operational guidance.
+
+It does not answer:
+
+- Which tracker is authoritative?
+- Must the latest WBS be fetched first?
+- Which repository contains the source?
+- Is customer-facing Japanese reviewed before publishing?
+- Are production writes allowed?
+- Which tests prove the fix?
+- Where may credentials be resolved from?
+
+An experienced team already has answers to these questions, but they are often distributed across onboarding documents, conventions, and tribal knowledge. An AI agent cannot reliably infer them from the task text.
+
+`AGENTS.md` makes those answers executable as repository-local instructions.
+
+## Hierarchical rules
+
+The policy model is hierarchical:
+
+```text
+workspace/AGENTS.md
+  sources/AGENTS.md
+    application-a/AGENTS.md
+  project-store/AGENTS.md
+    management/AGENTS.md
+    knowledge/AGENTS.md
+  registry/AGENTS.md
+```
+
+The root file defines workspace-wide behavior: language, safety boundaries, tool routing, Git policy, and the folder map.
+
+A deeper file defines rules only for its subtree. The management folder may require stable record IDs and prohibit direct row-number updates. The source folder may require code-graph analysis before reading implementation files. The registry folder can define where connection metadata belongs and forbid secret duplication.
+
+When rules differ, the closest applicable file takes precedence. This lets the workspace stay consistent without forcing every folder to repeat the root policy.
+
+## What belongs in the policy layer
+
+### Scope and ownership
+
+The first responsibility is to state what belongs in a folder and what does not.
+
+Good boundary rules are testable. Instead of saying "put project files here," define the allowed data, its source, and the correct destination for anything outside that category.
+
+For example:
+
+```text
+project-store/ contains portable project snapshots.
+Application source belongs under sources/.
+Secrets and local indexes must not be stored in project-store/.
+```
+
+An agent can evaluate those rules before writing a file.
+
+### Approval gates
+
+The policy should identify actions that require human confirmation. Typical gates include:
+
+- editing source code;
+- changing a source of truth;
+- adding dependencies;
+- creating a new storage or indexing workflow;
+- deploying to an environment;
+- mutating production data;
+- publishing customer-facing content.
+
+Approval gates should reflect business impact. They are not a blanket demand for confirmation before every read-only check.
+
+### Tool routing
+
+Different tools can reach the same system, but not every path preserves the same invariants.
+
+If a project uses a deterministic synchronization script to maintain stable IDs, writing directly through a generic spreadsheet connector may bypass that logic. If issue-tracker operations require a registry allowlist and UTF-8 file payloads, an inline API call is the wrong route even when it technically succeeds.
+
+The policy should therefore say which workflow owns each operation and when a fallback is acceptable.
+
+### Verification requirements
+
+Rules should describe evidence, not just actions.
+
+Examples include:
+
+- build or test after source changes;
+- dry-run before applying management changes;
+- read-back after external writes;
+- render-and-review for document layout;
+- semantic-index health checks after knowledge updates;
+- Git status checks before staging.
+
+This changes the agent's definition of done from "I changed the file" to "I changed the correct artifact and verified the outcome."
+
+### Communication constraints
+
+Customer communication is part of engineering risk.
+
+A repository can require an internal review language first, define the expected level of Japanese, prohibit unresolved questions in a formal deliverable, and specify how product names or technical identifiers should be written.
+
+These rules prevent a capable language model from producing polished but operationally premature communication.
+
+## Keep policy generic, not historical
+
+An `AGENTS.md` file should contain reusable operating principles. It should not become a diary of one incident.
+
+This is a good rule:
+
+```text
+After an external write, verify the resulting state with a read-back.
+```
+
+This is a historical note:
+
+```text
+On Tuesday, the update failed because field X was empty, so remember to set it next time.
+```
+
+The historical observation belongs in memory. If it reveals a durable constraint, that constraint can later become a general policy with clear scope.
+
+## A small but effective root policy
+
+A useful root policy does not need to be enormous. It should answer the questions that prevent expensive mistakes:
+
+```md
+# Operating rules
+
+- Read the nearest AGENTS.md before changing files.
+- State a plan and wait for approval before source edits.
+- Use the declared source of truth for management data.
+- Keep secrets in the registry; never copy them into scripts.
+- Preserve unrelated work in a dirty worktree.
+- Verify source changes with the relevant build or test.
+- Do not deploy, commit, or push unless explicitly requested.
+```
+
+Subtree policies then add the precision needed for their artifact type.
+
+## Common failure modes
+
+### Rules that are too broad
+
+"Be careful with data" is not actionable. Name the protected data, allowed operation, owner, and verification method.
+
+### Rules that hardcode temporary structure
+
+Policies that list every current project or agent name age quickly. Prefer placeholders such as `<project_id>` unless the entity is a required source-of-truth identifier.
+
+### Conflicting rules without precedence
+
+If the root says one thing and a folder says another, the agent needs an explicit precedence model. "Nearest applicable rule wins" is simple and predictable.
+
+### Mixing policy, secrets, and commands
+
+Rules can reference registry paths, but they should never contain API keys, passwords, or copied connection strings.
+
+### No validation of the policy itself
+
+Repository rules are code-like infrastructure. Broken script paths and contradictory instructions should be linted. A lightweight verification command can check rule references, knowledge metadata, and index health together.
+
+## Adoption strategy
+
+Start with one root policy and one high-risk subtree.
+
+Observe where the agent repeatedly needs clarification. Convert stable answers into rules. Keep event-specific evidence in memory. Add specialized workflows only when an operation must be repeatable or preserve invariants that a generic tool would miss.
+
+Over time, the policy becomes a compact representation of how the team actually works.
+
+## Conclusion
+
+`AGENTS.md` is more than an instruction file. Used well, it is a policy engine for AI-assisted development.
+
+It translates organizational expectations into scoped repository behavior: where the agent may act, which workflow it must use, when approval is required, and what evidence closes the task.
+
+The result is not less capable AI. It is capability aligned with engineering ownership.

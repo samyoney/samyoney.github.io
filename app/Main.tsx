@@ -39,7 +39,12 @@ export default function Home({ posts, author }) {
             </p>
             <div className="mt-6 flex flex-wrap gap-2">
               {INTERESTED_TECH_TAGS.map((tag) => (
-                <Tag key={tag} text={tag} />
+                <span
+                  key={tag}
+                  className="rounded-full border border-gray-200 bg-gray-50 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-primary-500 dark:border-gray-700 dark:bg-gray-900"
+                >
+                  {tag}
+                </span>
               ))}
             </div>
             <div className="min-h-16 py-6">

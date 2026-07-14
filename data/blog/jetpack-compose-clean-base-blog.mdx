@@ -1,62 +1,51 @@
 ---
-title: 'Clean Architecture trên Jetpack Compose cho Android'
+title: 'Clean Architecture with Jetpack Compose for Android'
 date: '2024-06-18'
-lastmod: '2024-06-18'
+lastmod: '2026-07-14'
 tags: ['jetpack-compose', 'clean-architecture', 'kotlin', 'solid', 'android']
 draft: false
-summary: 'Base resource về Clean Architecture trên Jetpack Compose cho Android'
+summary: 'A practical Android starter that combines Jetpack Compose, MVVM, clear layer boundaries, and testable use cases.'
 images: ['/static/images/clean/jetpack-card.png']
 ---
 
-## 日本語版：[Link Qiita](https://qiita.com/samyoney/items/d53d0b58c1b5e4b6fa08)
+## Japanese version: [Qiita](https://qiita.com/samyoney/items/d53d0b58c1b5e4b6fa08)
 
-## Giới thiệu
+## Introduction
 
-Xin chào các bạn, trong bài viết này tôi muốn chia sẻ với mọi người bộ mã nguồn mà tôi đã xây dựng để phát triển ứng dụng Android theo Clean Architecture.
-<TOCInline toc={props.toc} exclude="Giới thiệu" />
+This sample shows how I structure an Android application with Jetpack Compose, MVVM, and Clean Architecture principles. It is intentionally small: the goal is to make the dependency flow, state management, and testing boundaries easy to understand before adding production complexity.
 
-![Jetpack Compose](/static/images/clean/jetpack-card.png)
+<TOCInline toc={props.toc} exclude="Introduction" />
 
-Tôi đang đăng tải bộ mã nguồn này trên GitHub cá nhân tại [GitHub](https://github.com/samyoney).
+![Jetpack Compose sample application](/static/images/clean/jetpack-card.png)
 
-Mặc dù đã từng sử dụng các mô hình như MVVM, MVC, MVP, TCA trong việc phát triển ứng dụng di động cho khách hàng, tôi cảm thấy MVVM vẫn có tính ứng dụng cao nhất trong việc kiểm thử và dễ dàng duy trì. Điều quan trọng nhất là nó có khái niệm `use case`, cho phép bóc tách chúng từ các `user story` để thiết kế tài liệu cơ bản.
+The complete source is available in the [Compose Clean Base repository](https://github.com/samyoney/compose_clean_base).
 
-## Jetpack Compose là gì và tại sao nên sử dụng nó?
+## Why Jetpack Compose?
 
-Jetpack Compose là một bộ công cụ UI (User Interface) hiện đại do Google phát triển dành cho Android, cho phép tạo giao diện người dùng một cách dễ dàng và linh hoạt. Được viết bằng Kotlin, nó giúp xây dựng giao diện thông qua các thành phần (composable functions) thay vì các phương thức truyền thống như XML.
+[Jetpack Compose](https://developer.android.com/develop/ui/compose) is Android's modern declarative UI toolkit. UI is described as composable functions that react to state, which reduces the amount of synchronization code normally required between views and application state.
 
-### Lợi ích:
+For this sample, Compose provides three practical advantages:
 
-- **Phát triển nhanh hơn**: Giảm thời gian viết và bảo trì mã.
-- **Giao diện người dùng tương tác tốt hơn**: Dễ dàng tạo các hiệu ứng và chuyển đổi phức tạp.
-- **Khả năng mở rộng**: Dễ dàng thêm tính năng mới và thay đổi UI mà không gây ảnh hưởng lớn đến mã nguồn hiện có.
+- **State-driven UI:** each screen renders from an explicit UI state.
+- **Reusable components:** common elements can be composed without inheriting from framework classes.
+- **Faster iteration:** previews and concise Kotlin code shorten the feedback loop.
 
-## Tại sao nên sử dụng Clean Architecture?
+## Architecture approach
 
-Clean Architecture mang lại nhiều lợi ích, tôi xin tóm tắt ngắn gọn như sau:
+Clean Architecture is an organizing approach, not a mandatory framework. The useful part is the dependency rule: business decisions should not depend directly on UI, storage, or network implementations.
 
-1. **Tăng Tính Bảo Trì**: Dễ dàng bảo trì và cập nhật.
-2. **Dễ Dàng Mở Rộng**: Dễ dàng thêm mới tính năng mà không làm ảnh hưởng đến phần còn lại của hệ thống.
-3. **Tăng Khả Năng Kiểm Thử**: Các thành phần được tách riêng, dễ dàng kiểm thử.
-4. **Giảm Phụ Thuộc**: Các lớp phụ thuộc vào nhau ít hơn, giúp dễ dàng quản lý.
-5. **Tập Trung Vào Nghiệp Vụ Cốt Lõi**: Tách biệt rõ ràng giữa logic nghiệp vụ và các thành phần UI.
+The sample follows the same broad separation described in the [Android architecture recommendations](https://developer.android.com/topic/architecture/recommendations):
 
-## Cấu trúc chính của Clean Architecture
+1. **Presentation:** Compose screens and ViewModels expose observable UI state and handle user actions.
+2. **Domain:** use cases express application-specific operations when that extra layer adds clarity.
+3. **Data:** repositories coordinate local and remote data sources behind stable interfaces.
+4. **Framework:** Android-specific storage, networking, and platform integrations remain at the boundary.
 
-1. **Entities**: Định nghĩa các đối tượng nghiệp vụ và quy tắc của ứng dụng.
-2. **Use Cases**: Chứa logic nghiệp vụ, quyết định cách dữ liệu được xử lý và lưu trữ.
-3. **Interface Adapters**: Chuyển đổi dữ liệu giữa các lớp nghiệp vụ và lớp framework.
-4. **Frameworks**: Chứa các thành phần cụ thể của framework như UI, cơ sở dữ liệu, và các dịch vụ bên ngoài.
+This separation improves testability and makes implementation details easier to replace. For a very small application, some layers can be combined; architecture should reduce complexity rather than create ceremony.
 
-Clean Architecture giúp tạo ra một ứng dụng linh hoạt, dễ bảo trì và dễ kiểm thử, đồng thời hỗ trợ thay đổi và phát triển lâu dài mà không làm gián đoạn hoạt động hiện tại của hệ thống.
+## Screen flow
 
-## Tổng quan về mã nguồn
-
-Tôi tạo ra ứng dụng MVP với các tính năng tối giản nhất, nhưng tôi tin sự tối giản này không làm cho nền tảng của nó trở nên sơ sài, ngược lại giúp cho người mới tiếp cận dễ dàng hơn. Nếu có thể, hãy sử dụng phiên bản Android Studio mới nhất và Java phiên bản tối thiểu là 1.8.
-
-## Sơ đồ luồng các màn hình
-
-```md
+```text
 +-----------+        +-----------+        +------------+
 |           |        |           |        |            |
 |  Splash   | ------>|   Login   | ------>|    Main    |
@@ -65,76 +54,71 @@ Tôi tạo ra ứng dụng MVP với các tính năng tối giản nhất, nhưn
 +-----------+        +-----------+        +------------+
 ```
 
-## Ảnh chụp màn hình
+## Screenshots
 
-Dưới đây là các ảnh chụp màn hình của ứng dụng Android trong các chế độ khác nhau.
 <table>
-  <tr>
-    <td align="center">
-      <img src="/static/images/clean/splash-android.png" alt="Màn Hình Splash" width="300"/>
-      **Màn Hình Splash**
-    </td>
-    <td align="center">
-      <img src="/static/images/clean/login-android.png" alt="Màn Hình Login" width="300"/>
-      **Màn Hình Login**
-    </td>
-    <td align="center">
-      <img src="/static/images/clean/register-android.png" alt="Màn Hình Login" width="300"/>
-      **Màn Hình Register**
-    </td>
-  </tr>
-  <tr>
-    <td align="center">
-      <img src="/static/images/clean/course-android.png" alt="Màn Hình Course" width="300"/>
-      **Màn Hình Course**
-    </td>
-    <td align="center">
-      <img src="/static/images/clean/student-android.png" alt="Màn Hình Student" width="300"/>
-      **Màn Hình Student**
-    </td>
-  </tr>
+  <tbody>
+    <tr>
+      <td align="center">
+        <img
+          src="/static/images/clean/splash-android.png"
+          alt="Android splash screen"
+          width="300"
+        />
+        <strong>Splash</strong>
+      </td>
+      <td align="center">
+        <img src="/static/images/clean/login-android.png" alt="Android login screen" width="300" />
+        <strong>Login</strong>
+      </td>
+      <td align="center">
+        <img
+          src="/static/images/clean/register-android.png"
+          alt="Android registration screen"
+          width="300"
+        />
+        <strong>Registration</strong>
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+        <img
+          src="/static/images/clean/course-android.png"
+          alt="Android course screen"
+          width="300"
+        />
+        <strong>Courses</strong>
+      </td>
+      <td align="center">
+        <img
+          src="/static/images/clean/student-android.png"
+          alt="Android student screen"
+          width="300"
+        />
+        <strong>Students</strong>
+      </td>
+    </tr>
+  </tbody>
 </table>
 
-*Android*
+## Repository structure
 
-## Cấu trúc ứng dụng
+The repository is organized around three top-level areas:
 
-Cấu trúc gồm 3 phần chính:
+- **App:** application entry points, navigation, Compose UI, ViewModels, use cases, and data contracts.
+- **buildSrc:** centralized build configuration and dependency versions used by this sample.
+- **Framework:** reusable Android-specific implementations for persistence, preferences, caching, and shared base types.
 
-- **App**: chứa giao diện như view, activity, viewmodel, xử lý logic nghiệp vụ, v.v.
-- **buildSrc**: tầng có nhiệm vụ quản lý các phụ thuộc, thư viện và quản lý phiên bản.
-- **framework**: tầng chứa các xử lý chung.
+Within the app, presentation code depends on domain contracts rather than concrete network or database classes. Repositories hide data-source details, and ViewModels translate results into immutable UI state. This keeps screen behavior testable without rendering the UI or calling real services.
 
-## App
+## Testing and maintenance
 
-- **Component**: Chứa view chung.
-- **Controller**: Các xử lý chung.
-- **Theme**: Quản lý style của đặc thù.
-- **Data**: Quản lý dữ liệu cho toàn ứng dụng, chứa cả repository, quản lý API, database và usecase.
-- **Presentation**: Các màn hình.
-- **Provider**: Cung cấp các hàm truy xuất tới resource, quản lý navigation.
+The most valuable tests target use cases, repository behavior, and ViewModel state transitions. Compose UI tests can then focus on critical user journeys. This balance gives fast feedback while avoiding fragile tests for every visual detail.
 
-## buildSrc
+When extending the starter, I recommend adding abstractions only when there is a real boundary to protect. A clear two-layer feature is better than a five-layer design with pass-through classes.
 
-Quản lý tất cả các phụ thuộc của ứng dụng, phiên bản, và quản lý version.
+## Conclusion
 
-## Framework
+This starter demonstrates a maintainable baseline for Compose projects: state-driven UI, explicit dependencies, testable business operations, and framework code kept at the edges. It is a reference implementation, so the structure should be adapted to the size and risk profile of the product.
 
-Quản lý các xử lý chung:
-- **Base**: Chứa các base chung cho ViewModel và State.
-- **Cache**: Khuyến khích sử dụng khi muốn chuyển dữ liệu giữa các view.
-- **Extension**: Xử lý các extension chung.
-- **Pref**: Xử lý Shared Preferences.
-- **Room**: Xử lý Database.
-
-## Kết luận
-
-Hy vọng bạn sẽ thích mã nguồn này. Nếu có bất kỳ phản hồi hoặc đề xuất nào, vui lòng mở một vấn đề trên GitHub hoặc liên hệ với tôi trên [LinkedIn](https://www.linkedin.com/in/sam-nguyen-204876192/).
-
-## Dự án đầy đủ
-
-Bạn có thể truy cập mã nguồn của dự án từ liên kết dưới đây: [GitHub](https://github.com/samyoney/compose_clean_base).
-
-## Giấy phép
-
-[MIT](https://github.com/samyoney/compose_clean_base/blob/develop/LICENSE) © [Yoneyama SAM](https://samyoney.github.io/)
+For questions or suggestions, open an issue in the [source repository](https://github.com/samyoney/compose_clean_base) or contact me on [LinkedIn](https://www.linkedin.com/in/son-nguyen-204876192/).
