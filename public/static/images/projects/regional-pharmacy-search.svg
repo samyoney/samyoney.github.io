@@ -1,43 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop stop-color="#082a28"/>
-      <stop offset="1" stop-color="#0f4a43"/>
-    </linearGradient>
-    <radialGradient id="glow" cx="0" cy="0" r="1" gradientTransform="translate(1310 170) rotate(135) scale(690)">
-      <stop stop-color="#0f9f78" stop-opacity=".38"/>
-      <stop offset="1" stop-color="#0f9f78" stop-opacity="0"/>
-    </radialGradient>
-    <filter id="shadow" x="-30%" y="-30%" width="160%" height="170%">
-      <feDropShadow dx="0" dy="24" stdDeviation="24" flood-color="#020617" flood-opacity=".34"/>
-    </filter>
-    <pattern id="grid" width="54" height="54" patternUnits="userSpaceOnUse">
-      <path d="M54 0H0V54" fill="none" stroke="#fff" stroke-opacity=".045"/>
-    </pattern>
-  </defs>
-  <rect width="1600" height="900" rx="46" fill="url(#bg)"/>
-  <rect width="1600" height="900" rx="46" fill="url(#glow)"/>
-  <rect width="1600" height="900" rx="46" fill="url(#grid)"/>
-  <circle cx="1510" cy="80" r="230" fill="#2563eb" opacity=".10"/>
-  <circle cx="760" cy="860" r="310" fill="#0f9f78" opacity=".09"/>
-  <rect x="92" y="82" width="118" height="118" rx="28" fill="#0f9f78"/><path d="M128 141h46M151 118v46" stroke="#fff" stroke-width="14" stroke-linecap="round"/>
-  <text x="96" y="302" fill="#2563eb" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="26" font-weight="800" letter-spacing="5">DIGITAL HEALTH</text>
-  <text x="92" y="402" fill="#fff" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="53" font-weight="800">Regional Pharmacy Search</text>
-  <text x="96" y="466" fill="#cbd5e1" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="29" font-weight="500">Location-aware access to nearby healthcare services</text>
-  <rect x="96" y="540" width="104" height="12" rx="6" fill="#0f9f78"/>
-  <rect x="216" y="540" width="54" height="12" rx="6" fill="#2563eb"/>
+  <rect width="1600" height="900" fill="#ffffff"/>
+  <circle cx="1450" cy="120" r="36" fill="#e60012"/>
+  <path d="M100 120h180M1320 780h180" stroke="#dbe3ee" stroke-width="4" stroke-linecap="round"/>
   
-      <g transform="translate(840 140)" filter="url(#shadow)">
-        <rect width="650" height="540" rx="44" fill="#f8fafc"/>
-        <path d="M0 112l180 88 180-96 290 114v278l-252-96-202 94L0 416z" fill="#e2e8f0"/>
-        <path d="M180 200v294M360 104v296" stroke="#cbd5e1" stroke-width="12"/>
-        <path d="M48 350c88-112 176-112 264-14s180 76 290-55" fill="none" stroke="#2563eb" stroke-width="18" stroke-linecap="round" stroke-dasharray="4 30"/>
-        <g transform="translate(284 132)">
-          <path d="M76 0c42 0 76 34 76 76 0 60-76 142-76 142S0 136 0 76C0 34 34 0 76 0z" fill="#0f9f78"/>
-          <circle cx="76" cy="76" r="34" fill="#fff"/>
-          <path d="M76 56v40M56 76h40" stroke="#0f9f78" stroke-width="14" stroke-linecap="round"/>
-        </g>
-      </g>
-    
-  <rect x="1.5" y="1.5" width="1597" height="897" rx="44.5" fill="none" stroke="#fff" stroke-opacity=".12" stroke-width="3"/>
+        <g transform="translate(690 185)">
+          <path d="M110 0c61 0 110 49 110 110 0 86-110 211-110 211S0 196 0 110C0 49 49 0 110 0z" fill="#0f9f78"/>
+          <circle cx="110" cy="108" r="52" fill="#fff"/>
+          <path d="M110 78v60M80 108h60" stroke="#0f9f78" stroke-width="18" stroke-linecap="round"/>
+        </g><text x="800" y="600" text-anchor="middle" fill="#172554" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="42" font-weight="800" letter-spacing="5">PHARMACY SEARCH</text>
+  <g transform="translate(508.5 700)"><rect width="185" height="68" rx="34" fill="#f8fafc" stroke="#dbe3ee" stroke-width="2"/><circle cx="34" cy="34" r="8" fill="#2563eb"/><text x="56" y="43" fill="#334155" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="700">Android</text></g><g transform="translate(719.5 700)"><rect width="142" height="68" rx="34" fill="#f8fafc" stroke="#dbe3ee" stroke-width="2"/><circle cx="34" cy="34" r="8" fill="#e11d48"/><text x="56" y="43" fill="#334155" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="700">Maps</text></g><g transform="translate(887.5 700)"><rect width="204" height="68" rx="34" fill="#f8fafc" stroke="#dbe3ee" stroke-width="2"/><circle cx="34" cy="34" r="8" fill="#0f9f78"/><text x="56" y="43" fill="#334155" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="700">Location</text></g>
 </svg>

@@ -1,51 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop stop-color="#071d31"/>
-      <stop offset="1" stop-color="#123f59"/>
-    </linearGradient>
-    <radialGradient id="glow" cx="0" cy="0" r="1" gradientTransform="translate(1310 170) rotate(135) scale(690)">
-      <stop stop-color="#07558b" stop-opacity=".38"/>
-      <stop offset="1" stop-color="#07558b" stop-opacity="0"/>
-    </radialGradient>
-    <filter id="shadow" x="-30%" y="-30%" width="160%" height="170%">
-      <feDropShadow dx="0" dy="24" stdDeviation="24" flood-color="#020617" flood-opacity=".34"/>
-    </filter>
-    <pattern id="grid" width="54" height="54" patternUnits="userSpaceOnUse">
-      <path d="M54 0H0V54" fill="none" stroke="#fff" stroke-opacity=".045"/>
-    </pattern>
-  </defs>
-  <rect width="1600" height="900" rx="46" fill="url(#bg)"/>
-  <rect width="1600" height="900" rx="46" fill="url(#glow)"/>
-  <rect width="1600" height="900" rx="46" fill="url(#grid)"/>
-  <circle cx="1510" cy="80" r="230" fill="#13a6b8" opacity=".10"/>
-  <circle cx="760" cy="860" r="310" fill="#07558b" opacity=".09"/>
-  <rect x="92" y="82" width="394" height="118" rx="28" fill="#fff" opacity=".96"/><text x="124" y="157" fill="#07558b" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="42" font-weight="900">PARIS MIKI</text>
-  <text x="96" y="302" fill="#13a6b8" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="26" font-weight="800" letter-spacing="5">RETAIL MOBILE</text>
-  <text x="92" y="402" fill="#fff" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="58" font-weight="800">Inventory Application</text>
-  <text x="96" y="466" fill="#cbd5e1" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="29" font-weight="500">Real-time stock visibility for store teams</text>
-  <rect x="96" y="540" width="104" height="12" rx="6" fill="#07558b"/>
-  <rect x="216" y="540" width="54" height="12" rx="6" fill="#13a6b8"/>
-  
-      <g transform="translate(820 150)" filter="url(#shadow)">
-        <rect width="650" height="500" rx="42" fill="#f8fafc"/>
-        <rect width="650" height="72" rx="42" fill="#e2e8f0"/>
-        <circle cx="42" cy="36" r="9" fill="#fb7185"/>
-        <circle cx="70" cy="36" r="9" fill="#fbbf24"/>
-        <circle cx="98" cy="36" r="9" fill="#34d399"/>
-        <rect x="36" y="108" width="170" height="356" rx="24" fill="#e2e8f0"/>
-        <rect x="66" y="146" width="110" height="14" rx="7" fill="#07558b"/>
-        <rect x="66" y="190" width="92" height="11" rx="6" fill="#64748b"/>
-        <rect x="66" y="224" width="112" height="11" rx="6" fill="#94a3b8"/>
-        <rect x="66" y="258" width="76" height="11" rx="6" fill="#94a3b8"/>
-        <rect x="238" y="108" width="174" height="126" rx="24" fill="#07558b"/>
-        <rect x="438" y="108" width="174" height="126" rx="24" fill="#13a6b8"/>
-        <path d="M266 202l32-38 32 18 42-50" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
-        <circle cx="488" cy="168" r="34" fill="#fff" opacity=".92"/>
-        <path d="M488 138v30l24 18" fill="none" stroke="#13a6b8" stroke-width="12" stroke-linecap="round"/>
-        <rect x="238" y="264" width="374" height="200" rx="24" fill="#e2e8f0"/>
-        <path d="M270 411l70-72 58 42 74-88 108 92" fill="none" stroke="#07558b" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
-      </g>
-    
-  <rect x="1.5" y="1.5" width="1597" height="897" rx="44.5" fill="none" stroke="#fff" stroke-opacity=".12" stroke-width="3"/>
+  <rect width="1600" height="900" fill="#ffffff"/>
+  <circle cx="1450" cy="120" r="36" fill="#e60012"/>
+  <path d="M100 120h180M1320 780h180" stroke="#dbe3ee" stroke-width="4" stroke-linecap="round"/>
+  <image x="300.0" y="155" width="1000" height="300" preserveAspectRatio="xMidYMid meet" href="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBpZD0iX+ODrOOCpOODpOODvF8yIiBkYXRhLW5hbWU9IuODrOOCpOODpOODvCAyIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMzUuOSAxOS44NCI+CiAgPGRlZnM+CiAgICA8c3R5bGU+CiAgICAgIC5jbHMtMSB7CiAgICAgICAgZmlsbDogIzAwNDI2MzsKICAgICAgfQogICAgPC9zdHlsZT4KICA8L2RlZnM+CiAgPGcgaWQ9Il/jg6zjgqTjg6Tjg7xfMS0yIiBkYXRhLW5hbWU9IuODrOOCpOODpOODvCAxIj4KICAgIDxnPgogICAgICA8Zz4KICAgICAgICA8cG9seWdvbiBjbGFzcz0iY2xzLTEiIHBvaW50cz0iMTg5LjUgMS4yIDE4My4wMyAxMi40NyAxNzYuNDUgMS4yIDE3My4xNSAxLjIgMTczLjE1IDE5Ljg0IDE3Ni40NCAxOS44NCAxNzYuNDQgNi44NiAxODIuNDYgMTcuNiAxODMuMTIgMTcuNiAxODkuMDkgNi45NyAxODkuMDkgMTkuODQgMTkyLjM4IDE5Ljg0IDE5Mi4zOCAxLjIgMTg5LjUgMS4yIi8+CiAgICAgICAgPHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMTIxLjk2LDE5Ljg0aDQuNjdsLTYuNDctNy4wNWgxLjk3YzEuNTUsMCwzLjAyLTEuNDgsMy4wMi0zLjAydi01LjU1YzAtMS41NS0xLjQ4LTMuMDItMy4wMi0zLjAyaC0xMi4xMnYxOC42NGgzLjJ2LTcuMDVoMy4wOWw1LjY2LDcuMDVaTTExMy4yMSw0LjQyaDcuMzJjLjk0LDAsMS40OC41NCwxLjQ4LDEuNDh2Mi4yYzAsLjk0LS41NCwxLjQ4LTEuNDgsMS40OGgtNy4zMnYtNS4xNloiLz4KICAgICAgICA8cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik04Ni4yMSw0LjIzYzAtMS41NS0xLjQ4LTMuMDItMy4wMi0zLjAyaC0xMi4xMnYxOC42NGgzLjJ2LTcuMDVoOC45MmMxLjU1LDAsMy4wMi0xLjQ4LDMuMDItMy4wMnYtNS41NVpNODEuNTksOS41OGgtNy4zMnYtNS4xNmg3LjMyYy45NCwwLDEuNDguNTQsMS40OCwxLjQ4djIuMmMwLC45NC0uNTQsMS40OC0xLjQ4LDEuNDhaIi8+CiAgICAgICAgPHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMTAyLjcyLDE5Ljg0aDMuNjhMOTguMzcsMS4yaC0zLjE4bC03Ljg5LDE4LjY0aDMuMjNsMS43My00LjIyaDguNzdsMS43LDQuMjJaTTkzLjU3LDEyLjRsMy4xMS03LjYsMy4wNSw3LjZoLTYuMTZaIi8+CiAgICAgICAgPHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMTU3LjQxLDUuODJ2LTEuNmMwLTEuNjctMS4zNS0zLjAyLTMuMDItMy4wMmgtOC44NWMtMS42NywwLTMuMDIsMS4zNS0zLjAyLDMuMDJsLjAyLDQuNjNjMCwxLjU1LDEuNDgsMy4wMiwzLjAyLDMuMDJoOC45OXY0Ljc1aC05LjU1czAtMi40OCwwLTIuNDhsLTMuMDYuNzF2MS45N2MwLDEuNjcsMS4zNSwzLjAyLDMuMDIsMy4wMmg5LjZjMS42NywwLDMuMDItMS4zNSwzLjAyLTMuMDJsLS4wMi01LjE0YzAtMS41NS0xLjQ4LTMuMDItMy4wMi0zLjAyaC04Ljk5di00LjI0czguODEsMCw4LjgxLDB2Mi4xMWwzLjA2LS43MVoiLz4KICAgICAgICA8cmVjdCBjbGFzcz0iY2xzLTEiIHg9IjEzMi4yMyIgeT0iMS4yIiB3aWR0aD0iMy4yOSIgaGVpZ2h0PSIxOC42NCIvPgogICAgICAgIDxyZWN0IGNsYXNzPSJjbHMtMSIgeD0iMjAwLjE2IiB5PSIxLjIiIHdpZHRoPSIzLjI5IiBoZWlnaHQ9IjE4LjY0Ii8+CiAgICAgICAgPHBvbHlnb24gY2xhc3M9ImNscy0xIiBwb2ludHM9IjIyMi45MSAxOS44NCAyMjguMTYgMTkuODQgMjE3LjczIDEwIDIyNy4wMSAxLjIgMjIyLjI5IDEuMiAyMTQuNTIgOC45OCAyMTQuNTIgMS4yIDIxMS4yNCAxLjIgMjExLjI0IDE5Ljg0IDIxNC41MiAxOS44NCAyMTQuNTIgMTMuMDUgMjE1LjI1IDEyLjM2IDIyMi45MSAxOS44NCIvPgogICAgICAgIDxyZWN0IGNsYXNzPSJjbHMtMSIgeD0iMjMyLjYxIiB5PSIxLjIiIHdpZHRoPSIzLjI5IiBoZWlnaHQ9IjE4LjY0Ii8+CiAgICAgIDwvZz4KICAgICAgPHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMzguODIsMTYuODRjLTMuODIsMC02LjkyLTMuMTEtNi45Mi02LjkyczMuMS02LjkyLDYuOTItNi45Miw2LjkyLDMuMSw2LjkyLDYuOTItMy4xLDYuOTItNi45Miw2LjkyWk0xMi40NSwxNi44NGMtMy44MiwwLTYuOTItMy4xMS02LjkyLTYuOTJzMy4xLTYuOTIsNi45Mi02LjkyLDYuOTIsMy4xLDYuOTIsNi45Mi0zLjEsNi45Mi02LjkyLDYuOTJNNTAuNTUsMy4yN2gtMy43N3MtLjQ5LjEtMS4xMS0uNDljLTEuNzktMS43MS00LjItMi43Ny02Ljg2LTIuNzctMy4zNywwLTYuMywxLjU3LTguMjMsNC41NS0uNjUuOTktMS40NS45MS0xLjg2Ljc3LTEuMDctLjM5LTEuOTItLjg3LTMuMDktLjg3cy0yLjAyLjQ4LTMuMDkuODdjLS40MS4xNS0xLjIxLjIzLTEuODYtLjc3QzE4Ljc0LDEuNTcsMTUuODEsMCwxMi40NSwwYy0yLjY2LDAtNS4wNywxLjA3LTYuODYsMi43Ny0uNjIuNTktMS4xMS40OS0xLjExLjQ5SC43MWMtLjM5LDAtLjcxLjM1LS43MS43OXYyLjMzYzAsLjQ0LjMyLjc5LjcxLjc5aDIuMjFjLS4yNS44Ny0uMzksMS43OS0uMzksMi43NCwwLDUuNDcsNC40NSw5LjkyLDkuOTIsOS45Miw0LjM0LDAsOC4wMi0yLjgsOS4zNy02LjY5LjQtLjEyLjc5LS40OCwxLjA3LTEuNC4zOS0xLjI2LjQ4LTEuODcuMTgtMi40NS0uMTctLjM0LS41OC0uNjctLjgzLS44NS0uMTUtLjIxLjA4LS40My4xNS0uNDcuOTYtLjYxLDIuMDctLjkzLDMuMjQtLjkzczIuMjguMzMsMy4yNC45M2MuMDcuMDQuMy4yNi4xNS40Ny0uMjUuMTctLjY2LjUtLjgzLjg1LS4yOS41OC0uMjEsMS4xOC4xOCwyLjQ1LjI5LjkyLjY3LDEuMjgsMS4wOCwxLjQsMS4zNCwzLjg5LDUuMDMsNi42OSw5LjM3LDYuNjksNS40NywwLDkuOTItNC40NSw5LjkyLTkuOTIsMC0uOTUtLjE0LTEuODctLjM5LTIuNzRoMi4yYy4zOSwwLC43MS0uMzYuNzEtLjc5di0yLjMzYzAtLjQ0LS4zMi0uNzktLjcxLS43OSIvPgogICAgPC9nPgogIDwvZz4KPC9zdmc+"/>
+  <g transform="translate(518.0 700)"><rect width="142" height="68" rx="34" fill="#f8fafc" stroke="#dbe3ee" stroke-width="2"/><circle cx="34" cy="34" r="8" fill="#2563eb"/><text x="56" y="43" fill="#334155" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="700">iPad</text></g><g transform="translate(686.0 700)"><rect width="147" height="68" rx="34" fill="#f8fafc" stroke="#dbe3ee" stroke-width="2"/><circle cx="34" cy="34" r="8" fill="#e11d48"/><text x="56" y="43" fill="#334155" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="700">Swift</text></g><g transform="translate(859.0 700)"><rect width="223" height="68" rx="34" fill="#f8fafc" stroke="#dbe3ee" stroke-width="2"/><circle cx="34" cy="34" r="8" fill="#0f9f78"/><text x="56" y="43" fill="#334155" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="700">Inventory</text></g>
 </svg>

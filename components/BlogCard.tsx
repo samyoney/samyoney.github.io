@@ -24,25 +24,25 @@ export default function BlogCard({
 
   return (
     <div className="container">
-      <div className="lg:-mx-6 lg:flex lg:items-center">
-        <div className="relative h-72 w-full overflow-hidden rounded-xl border-[0.5px] border-gray-300/40 bg-clip-border lg:mx-6 lg:w-1/2">
+      <div>
+        <div className="relative h-52 w-full overflow-hidden rounded-xl border-[0.5px] border-gray-300/40 bg-white bg-clip-border">
           <Link
-            className="relative block h-72 w-full overflow-hidden rounded-xl bg-white bg-clip-border"
+            className="relative block h-52 w-full overflow-hidden rounded-xl bg-white bg-clip-border"
             href={`/blog/${slug}`}
             aria-label={`${isJapanese ? '読む' : 'Read'} "${displayTitle}"`}
           >
             <Image
-              className="h-72 w-full"
+              className="h-52 w-full"
               sizes="auto"
               src={Array.isArray(images) ? images[0] : '/static/images/banner.jpeg'}
               alt={slug}
               fill
-              style={{ objectFit: 'cover' }}
+              style={{ objectFit: 'contain' }}
             />
           </Link>
         </div>
 
-        <div className="mt-2 flex min-h-full flex-col items-start justify-start lg:mt-0 lg:h-72 lg:w-1/2">
+        <div className="mt-4 flex w-full flex-col items-start justify-start">
           <div className="flex-1">
             <p className="block text-2xl font-semibold text-gray-800 dark:text-white md:text-3xl">
               {displayTitle}
@@ -116,7 +116,7 @@ export default function BlogCard({
             <div className="flex h-full items-end">
               <dl>
                 <dt className="sr-only">Published on</dt>
-                <dd className="text-sm font-medium leading-6 text-gray-500 dark:text-gray-400">
+                <dd className="text-[10px] font-medium leading-4 text-gray-500 dark:text-gray-400">
                   <time dateTime={date}>
                     {formatDate(date, isJapanese ? 'ja-JP' : siteMetadata.locale)}
                   </time>

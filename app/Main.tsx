@@ -204,7 +204,7 @@ export default function Home({ posts, author }) {
                       <div className="flex h-full items-end">
                         <dl>
                           <dt className="sr-only">Published on</dt>
-                          <dd className="text-sm font-medium leading-6 text-gray-500 dark:text-gray-400">
+                          <dd className="text-[10px] font-medium leading-4 text-gray-500 dark:text-gray-400">
                             <time dateTime={date}>
                               {formatDate(date, isJapanese ? 'ja-JP' : siteMetadata.locale)}
                             </time>

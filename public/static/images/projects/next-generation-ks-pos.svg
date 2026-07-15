@@ -1,53 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop stop-color="#19120d"/>
-      <stop offset="1" stop-color="#4b1b18"/>
-    </linearGradient>
-    <radialGradient id="glow" cx="0" cy="0" r="1" gradientTransform="translate(1310 170) rotate(135) scale(690)">
-      <stop stop-color="#ed1c24" stop-opacity=".38"/>
-      <stop offset="1" stop-color="#ed1c24" stop-opacity="0"/>
-    </radialGradient>
-    <filter id="shadow" x="-30%" y="-30%" width="160%" height="170%">
-      <feDropShadow dx="0" dy="24" stdDeviation="24" flood-color="#020617" flood-opacity=".34"/>
-    </filter>
-    <pattern id="grid" width="54" height="54" patternUnits="userSpaceOnUse">
-      <path d="M54 0H0V54" fill="none" stroke="#fff" stroke-opacity=".045"/>
-    </pattern>
-  </defs>
-  <rect width="1600" height="900" rx="46" fill="url(#bg)"/>
-  <rect width="1600" height="900" rx="46" fill="url(#glow)"/>
-  <rect width="1600" height="900" rx="46" fill="url(#grid)"/>
-  <circle cx="1510" cy="80" r="230" fill="#f5c400" opacity=".10"/>
-  <circle cx="760" cy="860" r="310" fill="#ed1c24" opacity=".09"/>
-  <rect x="92" y="82" width="194" height="118" rx="28" fill="#fff" opacity=".96"/><image x="124" y="105" width="130" height="72" preserveAspectRatio="xMinYMid meet" href="data:image/png;base64,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"/>
-  <text x="96" y="302" fill="#f5c400" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="26" font-weight="800" letter-spacing="5">RETAIL TECHNOLOGY</text>
-  <text x="92" y="402" fill="#fff" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="55" font-weight="800">Next-Generation KS-POS</text>
-  <text x="96" y="466" fill="#cbd5e1" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="29" font-weight="500">Fast, resilient checkout for large-scale retail</text>
-  <rect x="96" y="540" width="104" height="12" rx="6" fill="#ed1c24"/>
-  <rect x="216" y="540" width="54" height="12" rx="6" fill="#f5c400"/>
-  
-      <g transform="translate(860 150)" filter="url(#shadow)">
-        <rect width="560" height="390" rx="38" fill="#111827"/>
-        <rect x="22" y="22" width="516" height="346" rx="24" fill="#f8fafc"/>
-        <rect x="54" y="60" width="280" height="52" rx="14" fill="#ed1c24"/>
-        <rect x="54" y="140" width="126" height="82" rx="18" fill="#dbeafe"/>
-        <rect x="196" y="140" width="126" height="82" rx="18" fill="#fee2e2"/>
-        <rect x="54" y="238" width="126" height="82" rx="18" fill="#dcfce7"/>
-        <rect x="196" y="238" width="126" height="82" rx="18" fill="#fef3c7"/>
-        <rect x="360" y="60" width="144" height="196" rx="20" fill="#e2e8f0"/>
-        <rect x="380" y="86" width="104" height="13" rx="7" fill="#475569"/>
-        <rect x="380" y="120" width="104" height="9" rx="5" fill="#94a3b8"/>
-        <rect x="380" y="146" width="78" height="9" rx="5" fill="#94a3b8"/>
-        <rect x="360" y="278" width="144" height="42" rx="12" fill="#f5c400"/>
-        <path d="M230 390h100l34 86H196z" fill="#334155"/>
-        <rect x="146" y="466" width="268" height="34" rx="17" fill="#1e293b"/>
-      </g>
-      <g transform="translate(1240 570) rotate(-7)" filter="url(#shadow)">
-        <rect width="220" height="132" rx="22" fill="#fff"/>
-        <rect x="24" y="26" width="172" height="22" rx="8" fill="#ed1c24" opacity=".22"/>
-        <path d="M35 83h150" stroke="#334155" stroke-width="15" stroke-linecap="round" stroke-dasharray="8 14"/>
-      </g>
-    
-  <rect x="1.5" y="1.5" width="1597" height="897" rx="44.5" fill="none" stroke="#fff" stroke-opacity=".12" stroke-width="3"/>
+  <rect width="1600" height="900" fill="#ffffff"/>
+  <circle cx="1450" cy="120" r="36" fill="#e60012"/>
+  <path d="M100 120h180M1320 780h180" stroke="#dbe3ee" stroke-width="4" stroke-linecap="round"/>
+  <image x="610.0" y="155" width="380" height="380" preserveAspectRatio="xMidYMid meet" href="data:image/png;base64,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"/>
+  <g transform="translate(549.0 700)"><rect width="142" height="68" rx="34" fill="#f8fafc" stroke="#dbe3ee" stroke-width="2"/><circle cx="34" cy="34" r="8" fill="#2563eb"/><text x="56" y="43" fill="#334155" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="700">POS</text></g><g transform="translate(717.0 700)"><rect width="142" height="68" rx="34" fill="#f8fafc" stroke="#dbe3ee" stroke-width="2"/><circle cx="34" cy="34" r="8" fill="#e11d48"/><text x="56" y="43" fill="#334155" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="700">.NET</text></g><g transform="translate(885.0 700)"><rect width="166" height="68" rx="34" fill="#f8fafc" stroke="#dbe3ee" stroke-width="2"/><circle cx="34" cy="34" r="8" fill="#0f9f78"/><text x="56" y="43" fill="#334155" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="700">Retail</text></g>
 </svg>

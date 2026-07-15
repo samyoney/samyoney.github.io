@@ -1,51 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop stop-color="#06182d"/>
-      <stop offset="1" stop-color="#0b355e"/>
-    </linearGradient>
-    <radialGradient id="glow" cx="0" cy="0" r="1" gradientTransform="translate(1310 170) rotate(135) scale(690)">
-      <stop stop-color="#0b62b4" stop-opacity=".38"/>
-      <stop offset="1" stop-color="#0b62b4" stop-opacity="0"/>
-    </radialGradient>
-    <filter id="shadow" x="-30%" y="-30%" width="160%" height="170%">
-      <feDropShadow dx="0" dy="24" stdDeviation="24" flood-color="#020617" flood-opacity=".34"/>
-    </filter>
-    <pattern id="grid" width="54" height="54" patternUnits="userSpaceOnUse">
-      <path d="M54 0H0V54" fill="none" stroke="#fff" stroke-opacity=".045"/>
-    </pattern>
-  </defs>
-  <rect width="1600" height="900" rx="46" fill="url(#bg)"/>
-  <rect width="1600" height="900" rx="46" fill="url(#glow)"/>
-  <rect width="1600" height="900" rx="46" fill="url(#grid)"/>
-  <circle cx="1510" cy="80" r="230" fill="#3ddc84" opacity=".10"/>
-  <circle cx="760" cy="860" r="310" fill="#0b62b4" opacity=".09"/>
-  <rect x="92" y="82" width="434" height="118" rx="28" fill="#fff" opacity=".96"/><text x="124" y="157" fill="#0b62b4" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="42" font-weight="900">GMO CLICK CFD</text>
-  <text x="96" y="302" fill="#3ddc84" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="26" font-weight="800" letter-spacing="5">FINTECH MOBILE</text>
-  <text x="92" y="402" fill="#fff" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="56" font-weight="800">CFD Trading Platform</text>
-  <text x="96" y="466" fill="#cbd5e1" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="29" font-weight="500">Real-time markets, orders, charts, and news</text>
-  <rect x="96" y="540" width="104" height="12" rx="6" fill="#0b62b4"/>
-  <rect x="216" y="540" width="54" height="12" rx="6" fill="#3ddc84"/>
-  
-      <g transform="translate(820 150)" filter="url(#shadow)">
-        <rect width="650" height="500" rx="42" fill="#f8fafc"/>
-        <rect width="650" height="72" rx="42" fill="#e2e8f0"/>
-        <circle cx="42" cy="36" r="9" fill="#fb7185"/>
-        <circle cx="70" cy="36" r="9" fill="#fbbf24"/>
-        <circle cx="98" cy="36" r="9" fill="#34d399"/>
-        <rect x="36" y="108" width="170" height="356" rx="24" fill="#e2e8f0"/>
-        <rect x="66" y="146" width="110" height="14" rx="7" fill="#0b62b4"/>
-        <rect x="66" y="190" width="92" height="11" rx="6" fill="#64748b"/>
-        <rect x="66" y="224" width="112" height="11" rx="6" fill="#94a3b8"/>
-        <rect x="66" y="258" width="76" height="11" rx="6" fill="#94a3b8"/>
-        <rect x="238" y="108" width="174" height="126" rx="24" fill="#0b62b4"/>
-        <rect x="438" y="108" width="174" height="126" rx="24" fill="#3ddc84"/>
-        <path d="M266 202l32-38 32 18 42-50" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
-        <circle cx="488" cy="168" r="34" fill="#fff" opacity=".92"/>
-        <path d="M488 138v30l24 18" fill="none" stroke="#3ddc84" stroke-width="12" stroke-linecap="round"/>
-        <rect x="238" y="264" width="374" height="200" rx="24" fill="#e2e8f0"/>
-        <path d="M270 411l70-72 58 42 74-88 108 92" fill="none" stroke="#0b62b4" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
-      </g>
-    
-  <rect x="1.5" y="1.5" width="1597" height="897" rx="44.5" fill="none" stroke="#fff" stroke-opacity=".12" stroke-width="3"/>
+  <rect width="1600" height="900" fill="#ffffff"/>
+  <circle cx="1450" cy="120" r="36" fill="#e60012"/>
+  <path d="M100 120h180M1320 780h180" stroke="#dbe3ee" stroke-width="4" stroke-linecap="round"/>
+  <image x="375.0" y="155" width="850" height="280" preserveAspectRatio="xMidYMid meet" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjMwIiBoZWlnaHQ9IjMyIiB2aWV3Qm94PSIwIDAgMjMwIDMyIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogICAgPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0yMjIuMDE4IDMxLjQ0MWgtNzQuNDI1TDE1NS41NzUgMUgyMzBsLTcuOTgyIDMwLjQ0MXoiIGZpbGw9IiMxRjFGOTkiLz4KICAgIDxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJtMjA3LjEyMyA4LjgyMi0zLjk2NCAxNC44MTNoMy40ODZjMS4zMDQgMCAyLjI2NC0uMDcyIDIuODgxLS4yMTRhNS45MDMgNS45MDMgMCAwIDAgMi4xMzQtLjkzYy42MTYtLjQzOCAxLjIxNi0xLjE1NyAxLjgtMi4xNi41ODMtMSAxLjEwNy0yLjM2NiAxLjU3LTQuMDk1LjQ2Mi0xLjcyOS42NTktMy4wNTYuNTkxLTMuOTgxLS4wNjctLjkyNi0uMzE2LTEuNjQ4LS43NDUtMi4xNjctLjQyOS0uNTE4LTEuMDU2LS44Ny0xLjg3OS0xLjA1Mi0uNjE0LS4xNDItMS44NzMtLjIxNC0zLjc3Ni0uMjE0aC0yLjA5OHptLTMuNjU3LTMuNzg0aDguNTMzYzEuOTI1IDAgMy4zNTQuMTQzIDQuMjg3LjQyNyAxLjI1NC4zODcgMi4yMzEgMS4wNzQgMi45MzUgMi4wNi43MDMuOTg2IDEuMTE2IDIuMTk0IDEuMjM5IDMuNjIzLjEyMiAxLjQyOS0uMDk3IDMuMTktLjY1OCA1LjI4Ni0uNDkyIDEuODQtMS4xNTMgMy40MjctMS45ODMgNC43Ni0xLjAxNCAxLjYyNi0yLjE5MSAyLjk0My0zLjUzNCAzLjk1LTEuMDE0Ljc2My0yLjI2NyAxLjM1OC0zLjc1OSAxLjc4NS0xLjExNS4zMTUtMi41MzUuNDczLTQuMjU5LjQ3M2gtOC43ODZsNS45ODUtMjIuMzY0ek0xNzcuOTE5IDI3LjQwMmw1Ljk4NS0yMi4zNjRoMTUuODUybC0xLjAxMiAzLjc4NGgtMTEuMTgzbC0xLjQxNyA1LjI5M2g5LjY1NGwtMS4wMTMgMy43ODNoLTkuNjUzbC0yLjU0NCA5LjUwNGgtNC42Njl6TTE3Mi4zNTYgMTkuMThsNC4xNTYgMS4zODhjLTEuMzQ4IDIuNDQtMi45ODcgNC4yNTQtNC45MTggNS40MzgtMS45MzEgMS4xODUtNC4xMzggMS43NzctNi42MiAxLjc3Ny0zLjA3IDAtNS4zMjMtMS4wMTQtNi43NTctMy4wNDMtMS40MzQtMi4wMjktMS42OC00LjgwMy0uNzM4LTguMzIxLjk5Ni0zLjcyMyAyLjc2NC02LjYxMyA1LjMwMi04LjY3MyAyLjUzOS0yLjA2IDUuNDI3LTMuMDg5IDguNjY3LTMuMDg5IDIuODI4IDAgNC45MDkuODA5IDYuMjQzIDIuNDI2Ljc5Ni45NTYgMS4yMTcgMi4zMjkgMS4yNjQgNC4xMThsLTQuOTA4IDEuMDY4Yy4wMzctMS4xNTktLjI4OC0yLjA3NC0uOTc2LTIuNzQ1LS42ODgtLjY3Mi0xLjY1Mi0xLjAwNy0yLjg5My0xLjAwNy0xLjcxNCAwLTMuMjY0LjU5NS00LjY1IDEuNzg1LTEuMzg2IDEuMTktMi40MzUgMy4xMTctMy4xNDggNS43ODEtLjc1NiAyLjgyNy0uNzcgNC44NC0uMDM5IDYuMDQxLjczIDEuMiAxLjkzNyAxLjggMy42MTkgMS44IDEuMjQgMCAyLjQxLS4zODEgMy41MDgtMS4xNDQgMS4wOTgtLjc2MyAyLjA2MS0xLjk2MyAyLjg4OC0zLjZ6IiBmaWxsPSIjZmZmIi8+CiAgICA8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTE0NC4yNjMgOC45MTVoLTEzLjdhLjA3NC4wNzQgMCAwIDAtLjA2OS4wNDdjLS44MDUgMi4xOS0yLjk0NiAzLjczNy00LjY0NSA0LjEzM2EuMDczLjA3MyAwIDAgMC0uMDU3LjA3MnYzLjE1YzAgLjAyMi4wMDkuMDQyLjAyNi4wNTYuMDEzLjAxMi4wMy4wMTguMDQ3LjAxOGguMDEyYzMuMDUxLS40OCA1LjU1NC0yLjA3MSA2LjY5Ny00LjI1N2wuMDIxLS4wNGg3Ljk5M2wtLjAwOC4wODFjLS41MSA1LjI3MS00Ljc3OSA3Ljk4OS0xMy4wNTEgOC4zMWEuMDc0LjA3NCAwIDAgMC0uMDcxLjA3M2wtLjAwMiAyLjg5M2EuMDczLjA3MyAwIDAgMCAuMDczLjA3M2guMDAyYzUuNDYyLS4xMjEgOS42NjItMS4yNzYgMTIuNDgyLTMuNDMgMi44OS0yLjIwOSA0LjM0NS01LjQ4MiA0LjMyNC05LjcyOVY4Ljk5YS4wNzQuMDc0IDAgMCAwLS4wNzQtLjA3NHpNMTIzLjg1MiAxMi4xNThhLjA3NC4wNzQgMCAwIDAtLjA1My0uMDIyaC0zLjM0NWEuMDc0LjA3NCAwIDAgMC0uMDc0LjA3Yy0uMjkxIDYuNDEyLTEuMjEzIDcuOTQ1LTkuNjE1IDguMjg2YS4wNzQuMDc0IDAgMCAwLS4wNzEuMDc0djIuODg4YS4wNzQuMDc0IDAgMCAwIC4wNzQuMDc0YzkuNTIyLS4wMzkgMTIuOTUxLTMgMTMuMTA1LTExLjMxN2EuMDcuMDcgMCAwIDAtLjAyMS0uMDUzeiIgZmlsbD0iIzAwMCIvPgogICAgPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xMTcuMzgzIDEyLjE1N2EuMDc0LjA3NCAwIDAgMC0uMDUyLS4wMjJoLTIuODE1YS4wNzQuMDc0IDAgMCAwLS4wNzQuMDc0djUuNDY2YS4wNzUuMDc1IDAgMCAwIC4wNzQuMDc0bC4wMzEtLjAwMWMxLjk1Mi0uMTA0IDIuODQzLS4xNSAyLjg1OC01LjU0YS4wNzQuMDc0IDAgMCAwLS4wMjItLjA1MXpNMTEyLjE2MSAxNS41NzdoLS45OTZhLjE1Ny4xNTcgMCAwIDEtLjE1NC0uMTRsLS4xNzgtMS43NjVhLjE3NC4xNzQgMCAwIDEgLjEwNy0uMTc2bDEuMjM5LS40OTVhLjA3NC4wNzQgMCAwIDAgLjA0Ni0uMDY5di0uNzIzYS4wNzQuMDc0IDAgMCAwLS4wNzMtLjA3NGgtMy4zMTNhLjA3NC4wNzQgMCAwIDAtLjA3NC4wODFsLjU1MiA1LjQ3NWEuMDc1LjA3NSAwIDAgMCAuMDc0LjA2N2gyLjc3YS4wNzQuMDc0IDAgMCAwIC4wNzQtLjA3NFYxNS42NWEuMDc0LjA3NCAwIDAgMC0uMDc0LS4wNzR6IiBmaWxsPSIjREMxQzI2Ii8+CiAgICA8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTEwNi43NTggOC45MTRoLTMuNjg1YS4wNzQuMDc0IDAgMCAwLS4wNzQuMDc0djQuNDU1YzAgNS43ODgtMi41MTggNi40NTUtOS43MTIgNi44ODRhLjA3My4wNzMgMCAwIDAtLjA3LjA3M3YzLjA1YzAgLjAyLjAwOS4wNC4wMjMuMDU0LjAxNC4wMTMuMDMyLjAyLjA1Mi4wMmguMDAxYzEwLjEyMy0uMjg0IDEzLjUzOS0yLjc3MSAxMy41MzktOS44NTd2LTQuNjhhLjA3NC4wNzQgMCAwIDAtLjA3NC0uMDczek05NS4wMjEgMTcuMzA3VjguOTg4YS4wNzQuMDc0IDAgMCAwLS4wNzMtLjA3NGgtMy42MWEuMDc0LjA3NCAwIDAgMC0uMDczLjA3NHY4LjMxOWMwIC4wNC4wMzMuMDc0LjA3My4wNzRoMy42MWMuMDQgMCAuMDczLS4wMzQuMDczLS4wNzR6TTg5LjI3NCA4LjkxNWgtMTMuN2MtLjAzIDAtLjA1OC4wMTgtLjA2OS4wNDctLjgwNSAyLjE5LTIuOTQ2IDMuNzM3LTQuNjQ1IDQuMTMzYS4wNzQuMDc0IDAgMCAwLS4wNTcuMDcydjMuMTVhLjA3NC4wNzQgMCAwIDAgLjA3My4wNzRoLjAxMmMzLjA1LS40OCA1LjU1NC0yLjA3MSA2LjY5Ny00LjI1N2wuMDIxLS4wNEg4NS42bC0uMDA4LjA4MWMtLjUxIDUuMjcxLTQuNzc5IDcuOTg5LTEzLjA1MSA4LjMxYS4wNzQuMDc0IDAgMCAwLS4wNzEuMDczbC0uMDAyIDIuODkzYS4wNzMuMDczIDAgMCAwIC4wNzQuMDczaC4wMDFjNS40NjItLjEyMSA5LjY2Mi0xLjI3NiAxMi40ODItMy40MyAyLjg5LTIuMjA5IDQuMzQ1LTUuNDgyIDQuMzI0LTkuNzI5VjguOTlhLjA3NC4wNzQgMCAwIDAtLjA3NC0uMDc0eiIgZmlsbD0iIzAwMCIvPgogICAgPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik01Ni44NTcgMjEuMjQzYy0zLjkwOCAwLTcuMDc2LTIuMjY1LTcuMDc2LTUuMDYgMC0yLjc5NCAzLjE2OC01LjA2IDcuMDc2LTUuMDYgMy45MSAwIDcuMDc4IDIuMjY2IDcuMDc4IDUuMDYgMCAyLjc5NS0zLjE2OSA1LjA2LTcuMDc4IDUuMDZ6bTAtMTIuMDcyYy02LjQzOCAwLTExLjY2IDMuMTQtMTEuNjYgNy4wMTMgMCAzLjg3MiA1LjIyMiA3LjAxIDExLjY2IDcuMDEgNi40NCAwIDExLjY2LTMuMTM4IDExLjY2LTcuMDEgMC0zLjg3My01LjIyLTcuMDEzLTExLjY2LTcuMDEzek0zNC4yNiAyMi4wOTRoLjkyN2EuMTY5LjE2OSAwIDAgMCAuMTMtLjA3M2wzLjg0Ni02LjMwMyAyLjA5IDcuMjEyYS4xMjEuMTIxIDAgMCAwIC4xMS4wODJoNC4wMzVjLjA0OCAwIC4wNzUtLjAzNy4wNi0uMDgyTDQxLjIwMiA5LjQzN2EuMTI1LjEyNSAwIDAgMC0uMTExLS4wODJoLTEuNTE2YS4xNzcuMTc3IDAgMCAwLS4xMzIuMDcybC01LjE4NCA4LjA1LTUuMTg0LTguMDVhLjE3Ny4xNzcgMCAwIDAtLjEzMy0uMDcyaC0xLjUxNWEuMTI0LjEyNCAwIDAgMC0uMTEyLjA4MkwyMy4wNTggMjIuOTNjLS4wMTQuMDQ1LjAxMy4wODIuMDYuMDgyaDQuMDM2YS4xMjIuMTIyIDAgMCAwIC4xMS0uMDgybDIuMDktNy4yMTIgMy44NDYgNi4zMDNjLjAyNC4wNC4wODMuMDczLjEzLjA3M2guOTN6TTIzLjI0MiAxNS4zNzNzMC0uMDAyLS4wMDItLjAwM2EuMDg1LjA4NSAwIDAgMC0uMDgyLS4wNjdIMTEuNjZhMS4xMDIgMS4xMDIgMCAwIDAgMCAyLjIwNWg2LjgzMmMtLjgxNCAyLjE1Mi0zLjU2NCAzLjczNi02LjgzMiAzLjczNi0zLjkxIDAtNy4wNzgtMi4yNjUtNy4wNzgtNS4wNiAwLTIuNzk0IDMuMTY5LTUuMDYgNy4wNzgtNS4wNiAyLjEzNCAwIDQuMDQ4LjY3NiA1LjM0NiAxLjc0NmwuMDEzLjAxYy4wMTQuMDEuMDMuMDE1LjA0OC4wMTVoNC42OThhLjA4Ni4wODYgMCAwIDAgLjA4Ni0uMDg2YzAtLjAyLS4wMDgtLjA0LS4wMi0uMDU0bC0uMDA4LS4wMDljLTItMi4xMzMtNS44MDItMy41NzQtMTAuMTYzLTMuNTc0QzUuMjIgOS4xNzIgMCAxMi4zMTIgMCAxNi4xODVjMCAzLjg3MiA1LjIyIDcuMDEgMTEuNjYgNy4wMSA2LjQzOSAwIDExLjY2LTMuMTM4IDExLjY2LTcuMDEgMC0uMjc1LS4wMjctLjU0Ni0uMDc4LS44MTJ6IiBmaWxsPSIjMDA1QkFDIi8+Cjwvc3ZnPgo="/>
+  <g transform="translate(499.0 700)"><rect width="142" height="68" rx="34" fill="#f8fafc" stroke="#dbe3ee" stroke-width="2"/><circle cx="34" cy="34" r="8" fill="#2563eb"/><text x="56" y="43" fill="#334155" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="700">CFD</text></g><g transform="translate(667.0 700)"><rect width="185" height="68" rx="34" fill="#f8fafc" stroke="#dbe3ee" stroke-width="2"/><circle cx="34" cy="34" r="8" fill="#e11d48"/><text x="56" y="43" fill="#334155" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="700">Android</text></g><g transform="translate(878.0 700)"><rect width="223" height="68" rx="34" fill="#f8fafc" stroke="#dbe3ee" stroke-width="2"/><circle cx="34" cy="34" r="8" fill="#0f9f78"/><text x="56" y="43" fill="#334155" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="700">Real-time</text></g>
 </svg>

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <rect width="1600" height="900" fill="#fff"/>
+  <circle cx="1440" cy="120" r="28" fill="#e60012"/>
+  <text x="800" y="158" text-anchor="middle" fill="#050505" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="60" font-weight="900">Code Intelligence</text>
+  <path d="M758 196h84" stroke="#050505" stroke-width="9" stroke-linecap="round"/>
+  <text x="800" y="242" text-anchor="middle" fill="#475569" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="24" font-weight="600">Understand impact first</text>
+  <g transform="translate(240 120) scale(.70)">
+    <g transform="translate(470 355)">
+          <rect width="660" height="420" rx="42" fill="#0f172a"/>
+          <circle cx="54" cy="46" r="10" fill="#fb7185"/><circle cx="86" cy="46" r="10" fill="#fbbf24"/><circle cx="118" cy="46" r="10" fill="#34d399"/>
+          <path d="M95 150l-52 52 52 52M215 150l52 52-52 52M180 122l-50 164" fill="none" stroke="#f97316" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M340 142h225M340 202h170M340 262h250M340 322h125" stroke="#cbd5e1" stroke-width="16" stroke-linecap="round"/>
+        </g>
+  </g>
+</svg>

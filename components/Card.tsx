@@ -27,7 +27,7 @@ const Card = ({
   <div className="w-full p-4 lg:w-1/2">
     <article className="flex h-full flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl dark:border-gray-700 dark:bg-gray-900">
       {imgSrc ? (
-        <div className="relative h-56 overflow-hidden bg-gray-50 dark:bg-gray-800">
+        <div className="relative h-56 overflow-hidden bg-white">
           <Image
             alt={title}
             src={imgSrc}
