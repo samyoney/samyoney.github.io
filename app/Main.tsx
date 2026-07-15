@@ -11,6 +11,8 @@ import { useLanguage } from '@/components/LanguageProvider'
 
 const MAX_DISPLAY = 5
 
+const FEATURED_POST_SLUGS = ['jetpack-compose-clean-base-blog', 'swift-clean-base-blog']
+
 const INTERESTED_TECH_TAGS = [
   'Bridge SE',
   'Tech Lead',
@@ -23,6 +25,10 @@ const INTERESTED_TECH_TAGS = [
 export default function Home({ posts, author }) {
   const { language } = useLanguage()
   const isJapanese = language === 'ja'
+  const featuredPosts = [
+    ...FEATURED_POST_SLUGS.map((slug) => posts.find((post) => post.slug === slug)).filter(Boolean),
+    ...posts.filter((post) => !FEATURED_POST_SLUGS.includes(post.slug)),
+  ]
 
   return (
     <>
@@ -86,14 +92,14 @@ export default function Home({ posts, author }) {
         </div>
         <div className="space-y-2 pb-2 pt-6 md:space-y-5">
           <h1 className="text-xl font-extrabold leading-7 tracking-tight text-gray-900 dark:text-gray-100 sm:text-2xl sm:leading-8 md:text-4xl md:leading-10">
-            {isJapanese ? '最近の記事' : 'Recent Articles'}
+            {isJapanese ? 'おすすめの記事' : 'Featured Articles'}
           </h1>
         </div>
 
         <ul className=" grid grid-cols-1 gap-4 pt-6 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
           {/* <ul className="flex-col md:flex-row gap-6"> */}
           {!posts.length && (isJapanese ? '記事がありません。' : 'No posts found.')}
-          {posts.slice(0, MAX_DISPLAY).map((post, index) => {
+          {featuredPosts.slice(0, MAX_DISPLAY).map((post, index) => {
             const { slug, date, title, titleJa, summary, summaryJa, tags, images } = post
             const displayTitle = isJapanese && titleJa ? titleJa : title
             const displaySummary = isJapanese && summaryJa ? summaryJa : summary
