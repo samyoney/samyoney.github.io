@@ -7,7 +7,7 @@ interface Props {
 }
 
 export const japaneseProjects: Record<string, { title: string; summary: string }> = {
-  '法人向けクラウド電話サービス': {
+  法人向けクラウド電話サービス: {
     title: '法人向けクラウド電話サービス',
     summary:
       '顧客・関連会社との調整、設計レビュー、障害・セキュリティ対応、受入、本番移行、リリース後の安定化を主導。',
