@@ -7,23 +7,23 @@ interface Props {
 }
 
 export const japaneseProjects: Record<string, { title: string; summary: string }> = {
-  'アイテック 法人向けクラウド電話サービス': {
-    title: 'アイテック 法人向けクラウド電話サービス',
+  '法人向けクラウド電話サービス': {
+    title: '法人向けクラウド電話サービス',
     summary:
       '顧客・関連会社との調整、設計レビュー、障害・セキュリティ対応、受入、本番移行、リリース後の安定化を主導。',
   },
-  'Next-generation KS-POS': {
-    title: '次世代KS-POS',
+  'Next-generation POS': {
+    title: '次世代POS',
     summary:
       '顧客調整、全体設計、周辺機器連携、状態保存、監視、設計資料、試験方針まで一貫してリード。',
   },
-  'EDION Business Web Systems': {
-    title: 'エディオン向け業務Webシステム',
+  'Business Web Systems': {
+    title: '業務Webシステム',
     summary:
       '複数の業務システムを対象に、要件確認、障害・影響調査、実装レビュー、進捗・リスク管理、安定運用を推進。',
   },
-  'Sharp Mobile Application Maintenance': {
-    title: 'Sharp向けモバイルアプリ保守',
+  'Mobile Application Maintenance': {
+    title: 'モバイルアプリ保守',
     summary:
       '大規模Flutterアプリの顧客窓口、コード調査、修正方針、実装レビュー、優先順位調整、品質改善を担当。',
   },
@@ -32,23 +32,23 @@ export const japaneseProjects: Record<string, { title: string; summary: string }
     summary:
       '要件整理、API、非機能設計、外部決済連携、チケット確認、QR読取、印刷を含む開発計画を推進。',
   },
-  'S-Point Shared Loyalty Platform': {
-    title: 'Sポイント共通ポイント基盤',
+  'Shared Loyalty Platform': {
+    title: '共通ポイント基盤',
     summary:
       '要件確認、API・バッチ連携レビュー、日越調整、共通仕様、例外処理を含む複数社連携をリード。',
   },
-  'Sharp Field Service Support System': {
-    title: 'Sharp向けフィールドサービス支援システム',
+  'Field Service Support System': {
+    title: 'フィールドサービス支援システム',
     summary:
       '顧客調整、日越開発管理、モバイル・Web改修、端末連携、印刷、運用障害の原因調査を主導。',
   },
-  'Seikyo Digital Edition': {
-    title: '聖教電子版',
+  'Digital Publication Application': {
+    title: '電子出版アプリ',
     summary:
       'Android・iOS向けの閲覧・配信機能を設計、実装し、両プラットフォームの画面仕様と動作を統一。',
   },
-  'Paris Miki iPad Inventory Application': {
-    title: 'パリミキ iPad在庫管理アプリ',
+  'iPad Inventory Application': {
+    title: 'iPad在庫管理アプリ',
     summary: '店舗向けiPadアプリの在庫検索、確認、更新、リアルタイム同期を設計・実装。',
   },
   'Fatigue Measurement Application': {
@@ -56,8 +56,8 @@ export const japaneseProjects: Record<string, { title: string; summary: string }
     summary:
       'まぶた・瞳孔データによる疲労判定アプリで、立上げ、画像解析、機械学習連携、開発推進を担当。',
   },
-  'e-Orico Mobile Security Enhancement': {
-    title: 'eオリコ モバイルセキュリティ強化',
+  'Financial Mobile Security Enhancement': {
+    title: '金融モバイルアプリのセキュリティ強化',
     summary:
       '金融モバイルアプリの認証、暗号化、データ保護、自動テストを強化し、安全性と品質を改善。',
   },
@@ -87,8 +87,8 @@ export const japaneseProjects: Record<string, { title: string; summary: string }
     title: '地域薬局検索アプリ',
     summary: '現在地周辺の薬局検索、地図、経路、評価、外部API連携、端末内データ管理を実装。',
   },
-  'Viettel Smart Home IoT Platform': {
-    title: 'Viettel スマートホームIoT基盤',
+  'Smart Home IoT Platform': {
+    title: 'スマートホームIoT基盤',
     summary:
       '住宅設備を制御するハードウェア回路、MQTTサービス、Androidアプリ、認証、暗号化を開発。',
   },

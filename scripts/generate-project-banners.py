@@ -18,19 +18,9 @@ def data_uri(filename: str) -> str:
 
 
 PROJECTS = [
-    {"slug": "itech-cloud-phone", "logo": "itechh.png", "size": (1050, 230), "tech": ["Cloud", "Mobile", "AWS"]},
-    {"slug": "next-generation-ks-pos", "logo": "ksdenki.png", "size": (380, 380), "tech": ["POS", ".NET", "Retail"]},
-    {"slug": "edion-business-systems", "logo": "edion.svg", "size": (850, 300), "tech": ["Web", "AWS", "Retail"]},
-    {"slug": "sharp-mobile-maintenance", "logo": "sharp.svg", "size": (850, 280), "tech": ["Android", "iOS", "Flutter"]},
     {"slug": "ticketing-payment-platform", "icon": "ticket", "label": "TICKETING & PAYMENT", "tech": ["QR", "Payment", "AWS"]},
-    {"slug": "s-point-loyalty-platform", "logo": "s-point.png", "size": (300, 375), "tech": ["Loyalty", "API", "AWS"]},
-    {"slug": "sharp-field-service", "logo": "sharp.svg", "size": (850, 280), "tech": ["Android", "Web", "Field Service"]},
     {"slug": "regional-pharmacy-search", "icon": "map", "label": "PHARMACY SEARCH", "tech": ["Android", "Maps", "Location"]},
-    {"slug": "viettel-smart-home", "logo": "viettel-high-tech.svg", "size": (850, 300), "tech": ["IoT", "MQTT", "Android"]},
-    {"slug": "seikyo-digital-edition", "logo": "seikyo.svg", "size": (850, 280), "tech": ["Android", "iOS", "Digital Edition"]},
-    {"slug": "paris-miki-inventory", "logo": "paris-miki.svg", "size": (1000, 300), "tech": ["iPad", "Swift", "Inventory"]},
     {"slug": "fatigue-measurement", "icon": "vision", "label": "FATIGUE MEASUREMENT", "tech": ["Vision", "ML", "Mobile"]},
-    {"slug": "e-orico-mobile-security", "logo": "e-orico.svg", "size": (850, 260), "tech": ["Android", "iOS", "Security"]},
 ]
 
 
