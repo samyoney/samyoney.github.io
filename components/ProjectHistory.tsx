@@ -61,31 +61,26 @@ export const japaneseProjects: Record<string, { title: string; summary: string }
     summary:
       '金融モバイルアプリの認証、暗号化、データ保護、自動テストを強化し、安全性と品質を改善。',
   },
-  'GMO Click CFD': {
-    title: 'GMOクリック CFD',
+  'CFD Trading Application': {
+    title: 'CFD取引アプリ',
     summary:
       'リアルタイム価格、チャート、注文、ニュースを扱うCFDアプリの技術方針、設計レビュー、品質、リリースを主導。',
   },
-  'Adam byGMO NFT Viewer': {
-    title: 'Adam byGMO NFTビューア',
-    summary:
-      'FlutterによるNFT閲覧アプリの立上げ、画面・画像処理設計、タスク管理、クロスプラットフォーム開発を主導。',
-  },
-  'GMO Click FXneo for Apple Watch': {
-    title: 'GMOクリック FXneo Apple Watch版',
+  'FX Trading Application for Apple Watch': {
+    title: 'Apple Watch向けFX取引アプリ',
     summary: '価格、建玉、注文、通知を設計・実装し、小型画面に合わせた操作性と性能を最適化。',
   },
-  'GMO Financial Mobile Test Automation Platform': {
-    title: 'GMOフィナンシャル モバイル自動テスト基盤',
+  'Financial Mobile Test Automation Platform': {
+    title: '金融モバイルアプリ自動テスト基盤',
     summary:
       '複数のAndroid・iOS金融アプリ向けに自動テスト基盤を構築・標準化し、手動確認を削減して品質を安定化。',
   },
-  'GMO Coin': {
-    title: 'GMOコイン',
+  'Crypto Trading Application': {
+    title: '暗号資産取引アプリ',
     summary: '取引、チャート、入出金、通知、二要素認証、暗号化データ管理を設計・実装・改善。',
   },
-  'GMO Click FXneo': {
-    title: 'GMOクリック FXneo',
+  'FX Trading Application': {
+    title: 'FX取引アプリ',
     summary: '主要画面、取引機能、API連携、金融データ管理、例外設計、継続的な品質改善を担当。',
   },
   'Regional Pharmacy Search Application': {

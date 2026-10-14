@@ -31,8 +31,6 @@ PROJECTS = [
     {"slug": "paris-miki-inventory", "logo": "paris-miki.svg", "size": (1000, 300), "tech": ["iPad", "Swift", "Inventory"]},
     {"slug": "fatigue-measurement", "icon": "vision", "label": "FATIGUE MEASUREMENT", "tech": ["Vision", "ML", "Mobile"]},
     {"slug": "e-orico-mobile-security", "logo": "e-orico.svg", "size": (850, 260), "tech": ["Android", "iOS", "Security"]},
-    {"slug": "gmo-click-cfd", "logo": "gmo-click-cfd.svg", "size": (850, 280), "tech": ["CFD", "Android", "Real-time"]},
-    {"slug": "adam-nft-viewer", "logo": "adam-by-gmo.png", "size": (900, 400), "tech": ["Flutter", "NFT", "Mobile"]},
 ]
 
 
